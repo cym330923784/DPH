@@ -212,7 +212,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    [self performSegueWithIdentifier:@"toOrderProductList" sender:nil];
+    if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"toOrderProductList" sender:nil];
+    }
+    
 
 }
 
