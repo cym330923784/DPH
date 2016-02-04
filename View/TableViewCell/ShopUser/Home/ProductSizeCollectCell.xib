@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sizeLabelCell" id="gTV-IL-0wX" customClass="ProductSizeCollectCell">
+            <rect key="frame" x="0.0" y="0.0" width="98" height="37"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="98" height="37"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiI-q0-CBB">
+                        <rect key="frame" x="0.0" y="0.0" width="98" height="37"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DiI-q0-CBB" secondAttribute="trailing" id="A8w-DE-N2Y"/>
+                <constraint firstItem="DiI-q0-CBB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="UDI-LX-V62"/>
+                <constraint firstItem="DiI-q0-CBB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Zfc-R4-dzc"/>
+                <constraint firstAttribute="bottom" secondItem="DiI-q0-CBB" secondAttribute="bottom" id="hxs-Pb-8Mp"/>
+            </constraints>
+            <size key="customSize" width="98" height="37"/>
+            <connections>
+                <outlet property="label" destination="DiI-q0-CBB" id="geZ-us-9FL"/>
+            </connections>
+            <point key="canvasLocation" x="286" y="362.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

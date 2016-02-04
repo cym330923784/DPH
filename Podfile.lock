@@ -1,0 +1,66 @@
+PODS:
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
+  - HappyDNS (0.2.3)
+  - IQKeyboardManager (3.3.6)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.0)
+  - Qiniu (7.0.16):
+    - AFNetworking (~> 3.0.0-beta.2)
+    - HappyDNS (~> 0.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - YTKKeyValueStore (0.1.2):
+    - FMDB (~> 2.0)
+  - YYModel (0.9.12)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - IQKeyboardManager
+  - MBProgressHUD (~> 0.9)
+  - MJRefresh
+  - Qiniu (from `https://github.com/qiniu/objc-sdk.git`, branch `AFNetworking-3.x`)
+  - SDWebImage (~> 3.7.1)
+  - YTKKeyValueStore
+  - YYModel
+
+EXTERNAL SOURCES:
+  Qiniu:
+    :branch: AFNetworking-3.x
+    :git: https://github.com/qiniu/objc-sdk.git
+
+CHECKOUT OPTIONS:
+  Qiniu:
+    :commit: db9fa673ae86a874c9e49c5252eb453efb7e500f
+    :git: https://github.com/qiniu/objc-sdk.git
+
+SPEC CHECKSUMS:
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
+  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  Qiniu: fe4608e64edd9ed8f06c93e6cf4dedf1cc5ba50b
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
+  YYModel: 33a27f41a995f4c36ff8178421bac9f221a9c7ea
+
+COCOAPODS: 0.39.0
