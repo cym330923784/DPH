@@ -1504,7 +1504,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/cym/Desktop/DPH/DPH/DPH.pch;
+				GCC_PREFIX_HEADER = /Users/cym/Desktop/DPH_project/DPH/DPH.pch;
 				INFOPLIST_FILE = DPH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dph.DPH;
@@ -1518,7 +1518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/cym/Desktop/DPH/DPH/DPH.pch;
+				GCC_PREFIX_HEADER = /Users/cym/Desktop/DPH_project/DPH/DPH.pch;
 				INFOPLIST_FILE = DPH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dph.DPH;
