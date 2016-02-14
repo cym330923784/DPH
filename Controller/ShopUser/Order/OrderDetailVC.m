@@ -155,14 +155,7 @@
         {
             cell.remarkLab.text = self.modelOrder.note;
         }
- 
         
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-////        [formatter setDateStyle:NSDateFormatterMediumStyle];
-////        [formatter setTimeStyle:NSDateFormatterShortStyle];
-//        [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-//        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[self.modelOrder.cTime  integerValue]];
-//        NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
         cell.timeLab.text = self.modelOrder.cTime;
         
     }
@@ -215,8 +208,6 @@
     if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"toOrderProductList" sender:nil];
     }
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
