@@ -11,6 +11,8 @@
 #import <IQKeyboardManager.h>
 #import "UserDefaultUtils.h"
 #import "PMainTabbarCtrl.h"
+#import "CYM_GuideVC.h"
+#import "CALayer+Transition.h"
 
 @interface AppDelegate ()
 
@@ -34,9 +36,22 @@
     //首次进入APP
     
     if ((![UserDefaultUtils valueWithKey:@"isLogin"])) {
-        UIStoryboard *board         = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-        UINavigationController * firstNav = [board instantiateViewControllerWithIdentifier:@"NavLogin"];
-        self.window.rootViewController = firstNav;
+//        UIStoryboard *board         = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//        UINavigationController * firstNav = [board instantiateViewControllerWithIdentifier:@"NavLogin"];
+//        self.window.rootViewController = firstNav;
+        self.window.rootViewController = [CYM_GuideVC newFeatureVCWithImageNames:@[@"homePage_ico_find",@"homePage_ico_home",@"homePage_ico_shop",@"homePage_ico_user"] enterBlock:^{
+            
+            NSLog(@"进入主页面");
+            [self enter];
+            
+        } configuration:^(UIButton *enterButton) { // 配置进入按钮
+//            [enterButton setBackgroundImage:[UIImage imageNamed:@"btn_nor"] forState:UIControlStateNormal];
+            [enterButton setBackgroundColor:[UIColor yellowColor]];
+            [enterButton setBackgroundImage:[UIImage imageNamed:@"btn_pressed"] forState:UIControlStateHighlighted];
+            enterButton.bounds = CGRectMake(0, 0, 120, 40);
+            enterButton.center = CGPointMake(KScreenW * 0.5, KScreenH* 0.85);
+        }];
+
     }
     else
     {
@@ -65,6 +80,19 @@
     
     return YES;
 }
+
+-(void)enter{
+    
+    UIStoryboard *board         = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    UINavigationController * firstNav = [board instantiateViewControllerWithIdentifier:@"LoginVC"];
+    self.window.rootViewController = firstNav;
+    [self.window.layer transitionWithAnimType:TransitionAnimTypeRippleEffect subType:TransitionSubtypesFromRamdom curve:TransitionCurveEaseInEaseOut duration:2.0f];
+
+}
+
+
+                                         
+                                
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

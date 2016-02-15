@@ -94,11 +94,12 @@
 
 - (IBAction)selectShopUserAction:(id)sender {
     
-    if (![self.codeTF.text isEqualToString:validateCode]) {
-        [self showCommonHUD:@"验证码错误!"];
-    }
-    else
-    {
+    //****************暂时注释*****************
+//    if (![self.codeTF.text isEqualToString:validateCode]) {
+//        [self showCommonHUD:@"验证码错误!"];
+//    }
+//    else
+//    {
         [self showDownloadsHUD:@"通信中..."];
         [[ServerUser sharedInstance] userLogin:self.phoneTF.text code:self.codeTF.text success:^(id result) {
             [self releaseTImer];
@@ -115,7 +116,7 @@
 
         }];
 
-    }
+//    }
 }
 - (IBAction)selectPartnerAction:(id)sender {
 //    BaseNetwork * base = [[BaseNetwork alloc]init];

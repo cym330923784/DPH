@@ -139,6 +139,8 @@
 		319C95281C5753AF00859947 /* ProIntroduceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 319C95261C5753AF00859947 /* ProIntroduceCell.xib */; };
 		319C95351C5770AB00859947 /* ShopCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C95341C5770AB00859947 /* ShopCartVC.m */; };
 		31A4C64A1C5D208300FC284D /* ShopCartSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A4C6491C5D208300FC284D /* ShopCartSQL.m */; };
+		6B9EED161C717558005D9651 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED131C717558005D9651 /* CALayer+Transition.m */; };
+		6B9EED171C717558005D9651 /* CYM_GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED151C717558005D9651 /* CYM_GuideVC.m */; };
 		73F9430CB0A947DCDE428B78 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8267A8FB57496C843723109 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -405,6 +407,10 @@
 		319C95341C5770AB00859947 /* ShopCartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartVC.m; sourceTree = "<group>"; };
 		31A4C6481C5D208300FC284D /* ShopCartSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCartSQL.h; sourceTree = "<group>"; };
 		31A4C6491C5D208300FC284D /* ShopCartSQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartSQL.m; sourceTree = "<group>"; };
+		6B9EED121C717558005D9651 /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
+		6B9EED131C717558005D9651 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
+		6B9EED141C717558005D9651 /* CYM_GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYM_GuideVC.h; sourceTree = "<group>"; };
+		6B9EED151C717558005D9651 /* CYM_GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYM_GuideVC.m; sourceTree = "<group>"; };
 		E8267A8FB57496C843723109 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -705,6 +711,7 @@
 		3160EE231C55F0ED0066A7D6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6B9EED101C717558005D9651 /* CYM_GuideVC */,
 				315DFF8C1C59E5A0006AB847 /* DVSwitch */,
 				315DFF871C59C001006AB847 /* area.plist */,
 				318F926D1C5604B600BE7742 /* Define.h */,
@@ -1045,6 +1052,25 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		6B9EED101C717558005D9651 /* CYM_GuideVC */ = {
+			isa = PBXGroup;
+			children = (
+				6B9EED111C717558005D9651 /* Category */,
+				6B9EED141C717558005D9651 /* CYM_GuideVC.h */,
+				6B9EED151C717558005D9651 /* CYM_GuideVC.m */,
+			);
+			path = CYM_GuideVC;
+			sourceTree = "<group>";
+		};
+		6B9EED111C717558005D9651 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6B9EED121C717558005D9651 /* CALayer+Transition.h */,
+				6B9EED131C717558005D9651 /* CALayer+Transition.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		E9C99C20D7BA230A024D87CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1315,7 @@
 				3173F0921C5C648E00718D2D /* InitSQL.m in Sources */,
 				315DD2CE1C5F753E00596AF2 /* DatePickerView.m in Sources */,
 				3163107C1C5F50CB00A53D78 /* ModelPartner.m in Sources */,
+				6B9EED161C717558005D9651 /* CALayer+Transition.m in Sources */,
 				315ECD811C5B377C0045C900 /* PersonMenuCell.m in Sources */,
 				319C95171C5734DC00859947 /* MsgVC.m in Sources */,
 				316C99821C5E573D0062DE97 /* POrderListCell.m in Sources */,
@@ -1363,6 +1390,7 @@
 				316310531C5F396C00A53D78 /* NetworkUser.m in Sources */,
 				3160EDF01C55EFEF0066A7D6 /* main.m in Sources */,
 				316C99871C5E59190062DE97 /* POrderDetailCell.m in Sources */,
+				6B9EED171C717558005D9651 /* CYM_GuideVC.m in Sources */,
 				319C95351C5770AB00859947 /* ShopCartVC.m in Sources */,
 				315ECD3A1C5B1C580045C900 /* CompnayInfoVC.m in Sources */,
 				316C99721C5E40E10062DE97 /* ProductListCell.m in Sources */,
