@@ -18,6 +18,7 @@
 #import "UserDefaultUtils.h"
 #import "ServerPartner.h"
 #import "PNetworkLogin.h"
+#import "NSString+Check.h"
 
 @interface LoginVC ()
 {
@@ -46,6 +47,10 @@
 }
 
 - (IBAction)sendCodeAction:(id)sender {
+    if (![NSString isMobileNumber:self.phoneTF.text]) {
+        [self showCommonHUD:@"请输入正确的手机号!"];
+        return;
+    }
     NSLog(@"发送验证码");
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
     seconds = 100;
@@ -148,11 +153,11 @@
 //        return;
 //    }
     
-    if (![self.codeTF.text isEqualToString:validateCode]) {
-        [self showCommonHUD:@"验证码错误!"];
-    }
-    else
-    {
+//    if (![self.codeTF.text isEqualToString:validateCode]) {
+//        [self showCommonHUD:@"验证码错误!"];
+//    }
+//    else
+//    {
         [self showDownloadsHUD:@"通信中..."];
         
         [[ServerPartner sharedInstance] partnerLogin:self.phoneTF.text
@@ -170,7 +175,7 @@
                                                  [self showCommonHUD:result];
                                                  
                                              }];
-    }
+//    }
  
 }
 

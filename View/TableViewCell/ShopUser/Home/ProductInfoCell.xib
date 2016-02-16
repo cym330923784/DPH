@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="454.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y0q-lB-90E">
@@ -125,23 +125,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jXi-TL-dta" id="kNi-Dh-h9b">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="规格:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-Nf-2Tt">
-                        <rect key="frame" x="15" y="15" width="39" height="21"/>
+                        <rect key="frame" x="15" y="15" width="39" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcI-eC-yN1">
-                        <rect key="frame" x="15" y="59" width="39" height="21"/>
+                        <rect key="frame" x="15" y="58" width="39" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Ci-U3c">
-                        <rect key="frame" x="104" y="55" width="90" height="30"/>
+                        <rect key="frame" x="104" y="54" width="90" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="8gJ-CP-5bF"/>
                         </constraints>
@@ -149,7 +149,7 @@
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1O-Nf-coc">
-                        <rect key="frame" x="69" y="53" width="30" height="34"/>
+                        <rect key="frame" x="69" y="52" width="30" height="34"/>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <state key="normal" title="-">
@@ -160,7 +160,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-vZ-s3l">
-                        <rect key="frame" x="199" y="53" width="30" height="34"/>
+                        <rect key="frame" x="199" y="52" width="30" height="34"/>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <state key="normal" title="+">
@@ -178,7 +178,7 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gOX-Yt-CHK">
-                        <rect key="frame" x="59" y="8" width="253" height="35"/>
+                        <rect key="frame" x="59" y="8.5" width="253" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="an1-O8-fco"/>
                         </constraints>

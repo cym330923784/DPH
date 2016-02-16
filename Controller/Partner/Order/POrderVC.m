@@ -21,7 +21,9 @@
 {
     NSInteger page,type;
 }
-@property (nonatomic, strong)NSMutableArray * orderArr;
+@property (nonatomic ,strong)NSMutableArray * notFinishOrderArr;//未完成
+@property (nonatomic ,strong)NSMutableArray * finishOrderArr;//已完成
+@property (nonatomic ,strong)NSMutableArray * invalidOrderArr;//已作废
 
 @end
 
@@ -78,7 +80,38 @@
     
     [mySwitch setPressedHandler:^(NSUInteger index) {
         type = index+6;
-        [self.tableView.mj_header beginRefreshing];
+        if (type == 6) {
+            if (self.notFinishOrderArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+        }
+        else if (type == 7)
+        {
+            if (self.finishOrderArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+            
+        }
+        else
+        {
+            if (self.invalidOrderArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+        }
+        
+        [self.tableView reloadData];
     }];
     mySwitch.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -98,14 +131,56 @@
                                                    pageNo:pageNumber
                                                   success:^(id result) {
                                                       if ([pageNumber isEqualToString:@"1"]) {
-                                                          self.orderArr = [NSMutableArray array];
+                                                          switch ([typeNum integerValue]) {
+                                                              case 6:
+                                                              {
+                                                                  self.notFinishOrderArr = [NSMutableArray array];
+                                                              }
+                                                                  break;
+                                                              case 7:
+                                                              {
+                                                                  self.finishOrderArr = [NSMutableArray array];
+                                                              }
+                                                                  break;
+                                                              case 8:
+                                                              {
+                                                                  self.invalidOrderArr = [NSMutableArray array];
+                                                              }
+                                                                  break;
+                                                                  
+                                                              default:
+                                                                  break;
+                                                          }
+                                                          
                                                       }
                                                       NSMutableArray *arr = [NSMutableArray array];
                                                       for (NSDictionary * orderDic in result) {
                                                           ModelOrder * orderDemo = [ModelOrder yy_modelWithDictionary:orderDic];
                                                           [arr addObject:orderDemo];
                                                       }
-                                                      [self.orderArr addObjectsFromArray:arr];
+                                                      
+                                                      switch ([typeNum integerValue]) {
+                                                          case 6:
+                                                          {
+                                                              [self.notFinishOrderArr addObjectsFromArray:arr];
+                                                          }
+                                                              break;
+                                                          case 7:
+                                                          {
+                                                              [self.finishOrderArr addObjectsFromArray:arr];
+                                                          }
+                                                              break;
+                                                          case 8:
+                                                          {
+                                                              [self.invalidOrderArr addObjectsFromArray:arr];
+                                                          }
+                                                              break;
+                                                              
+                                                          default:
+                                                              break;
+                                                      }
+                                                      
+                                                      
                                                       [self.tableView.mj_header endRefreshing];
                                                       [self.tableView.mj_footer endRefreshing];
                                                       if (arr.count == 0) {
@@ -113,7 +188,6 @@
                                                           [self showCommonHUD:@"没有更多订单了!"];
                                                       }
                                                       [self.tableView reloadData];
-                                                      
                                                   }
                                                   failure:^(id result) {
                                                       [self.tableView.mj_header endRefreshing];
@@ -128,7 +202,18 @@
 #pragma mark - TableViewDelegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.orderArr.count;
+    if (type == 6) {
+        return self.notFinishOrderArr.count;
+    }
+    else if (type == 7)
+    {
+        return self.finishOrderArr.count;
+    }
+    else
+    {
+        return self.invalidOrderArr.count;
+    }
+
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -137,8 +222,18 @@
         NSArray * nibArr = [[NSBundle mainBundle]loadNibNamed:@"POrderListCell" owner:self options:nil];
         cell = nibArr[0];
     }
-    cell.modelOrder = self.orderArr[indexPath.row];
-        
+    if (type == 6) {
+        cell.modelOrder = self.notFinishOrderArr[indexPath.row];
+    }
+    else if (type == 7)
+    {
+        cell.modelOrder = self.finishOrderArr[indexPath.row];
+    }
+    else
+    {
+        cell.modelOrder = self.invalidOrderArr[indexPath.row];
+    }
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,7 +255,19 @@
         POrderDetailVC * view = [[POrderDetailVC alloc]init];
         view = segue.destinationViewController;
         NSIndexPath * index = (NSIndexPath *)sender;
-        ModelOrder * model = self.orderArr[index.row];
+        ModelOrder * model = [[ModelOrder alloc]init];
+        if (type == 6) {
+            model = self.notFinishOrderArr[index.row];
+        }
+        else if (type == 7)
+        {
+            model = self.finishOrderArr[index.row];
+        }
+        else
+        {
+            model = self.invalidOrderArr[index.row];
+        }
+
         view.orderId = model.orderId;
         
     }

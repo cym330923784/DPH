@@ -284,7 +284,13 @@
                             <constraint firstAttribute="trailing" secondItem="xcm-Uz-pyM" secondAttribute="trailing" id="z4r-rR-iI6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="报表管理" id="NKu-ac-p9N"/>
+                    <navigationItem key="navigationItem" title="报表管理" id="NKu-ac-p9N">
+                        <barButtonItem key="rightBarButtonItem" title="注销" id="8Xm-ow-gP0">
+                            <connections>
+                                <action selector="cancelAction:" destination="Nj7-1e-DJY" id="9j2-Eg-S12"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="endDateLab" destination="kJc-Px-BLh" id="EZb-Yj-sMm"/>
                         <outlet property="tableView" destination="xcm-Uz-pyM" id="fBJ-oC-iRM"/>

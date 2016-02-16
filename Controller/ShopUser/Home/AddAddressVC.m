@@ -11,6 +11,7 @@
 #import "AppUtils.h"
 #import "NetworkHome.h"
 #import "UserDefaultUtils.h"
+#import "NSString+Check.h"
 
 @interface AddAddressVC ()<UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -100,6 +101,13 @@
     {
         [self showCommonHUD:@"手机号码不能为空!"];
         return;
+    }
+    else
+    {
+        if (![NSString isMobileNumber:self.phoneTF.text]) {
+            [self showCommonHUD:@"请输入正确的手机号!"];
+            return;
+        }
     }
     if ([self.detailAddressTF.text isEqualToString:@""])
     {

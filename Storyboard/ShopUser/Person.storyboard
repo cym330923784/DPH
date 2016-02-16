@@ -48,7 +48,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="null" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVa-jF-7oU">
-                                            <rect key="frame" x="110" y="15" width="27" height="21"/>
+                                            <rect key="frame" x="110" y="15" width="482" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -79,6 +79,7 @@
                                         <constraint firstAttribute="bottom" secondItem="ZPN-Tb-Ftq" secondAttribute="bottom" constant="10" id="anj-u4-rGM"/>
                                         <constraint firstItem="WMy-qf-oV8" firstAttribute="top" secondItem="hVa-jF-7oU" secondAttribute="bottom" constant="15" id="bTw-Mi-Ix5"/>
                                         <constraint firstAttribute="bottom" secondItem="Bp8-DN-QrU" secondAttribute="bottom" id="eWG-gi-hMs"/>
+                                        <constraint firstAttribute="trailing" secondItem="hVa-jF-7oU" secondAttribute="trailing" constant="8" id="f2k-IO-XBF"/>
                                         <constraint firstItem="hVa-jF-7oU" firstAttribute="leading" secondItem="ZPN-Tb-Ftq" secondAttribute="trailing" constant="20" id="yU3-nQ-DOh"/>
                                     </constraints>
                                 </view>
