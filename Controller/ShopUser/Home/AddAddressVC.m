@@ -76,8 +76,14 @@
     }
 }
 - (IBAction)chooseAreaAction:(id)sender {
-    
+    [self resign];
     [self.view bringSubviewToFront:self.secondView];
+}
+-(void)resign
+{
+    [self.nameTF resignFirstResponder];
+    [self.phoneTF resignFirstResponder];
+    [self.detailAddressTF resignFirstResponder];
 }
 - (IBAction)finishAction:(id)sender {
     [self.view sendSubviewToBack:self.secondView];
@@ -108,6 +114,10 @@
             [self showCommonHUD:@"请输入正确的手机号!"];
             return;
         }
+    }
+    if ([self.areaBtn.titleLabel.text isEqualToString:@"请选择收货区域"]) {
+        [self showCommonHUD:@"收货区域不能为空!"];
+        return;
     }
     if ([self.detailAddressTF.text isEqualToString:@""])
     {

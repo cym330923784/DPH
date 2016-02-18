@@ -32,22 +32,25 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self initTable];
+
+    NSIndexPath * payIndex = [NSIndexPath indexPathForRow:3 inSection:0];
+    POrderDetailCell * thisCell = [self.tableView cellForRowAtIndexPath:payIndex];
+
     if (self.payment != nil) {
-        NSIndexPath * payIndex = [NSIndexPath indexPathForRow:3 inSection:0];
-        POrderDetailCell * thisCell = [self.tableView cellForRowAtIndexPath:payIndex];
         thisCell.numLab.hidden = NO;
         thisCell.numLab.text = self.payment;
         thisCell.jiantouImg.hidden = YES;
         thisCell.titleLab.text = @"已付款";
+        thisCell.userInteractionEnabled = NO;
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self initTable];
-    
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view.
+//    
+//}
 
 -(void)initTable
 {
@@ -197,17 +200,32 @@
         cell.numLab.text = self.modelOrder.num;
         if (indexPath.row == 3) {
             NSLog(@"%@",self.modelOrder.paymentStatus);
+           
             if ([self.modelOrder.paymentStatus isEqualToString:@"0"]) {
+                
                 cell.numLab.hidden = YES;
                 cell.titleLab.text = @"添加付款记录";
                 cell.jiantouImg.hidden = NO;
+                
+                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
+                    cell.jiantouImg.hidden = YES;
+    
+                    cell.userInteractionEnabled = NO;
+                }
+                
             }
             else
             {
                 cell.jiantouImg.hidden = YES;
                 cell.titleLab.text = @"已付款";
                 cell.numLab.text = self.modelOrder.method;
+                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
+                    
+                    cell.userInteractionEnabled = NO;
+                }
+                
             }
+
             
         }
     }

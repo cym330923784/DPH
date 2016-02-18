@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+    self.navigationItem.hidesBackButton = YES;
     self.orderCodeLab.text = [NSString stringWithFormat:@"订单编号: %@",self.codeStr];
     self.totalPriceLab.text = [NSString stringWithFormat:@"应付总额: ¥ %@",self.totalPriceStr];
 }

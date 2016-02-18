@@ -12,7 +12,7 @@
 
 
 #define kAlertWidth 300.0f
-#define kAlertHeight 200.0f
+#define kAlertHeight 230.0f
 
 
 @interface TextViewAlertView ()<UITextViewDelegate>
@@ -20,7 +20,7 @@
     BOOL _leftLeave;
 }
 
-//@property (nonatomic, strong) UILabel *alertTitleLabel;
+@property (nonatomic, strong) UILabel *alertTitleLabel;
 //@property (nonatomic, strong) UILabel *alertContentLabel;
 @property (nonatomic ,strong) UITextView * alertTextView;
 @property (nonatomic, strong) UIButton *leftBtn;
@@ -68,10 +68,16 @@
         self.layer.cornerRadius = 5.0;
         self.backgroundColor = [UIColor colorWithHexString:@"F0F0F0"];
         
-        self.alertTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, kAlertWidth-20, kAlertHeight-50)];
+        self.alertTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 40, kAlertWidth-20, kAlertHeight-80)];
         self.alertTextView.backgroundColor = [UIColor whiteColor];
         self.alertTextView.delegate = self;
         [self addSubview:self.alertTextView];
+        
+        self.alertTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, kAlertWidth-20, 30)];
+        self.alertTitleLabel.text = @"订单备注";
+        self.alertTitleLabel.textAlignment = NSTextAlignmentCenter;
+        self.alertTitleLabel.textColor = [UIColor grayColor];
+        [self addSubview:self.alertTitleLabel];
         
         CGRect leftBtnFrame;
         CGRect rightBtnFrame;
@@ -176,17 +182,19 @@
     self.backImageView = nil;
     UIViewController *topVC = [self appRootViewController];
     CGRect afterFrame = CGRectMake((CGRectGetWidth(topVC.view.bounds) - kAlertWidth) * 0.5, CGRectGetHeight(topVC.view.bounds), kAlertWidth, kAlertHeight);
-    
-    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.frame = afterFrame;
-        if (_leftLeave) {
-            self.transform = CGAffineTransformMakeRotation(-M_1_PI / 1.5);
-        }else {
-            self.transform = CGAffineTransformMakeRotation(M_1_PI / 1.5);
-        }
-    } completion:^(BOOL finished) {
-        [super removeFromSuperview];
-    }];
+    self.frame = afterFrame;
+    [super removeFromSuperview];
+//    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//        self.frame = afterFrame;
+//        
+//        if (_leftLeave) {
+//            self.transform = CGAffineTransformMakeRotation(-M_1_PI / 1.5);
+//        }else {
+//            self.transform = CGAffineTransformMakeRotation(M_1_PI / 1.5);
+//        }
+//    } completion:^(BOOL finished) {
+//        [super removeFromSuperview];
+//    }];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -204,13 +212,16 @@
     }
     [topVC.view addSubview:self.backImageView];
     self.transform = CGAffineTransformMakeRotation(-M_1_PI / 2);
-    CGRect afterFrame = CGRectMake((CGRectGetWidth(topVC.view.bounds) - kAlertWidth) * 0.5, (CGRectGetHeight(topVC.view.bounds) - kAlertHeight) * 0.5, kAlertWidth, kAlertHeight);
-    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.transform = CGAffineTransformMakeRotation(0);
-        self.frame = afterFrame;
-    } completion:^(BOOL finished) {
-    }];
+    CGRect afterFrame = CGRectMake((CGRectGetWidth(topVC.view.bounds) - kAlertWidth) * 0.5, (CGRectGetHeight(topVC.view.bounds) - kAlertHeight) * 0.3, kAlertWidth, kAlertHeight);
+    self.transform = CGAffineTransformMakeRotation(0);
+    self.frame = afterFrame;
     [super willMoveToSuperview:newSuperview];
+//    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+//        self.transform = CGAffineTransformMakeRotation(0);
+//        self.frame = afterFrame;
+//    } completion:^(BOOL finished) {
+//    }];
+//    [super willMoveToSuperview:newSuperview];
 }
 
 @end

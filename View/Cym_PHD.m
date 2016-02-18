@@ -173,44 +173,46 @@ static Cym_PHD * _fqsphd = nil;
     
 }
 
-//- (void)showError:(NSString *)status
-//{
-//    if (!self.background) {
-//        CGRect frame = self.window.frame;
-//        self.background = [[UIView alloc] initWithFrame:frame];
-//        self.background.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.7];
-//        [self addSubview:self.background];
-//    }
-//    
-//    if (!self.animationView) {
-//        self.animationView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width/3, self.frame.size.width/3)];
-//        self.animationView.center = self.background.center;
-//        [self.background addSubview:self.animationView];
-//        
-//        self.showLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width/4-30, self.frame.size.width/4)];
-//        self.showLabel.textAlignment = 1;
+- (void)showError:(NSString *)status
+{
+    if (!self.background) {
+        CGRect frame = self.window.frame;
+        self.background = [[UIView alloc] initWithFrame:frame];
+        self.background.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.7];
+        [self addSubview:self.background];
+    }
+    
+    if (!self.animationView) {
+        
+        self.animationView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width*0.7, self.frame.size.width/2)];
+        self.animationView.center = self.background.center;
+        self.animationView.backgroundColor = [UIColor whiteColor];
+        [self.background addSubview:self.animationView];
+
+        
+        self.showLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,self.animationView.bounds.size.height-40, self.animationView.bounds.size.width, 25)];
+        self.showLabel.textAlignment = 1;
 //        self.showLabel.font = [UIFont systemFontOfSize:17];
 //        self.showLabel.center = self.animationView.center;
-//        self.showLabel.textColor = [UIColor whiteColor];
-//        self.showLabel.text = status;
-////        self.showLabel.adjustsFontSizeToFitWidth = YES;
-//        [self.background addSubview:self.showLabel];
-//    }
-//    
-//    self.animationView.image = [UIImage imageNamed:@"PHD_circle"];
-//    [self shake:self.animationView];
-//    
-//    if (!self.animationView) {
-//        
-//    }
-//    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.alpha = 1;
-//    } completion:^(BOOL finished) {
-//        [self timedHide];
-//    }];
-//    
-//}
+        self.showLabel.textColor = [UIColor blackColor];
+        self.showLabel.text = status;
+//        self.showLabel.adjustsFontSizeToFitWidth = YES;
+        [self.animationView addSubview:self.showLabel];
+        
+        self.imgV = [[UIImageView alloc]initWithFrame:CGRectMake(self.animationView.bounds.size.width/2-50, 20, 100, 100)];
+        //        self.imgV.backgroundColor = [UIColor blueColor];
+        self.imgV.image = [UIImage imageNamed:@"addShopCart_pic_success"];
+        [self.animationView addSubview:self.imgV];
+
+    }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self timedHide];
+    }];
+    
+}
 
 
 - (void)timedHide

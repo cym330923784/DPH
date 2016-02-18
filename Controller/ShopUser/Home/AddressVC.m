@@ -86,9 +86,11 @@
     }
     else
     {
+        [self showDownloadsHUD:nil];
         [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
                                              addressId:thisCell.modelAddress.addressId
                                                success:^(id result) {
+                                                   [self dismissHUD];
                                                    thisCell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
                                                    thisCell.modelAddress.defaultstate = @"1";
                                                    for (AddressCell * c in self.cellArr) {
@@ -97,10 +99,12 @@
                                                            c.modelAddress.defaultstate = @"0";
                                                        }
                                                    }
+                                                   [self showCommonHUD:@"设为当前收获信息成功!"];
                                                    
                                                    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisCell.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
                                                }
                                                failure:^(id result) {
+                                                   [self dismissHUD];
                                                    [self showCommonHUD:result];
                                                }];
     }

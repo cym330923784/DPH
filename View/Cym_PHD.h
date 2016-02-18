@@ -12,7 +12,7 @@
 
 + (void)dismissBGView:(UIView *)bgView;
 + (void)show:(NSString *)status;
-//+ (void)showError:(NSString *)status;
++ (void)showError:(NSString *)status;
 + (void)showSuccess:(NSString *)status;
 
 @property (nonatomic,strong) UIWindow *window;

@@ -74,6 +74,7 @@
 }
 
 - (IBAction)submitOrderAction:(id)sender {
+    [self showCommonHUD:@"提交中..."];
     self.modelOrder.endClientId = [UserDefaultUtils valueWithKey:@"userId"];
     self.modelOrder.deliveryName = self.modelAddress.name;
     self.modelOrder.deliveryPhone = self.modelAddress.phone;
@@ -84,11 +85,13 @@
     
     [[NetworkHome sharedManager]submitOrderByObject:self.modelOrder
                                             success:^(id result) {
+                                                [self dismissHUD];
                                                 orderNo = result[@"orderNo"];
                                                 [ShopCartSQL removeAllProInShopCart];
                                                 [self performSegueWithIdentifier:@"toSubmitSuccess" sender:nil];
                                             }
                                             failure:^(id result) {
+                                                [self dismissHUD];
                                                 [self showCommonHUD:result];
                                             }];
     

@@ -14,7 +14,7 @@
 #import "ModelShop.h"
 #import "PNetworkClient.h"
 
-@interface AddShopUserVC ()<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AddShopUserVC ()<UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
 {
     NSArray *provinces, *cities, *areas;
 }
@@ -254,8 +254,10 @@
         //        [self.areaBtn setTitle:areaValue forState:UIControlStateNormal];
     }
 }
+
 - (IBAction)chooseAreaAction:(id)sender {
-    
+
+    [self resign];
     [self.view bringSubviewToFront:self.secondView];
 }
 - (IBAction)finishAction:(id)sender {
@@ -263,13 +265,27 @@
     [self.areaBtn setTitle:[NSString stringWithFormat:@"%@",self.areaLab.text] forState:UIControlStateNormal];
     [self.areaBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
-- (IBAction)cancelAction:(id)sender {
-    [self.view sendSubviewToBack:self.secondView];
+
+
+
+-(void)resign
+{
+    [self.shopNameTF resignFirstResponder];
+    [self.addressTF resignFirstResponder];
+    [self.contectNameTF resignFirstResponder];
+    [self.positionTF resignFirstResponder];
+    [self.phoneTF resignFirstResponder];
+    [self.emailTF resignFirstResponder];
+    [self.QQTF resignFirstResponder];
 }
+
 - (IBAction)cancel:(id)sender {
     [self.view sendSubviewToBack:self.secondView];
 }
 
+- (IBAction)cancelAction:(id)sender {
+     [self.view sendSubviewToBack:self.secondView];
+}
 
 
 
