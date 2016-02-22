@@ -10,15 +10,16 @@
 #import "AddressCell.h"
 #import "NetworkHome.h"
 #import "UserDefaultUtils.h"
-#import "ModelAddress.h"
 #import <YYModel.h>
 #import "AddAddressVC.h"
+#import "CheckOrderVC.h"
 
 @interface AddressVC ()
 
+@property (weak, nonatomic) IBOutlet UIView *titleView;
+
 @property (nonatomic, strong)NSMutableArray * addressArr;
 @property (nonatomic, strong)NSMutableArray * cellArr;
-
 
 
 @end
@@ -38,6 +39,13 @@
     
 //    [self getAddressList];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    
+//    self.titleView.backgroundColor = [UIColor colorWithRed:45.0/255 green:160.0/255 blue:230.0/255 alpha:0.7];
+//}
+
 
 -(void)getAddressList
 {
@@ -66,8 +74,7 @@
 {
     AddressCell * cell = [tableView dequeueReusableCellWithIdentifier:@"addressCell"];
     cell.modelAddress = self.addressArr[indexPath.row];
-    NSLog(@"%@",cell.modelAddress.defaultState);
-    if ([cell.modelAddress.defaultState isEqualToString:@"1"]) {
+    if ([cell.modelAddress.addressId isEqual:self.modelAddress.addressId]) {
         cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
     }
     else
@@ -82,55 +89,21 @@
 {
     AddressCell * thisCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if ([thisCell.modelAddress.defaultState isEqualToString:@"1"]) {
-        return;
-    }
-    else
-    {
-        [self showDownloadsHUD:nil];
-        [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
-                                             addressId:thisCell.modelAddress.addressId
-                                               success:^(id result) {
-                                                   [self dismissHUD];
-                                                   thisCell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
-                                                   thisCell.modelAddress.defaultState = @"1";
-                                                   for (AddressCell * c in self.cellArr) {
-                                                       if (![c isEqual:thisCell]) {
-                                                           c.backgroundView = nil;
-                                                           c.modelAddress.defaultState = @"0";
-                                                       }
-                                                   }
-                                                   [self showCommonHUD:@"设为当前收获信息成功!"];
-                                                   
-                                                   NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisCell.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
-                                               }
-                                               failure:^(id result) {
-                                                   [self dismissHUD];
-                                                   [self showCommonHUD:result];
-                                               }];
-    }
-    
+           thisCell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
+        for (AddressCell * c in self.cellArr) {
+            if (![c isEqual:thisCell]) {
+                c.backgroundView = nil;
+            }
+        }
+        [self showCommonHUD:@"设置成功!"];
+        self.modelAddress = thisCell.modelAddress;
+        [self performSegueWithIdentifier:@"backToCheckOrder" sender:nil];
    
 }
 
-//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-//{
-//    AddressCell * thisCell = [tableView cellForRowAtIndexPath:indexPath];
-//    thisCell.backgroundView = nil;
-//    thisCell.modelAddress.defaultstate = @"0";
-//}
 
 - (IBAction)addAddressAction:(id)sender {
     NSLog(@"新增收货地址");
-//    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-//    NSString *s = [[NSString alloc] initWithFormat:@"hello"];
-//    [self.datas addObject:s];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [indexPaths addObject: indexPath];
-//    [self.tableView beginUpdates];
-//    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationRight];
-//    [self.tableView endUpdates];
-    
 }
 
 
@@ -145,6 +118,13 @@
         AddAddressVC * view = [[AddAddressVC alloc]init];
         view = segue.destinationViewController;
         view.isSetDefault = self.isSetDefault;
+    }
+    
+    else if ([segue.identifier isEqualToString:@"backToCheckOrder"])
+    {
+        CheckOrderVC * checkOrder = [[CheckOrderVC alloc]init];
+        checkOrder = segue.destinationViewController;
+        checkOrder.modelAddress = self.modelAddress;
     }
 }
 

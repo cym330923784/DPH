@@ -147,7 +147,7 @@ static Cym_PHD * _fqsphd = nil;
         self.animationView.backgroundColor = [UIColor whiteColor];
         [self.background addSubview:self.animationView];
         
-        self.showLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.animationView.bounds.size.height-40, self.animationView.bounds.size.width, 25)];
+        self.showLabel = [[UILabel alloc]initWithFrame:CGRectMake(90, (self.animationView.bounds.size.height-25)/2, self.animationView.bounds.size.width-100, 25)];
         self.showLabel.textAlignment = 1;
 //        self.showLabel.font = [UIFont systemFontOfSize:17];
 //        self.showLabel.center = self.animationView.center;
@@ -156,7 +156,7 @@ static Cym_PHD * _fqsphd = nil;
         self.showLabel.adjustsFontSizeToFitWidth = YES;
         [self.animationView addSubview:self.showLabel];
         
-        self.imgV = [[UIImageView alloc]initWithFrame:CGRectMake(self.animationView.bounds.size.width/2-50, 20, 100, 100)];
+        self.imgV = [[UIImageView alloc]initWithFrame:CGRectMake(10, (self.animationView.bounds.size.height-70)/2, 70, 70)];
 //        self.imgV.backgroundColor = [UIColor blueColor];
         self.imgV.image = [UIImage imageNamed:@"addShopCart_pic_success"];
         [self.animationView addSubview:self.imgV];

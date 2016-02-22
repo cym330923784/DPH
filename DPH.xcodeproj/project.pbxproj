@@ -139,6 +139,9 @@
 		319C95281C5753AF00859947 /* ProIntroduceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 319C95261C5753AF00859947 /* ProIntroduceCell.xib */; };
 		319C95351C5770AB00859947 /* ShopCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 319C95341C5770AB00859947 /* ShopCartVC.m */; };
 		31A4C64A1C5D208300FC284D /* ShopCartSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A4C6491C5D208300FC284D /* ShopCartSQL.m */; };
+		6B2AD7251C7AE094001838B9 /* AddressManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2AD7241C7AE094001838B9 /* AddressManageVC.m */; };
+		6B2AD7281C7AE172001838B9 /* DefaultAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2AD7271C7AE172001838B9 /* DefaultAddressCell.m */; };
+		6B2AD72B1C7AE182001838B9 /* CommonAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2AD72A1C7AE182001838B9 /* CommonAddressCell.m */; };
 		6B9EED161C717558005D9651 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED131C717558005D9651 /* CALayer+Transition.m */; };
 		6B9EED171C717558005D9651 /* CYM_GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED151C717558005D9651 /* CYM_GuideVC.m */; };
 		73F9430CB0A947DCDE428B78 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8267A8FB57496C843723109 /* libPods.a */; };
@@ -407,6 +410,12 @@
 		319C95341C5770AB00859947 /* ShopCartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartVC.m; sourceTree = "<group>"; };
 		31A4C6481C5D208300FC284D /* ShopCartSQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCartSQL.h; sourceTree = "<group>"; };
 		31A4C6491C5D208300FC284D /* ShopCartSQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCartSQL.m; sourceTree = "<group>"; };
+		6B2AD7231C7AE094001838B9 /* AddressManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressManageVC.h; sourceTree = "<group>"; };
+		6B2AD7241C7AE094001838B9 /* AddressManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressManageVC.m; sourceTree = "<group>"; };
+		6B2AD7261C7AE172001838B9 /* DefaultAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultAddressCell.h; sourceTree = "<group>"; };
+		6B2AD7271C7AE172001838B9 /* DefaultAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultAddressCell.m; sourceTree = "<group>"; };
+		6B2AD7291C7AE182001838B9 /* CommonAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddressCell.h; sourceTree = "<group>"; };
+		6B2AD72A1C7AE182001838B9 /* CommonAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddressCell.m; sourceTree = "<group>"; };
 		6B9EED121C717558005D9651 /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
 		6B9EED131C717558005D9651 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
 		6B9EED141C717558005D9651 /* CYM_GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYM_GuideVC.h; sourceTree = "<group>"; };
@@ -564,6 +573,10 @@
 			children = (
 				315ECD741C5B377C0045C900 /* PersonMenuCell.h */,
 				315ECD751C5B377C0045C900 /* PersonMenuCell.m */,
+				6B2AD7261C7AE172001838B9 /* DefaultAddressCell.h */,
+				6B2AD7271C7AE172001838B9 /* DefaultAddressCell.m */,
+				6B2AD7291C7AE182001838B9 /* CommonAddressCell.h */,
+				6B2AD72A1C7AE182001838B9 /* CommonAddressCell.m */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -1014,6 +1027,8 @@
 				315ECD2E1C5B109E0045C900 /* MyInfoVC.m */,
 				315ECD381C5B1C580045C900 /* CompnayInfoVC.h */,
 				315ECD391C5B1C580045C900 /* CompnayInfoVC.m */,
+				6B2AD7231C7AE094001838B9 /* AddressManageVC.h */,
+				6B2AD7241C7AE094001838B9 /* AddressManageVC.m */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -1327,6 +1342,7 @@
 				316310711C5F50AA00A53D78 /* ModelAddress.m in Sources */,
 				3173F0A51C5CA39300718D2D /* NSString+Check.m in Sources */,
 				319C951A1C5734F300859947 /* PersonNavCtrl.m in Sources */,
+				6B2AD7281C7AE172001838B9 /* DefaultAddressCell.m in Sources */,
 				318F92CD1C5624FA00BE7742 /* LoginVC.m in Sources */,
 				317FBF2C1C60A3FA00D12BCE /* PNetworkOrder.m in Sources */,
 				319C95201C57355700859947 /* PersonVC.m in Sources */,
@@ -1339,10 +1355,12 @@
 				315ECD5A1C5B33570045C900 /* PClientNavCtrl.m in Sources */,
 				319C950E1C57349900859947 /* OrderVC.m in Sources */,
 				3163105C1C5F504D00A53D78 /* ServerPartner.m in Sources */,
+				6B2AD72B1C7AE182001838B9 /* CommonAddressCell.m in Sources */,
 				315ECD4A1C5B32A60045C900 /* POrderVC.m in Sources */,
 				3163103E1C5F25FC00A53D78 /* POrderPdtListCell.m in Sources */,
 				316310521C5F396C00A53D78 /* NetworkStatus.m in Sources */,
 				319C95111C5734B100859947 /* OrderNavCtrl.m in Sources */,
+				6B2AD7251C7AE094001838B9 /* AddressManageVC.m in Sources */,
 				317FBF1F1C60623200D12BCE /* ToolPhoto.m in Sources */,
 				316310591C5F45DA00A53D78 /* PAddPayWayVC.m in Sources */,
 				318F92861C5619E200BE7742 /* BaseViewCtrl.m in Sources */,

@@ -101,8 +101,8 @@
     
     [ShopCartSQL saveToShopCart:modelDic withId:self.modelProduct.productId];
     
-//    [Cym_PHD showSuccess:@"加入购物车成功!"];
-    [Cym_PHD show:@"加入购物车成功"];
+    [Cym_PHD showSuccess:@"加入购物车成功!"];
+//    [Cym_PHD show:@"加入购物车成功"];
 }
 
 #pragma mark - TableViewDelegate

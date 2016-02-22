@@ -9,7 +9,6 @@
 #import "CheckOrderVC.h"
 #import "OrderMenuCell.h"
 #import "TextViewAlertView.h"
-#import "ModelAddress.h"
 #import "UserDefaultUtils.h"
 #import "ModelTempProduct.h"
 #import "ModelProduct.h"
@@ -18,6 +17,7 @@
 #import "SubmitOrderSuccessVC.h"
 #import "ShopCartSQL.h"
 #import "AddressVC.h"
+#import "NetworkHome.h"
 
 
 @interface CheckOrderVC ()
@@ -26,7 +26,7 @@
 }
 
 @property(nonatomic ,strong)NSString * remarkStr;
-@property (nonatomic, strong)ModelAddress * modelAddress;
+
 @property (nonatomic, strong)NSMutableArray * tempProductArr;
 @property (nonatomic, strong)ModelOrder * modelOrder;
 
@@ -37,14 +37,15 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
-    self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
     [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
+    self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     [self initData];
 }
 
@@ -97,6 +98,43 @@
     
 }
 
+-(void)isSetDefaultAction
+{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否确认?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self showDownloadsHUD:nil];
+        [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                             addressId:self.modelAddress.addressId
+                                               success:^(id result) {
+                                                   [self dismissHUD];
+                                                   NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
+                                                    self.modelAddress.defaultState = @"1";
+                                                   NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+                                                   [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+                                                  
+                                                   [self showCommonHUD:@"设为默认收获信息成功!"];
+                                                   
+                                               }
+                                               failure:^(id result) {
+                                                   [self dismissHUD];
+                                                   [self showCommonHUD:result];
+                                               }];
+
+        
+        
+        
+        
+        
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
 #pragma mark - TableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
@@ -124,7 +162,7 @@
             }
             else
             {
-                return 65;
+                return 85;
             }
         }
     }
@@ -229,6 +267,17 @@
             cell.nameLab.text = self.modelAddress.name;
             cell.phoneLab.text = self.modelAddress.phone;
             cell.addressLab.text = self.modelAddress.addressDetails;
+//            NSLog(@"%@",self.modelAddress.)
+            if ([self.modelAddress.defaultState isEqualToString:@"0"]) {
+                cell.setDefaultBtn.hidden = NO;
+            }
+            else
+            {
+                cell.setDefaultBtn.hidden = YES;
+            }
+            [cell.setDefaultBtn addTarget:self action:@selector(isSetDefaultAction) forControlEvents:UIControlEventTouchUpInside];
+            
+            
         }
     }
 //    else
@@ -286,6 +335,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)unwindSegueToRedViewController:(UIStoryboardSegue *)segue {
+    
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -303,6 +355,7 @@
         AddressVC * addressView = [[AddressVC alloc]init];
         addressView = segue.destinationViewController;
         addressView.isSetDefault = YES;
+        addressView.modelAddress = self.modelAddress;
     }
 
 }

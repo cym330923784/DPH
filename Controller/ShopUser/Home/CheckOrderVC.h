@@ -7,8 +7,13 @@
 //
 
 #import "BaseViewCtrl.h"
+#import "ModelAddress.h"
+
 
 @interface CheckOrderVC : BaseViewCtrl
+
+@property (nonatomic, strong)ModelAddress * modelAddress;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 

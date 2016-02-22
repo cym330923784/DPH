@@ -7,9 +7,13 @@
 //
 
 #import "BaseViewCtrl.h"
+#import "ModelAddress.h"
+
 
 @interface AddressVC : BaseViewCtrl
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic,strong)ModelAddress * modelAddress;
 
 @property (nonatomic,assign)BOOL  isSetDefault ;
 

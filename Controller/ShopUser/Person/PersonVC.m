@@ -142,9 +142,11 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0)
         {
-            AddressVC * addressVC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil]instantiateViewControllerWithIdentifier:@"addressVC"];
-            addressVC.isSetDefault = NO;
-            [self.navigationController pushViewController:addressVC animated:YES];
+            //管理收获地址
+//            AddressVC * addressVC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil]instantiateViewControllerWithIdentifier:@"addressVC"];
+//            addressVC.isSetDefault = NO;
+//            [self.navigationController pushViewController:addressVC animated:YES];
+            [self performSegueWithIdentifier:@"toAddressManager" sender:nil];
         }
         else if(indexPath.row == 1)
         {
