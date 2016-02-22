@@ -119,8 +119,11 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zE-lI-LNP">
-                                <rect key="frame" x="300" y="556" width="300" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Npc-3a-2Dh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="确认收货">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,37 +132,26 @@
                                     <action selector="finishReceiveAction:" destination="HKz-EB-NaF" eventType="touchUpInside" id="UTw-21-dNa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCS-2A-757">
-                                <rect key="frame" x="0.0" y="556" width="300" height="44"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="AEq-Gy-QAT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="再次购买">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1zE-lI-LNP" firstAttribute="leading" secondItem="vv9-qc-ZHh" secondAttribute="leading" id="2UN-js-6jA"/>
+                            <constraint firstItem="1zE-lI-LNP" firstAttribute="top" secondItem="X0N-Xa-6FF" secondAttribute="bottom" id="4P2-xU-q6N"/>
                             <constraint firstAttribute="trailing" secondItem="X0N-Xa-6FF" secondAttribute="trailing" id="7dV-bQ-YJk"/>
-                            <constraint firstItem="1zE-lI-LNP" firstAttribute="height" secondItem="qCS-2A-757" secondAttribute="height" id="X6R-jC-C92"/>
                             <constraint firstItem="fvm-aE-SkX" firstAttribute="top" secondItem="X0N-Xa-6FF" secondAttribute="bottom" id="fV1-ev-OWp"/>
                             <constraint firstItem="X0N-Xa-6FF" firstAttribute="top" secondItem="vv9-qc-ZHh" secondAttribute="top" id="gRS-wa-wVQ"/>
-                            <constraint firstItem="1zE-lI-LNP" firstAttribute="width" secondItem="qCS-2A-757" secondAttribute="width" id="hnE-xR-x84"/>
                             <constraint firstAttribute="trailing" secondItem="1zE-lI-LNP" secondAttribute="trailing" id="hvi-ty-zPf"/>
-                            <constraint firstItem="1zE-lI-LNP" firstAttribute="leading" secondItem="qCS-2A-757" secondAttribute="trailing" id="hx4-CS-Ga5"/>
+                            <constraint firstItem="fvm-aE-SkX" firstAttribute="top" secondItem="X0N-Xa-6FF" secondAttribute="bottom" constant="44" id="kc7-tR-Fbr"/>
                             <constraint firstItem="X0N-Xa-6FF" firstAttribute="leading" secondItem="vv9-qc-ZHh" secondAttribute="leading" id="p1B-Lf-xXQ"/>
-                            <constraint firstItem="qCS-2A-757" firstAttribute="leading" secondItem="vv9-qc-ZHh" secondAttribute="leading" id="rpy-U8-2V7"/>
                             <constraint firstItem="fvm-aE-SkX" firstAttribute="top" secondItem="1zE-lI-LNP" secondAttribute="bottom" id="t1n-0w-yPi"/>
                             <constraint firstItem="X0N-Xa-6FF" firstAttribute="top" secondItem="jgo-Df-W2k" secondAttribute="bottom" id="uap-em-7hj"/>
-                            <constraint firstItem="fvm-aE-SkX" firstAttribute="top" secondItem="qCS-2A-757" secondAttribute="bottom" id="x3b-TI-168"/>
                             <constraint firstItem="1zE-lI-LNP" firstAttribute="top" secondItem="X0N-Xa-6FF" secondAttribute="bottom" id="zat-F2-psi"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="uap-em-7hj"/>
+                                <exclude reference="4P2-xU-q6N"/>
+                                <exclude reference="zat-F2-psi"/>
                                 <exclude reference="fV1-ev-OWp"/>
                             </mask>
                         </variation>
@@ -168,6 +160,7 @@
                     <connections>
                         <outlet property="confirmBtn" destination="1zE-lI-LNP" id="1Vb-72-2fo"/>
                         <outlet property="tableView" destination="X0N-Xa-6FF" id="MvW-7Y-a1T"/>
+                        <outlet property="tableViewToBottom" destination="kc7-tR-Fbr" id="Agl-D5-x14"/>
                         <segue destination="UZy-32-Zdv" kind="show" identifier="toOrderProductList" id="ktv-vs-iFQ"/>
                     </connections>
                 </viewController>

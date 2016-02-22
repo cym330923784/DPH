@@ -124,6 +124,7 @@
 //    }
 }
 - (IBAction)selectPartnerAction:(id)sender {
+    
 //    BaseNetwork * base = [[BaseNetwork alloc]init];
 //    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 //    NSLog(@"%@",version);

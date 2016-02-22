@@ -29,7 +29,7 @@
 /**
  *  下单时间
  */
-@property (nonatomic,copy) NSString * cTime;
+@property (nonatomic,copy) NSString * createTime;
 /**
  *  用户id
  */

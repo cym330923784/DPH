@@ -12,6 +12,8 @@
 
 +(void)saveToShopCart:(NSDictionary *)ProductDic withId:(NSString *)productId;
 
++(id)getObjectById:(NSString *)objectId;
+
 +(NSMutableArray *)readShopCart;
 
 +(void)removeProductById:(NSString *)productId;

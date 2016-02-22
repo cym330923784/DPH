@@ -15,7 +15,7 @@
 @property(nonatomic, strong)NSString * phone;
 @property(nonatomic, strong)NSString * areaStr;
 @property(nonatomic, strong)NSString * detailAddress;
-@property(nonatomic, strong)NSString * addressdetails;
-@property(nonatomic, strong)NSString * defaultstate;
+@property(nonatomic, strong)NSString * addressDetails;
+@property(nonatomic, strong)NSString * defaultState;
 
 @end

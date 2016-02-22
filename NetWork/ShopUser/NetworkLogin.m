@@ -39,7 +39,7 @@
                                   }else{
                                       
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(odic[@"messageContent"]);
                                       }
                                   }
                               }
@@ -67,7 +67,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
 

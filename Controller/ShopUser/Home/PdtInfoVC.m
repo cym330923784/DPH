@@ -81,11 +81,28 @@
         return;
     }
     NSLog(@"加入购物车");
-    self.modelProduct.qty = thisCell.numTF.text;
+    
+    
+    
+    ModelProduct * thisPro = [ModelProduct yy_modelWithDictionary:[ShopCartSQL getObjectById:self.modelProduct.productId]];
+    if (thisPro) {
+        NSLog(@"存在");
+        int numValue = [thisCell.numTF.text intValue];
+        numValue += [thisPro.qty intValue];
+        self.modelProduct.qty = [NSString stringWithFormat:@"%d",numValue];
+    }
+    else
+    {
+        NSLog(@"不存在");
+        self.modelProduct.qty = thisCell.numTF.text;
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"badgeValueNotification" object:nil];
+    }
     NSDictionary * modelDic = [AppUtils getObjectData:self.modelProduct];
+    
     [ShopCartSQL saveToShopCart:modelDic withId:self.modelProduct.productId];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"badgeValueNotification" object:nil];
-    [Cym_PHD showSuccess:@"加入购物车成功!"];
+    
+//    [Cym_PHD showSuccess:@"加入购物车成功!"];
+    [Cym_PHD show:@"加入购物车成功"];
 }
 
 #pragma mark - TableViewDelegate

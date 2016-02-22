@@ -26,8 +26,11 @@
 @implementation ProductVC
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self getProductList];
+    
     [super viewDidAppear:animated];
+    
+    [self initTable];
+    page = 1;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showtabbar" object:nil];
 }
@@ -37,12 +40,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetabbar" object:nil];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self initTable];
-    page = 1;
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view.
+//    
+//}
 
 -(void)initTable
 {

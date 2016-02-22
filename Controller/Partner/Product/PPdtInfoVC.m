@@ -87,8 +87,10 @@
     [self showDownloadsHUD:@"提交中..."];
     
     [[PNetworkHome sharedManager]submitProductChangeByPartnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
-                                                      productId:self.modelProduct.productId sellingPrice:thisCell.sellingPriceTF.text
-                                                     storageQty:thisCell.qtyTF.text shelfStatus:self.modelProduct.shelfStatus
+                                                      productId:self.modelProduct.productId
+                                                   sellingPrice:thisCell.sellingPriceTF.text
+                                                     storageQty:thisCell.qtyTF.text
+                                                    shelfStatus:self.modelProduct.shelfStatus
                                                         success:^(id result) {
                                                             [self dismissHUD];
                                                             [Cym_PHD showSuccess:@"保存修改成功!"];
@@ -99,7 +101,7 @@
                                                         }];    
     
     
-    [Cym_PHD showSuccess:@"保存修改成功!"];
+//    [Cym_PHD showSuccess:@"保存修改成功!"];
 }
 
 

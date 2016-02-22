@@ -34,7 +34,7 @@
     [[NetworkUser sharedManager]getCompanyInfoByPartnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
                                                   success:^(id result) {
                                                       self.name = result[@"name"];
-                                                      self.address = result[@"addressdetails"];
+                                                      self.address = result[@"addressDetails"];
                                                       [self.tableView reloadData];
                                                   }
                                                   failure:^(id result) {

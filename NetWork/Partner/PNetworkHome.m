@@ -39,14 +39,14 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                                   
                               }
                               failure:^(id result) {
                                   if (failure) {
-                                      failure(@"出错!");
+                                      failure(result);
                                   }
                               }];
 }

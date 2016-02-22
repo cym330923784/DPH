@@ -57,6 +57,15 @@ NSString *const tableName = @"shopCartList";
 
 }
 
++(id)getObjectById:(NSString *)objectId
+{
+    YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initWithDBWithPath:[InitSQL getDBPath]];
+    [store createTableWithName:tableName];
+    
+   return [store getObjectById:objectId fromTable:tableName];
+
+}
+
 +(void)removeProductById:(NSString *)productId
 {
     YTKKeyValueStore *store = [[YTKKeyValueStore alloc] initWithDBWithPath:[InitSQL getDBPath]];

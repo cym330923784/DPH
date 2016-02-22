@@ -8,7 +8,7 @@
 
 #import "NetworkStatus.h"
 #import <AFNetworking.h>
-//#import "AppUtills.h"
+//#import "AppUtils.h"
 
 @implementation NetworkStatus
 
@@ -72,7 +72,7 @@
             statusMsg = @"当前为WIFI网络";
             
         }
-        //        [AppUtils showBarString:statusMsg];
+//                [AppUtils showBarString:statusMsg];
     }];
     
     //开始监控

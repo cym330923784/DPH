@@ -37,7 +37,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -64,7 +64,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                                   
@@ -91,7 +91,7 @@
                                      }
                                  }else{
                                      if (failure) {
-                                         failure(@"出错!");
+                                         failure(result[@"messageContent"]);
                                      }
                                  }
                                  
@@ -119,7 +119,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                                   

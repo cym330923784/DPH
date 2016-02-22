@@ -34,8 +34,8 @@
     }
     
     self.modelPayWay.orderId = self.orderId;
-    self.modelPayWay.fromacctName = self.nameTF.text;
-    self.modelPayWay.paymentTimestam = self.dateBtn.titleLabel.text;
+    self.modelPayWay.fromAcctName = self.nameTF.text;
+    self.modelPayWay.paymentTimeStamp = self.dateBtn.titleLabel.text;
     self.modelPayWay.method = self.payWayBtn.titleLabel.text;
     [self showDownloadsHUD:@"保存中..."];
     

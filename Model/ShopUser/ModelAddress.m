@@ -20,7 +20,7 @@
         self.addressId = [aDecoder decodeObjectForKey:@"addressId"];
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.phone = [aDecoder decodeObjectForKey:@"phone"];
-        self.addressdetails = [aDecoder decodeObjectForKey:@"addressdetails"];
+        self.addressDetails = [aDecoder decodeObjectForKey:@"addressdetails"];
     }
     return self;
 }
@@ -30,7 +30,7 @@
     [aCoder encodeObject:self.addressId forKey:@"addressId"];
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.phone forKey:@"phone"];
-    [aCoder encodeObject:self.addressdetails forKey:@"addressdetails"];
+    [aCoder encodeObject:self.addressDetails forKey:@"addressdetails"];
     
 }
 

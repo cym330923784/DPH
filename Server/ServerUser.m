@@ -93,7 +93,7 @@
                       failure:^(id result){
                           
                           if (cfailure) {
-                              cfailure(@"错误!");
+                              cfailure(result);
                           }
                       }];
 }

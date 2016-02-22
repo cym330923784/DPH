@@ -8,4 +8,5 @@ pod 'MJRefresh'
 pod 'IQKeyboardManager'
 pod "YYModel"
 pod 'YTKKeyValueStore'
+pod 'JDStatusBarNotification'
 pod "Qiniu", :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'

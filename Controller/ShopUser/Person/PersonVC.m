@@ -16,8 +16,9 @@
 #import <UIImageView+WebCache.h>
 #import "MyInfoVC.h"
 #import "CompnayInfoVC.h"
+#import "AppDelegate.h"
 
-@interface PersonVC ()
+@interface PersonVC ()<UITableViewDelegate>
 {
     NSMutableArray * titleArr;
 }
@@ -47,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    titleArr = [[NSMutableArray alloc]initWithObjects:@"我的账号",@"收货地址",@"公司信息", nil];
+    titleArr = [[NSMutableArray alloc]initWithObjects:@"收货地址",@"公司信息", nil];
     [self getUserInfo];
 }
 
@@ -68,32 +69,120 @@
 
 #pragma mark - TableViewDelegate
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 1;
+    }
+    else
+    {
+        return 20;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 60;
+    }
+    else
+    {
+        return 40;
+    }
+}
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    if (section == 0) {
+        return titleArr.count;
+    }
+    else
+    {
+        return 1;
+    }
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"personMenuCell"];
+    if (indexPath.section == 0) {
+        PersonMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"personMenuCell"];
+        
+        cell.titleLab.text = titleArr[indexPath.row];
+        return cell;
 
-    cell.titleLab.text = titleArr[indexPath.row];
-    return cell;
+    }
+    else
+    {
+        static NSString * cellIndentifier = @"cellIndentifier";
+        UITableViewCell * cancelCell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+        if (!cancelCell) {
+            cancelCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+        }
+        cancelCell.backgroundColor = [UIColor redColor];
+        UILabel * titleLab= [[UILabel alloc]initWithFrame:CGRectMake((Screen.width-100)/2,10 , 100, 20)];
+        titleLab.text = @"退出账号";
+        titleLab.textColor = [UIColor whiteColor];
+        titleLab.font = [UIFont systemFontOfSize:17];
+        titleLab.textAlignment = NSTextAlignmentCenter;
+        [cancelCell addSubview:titleLab];
+        
+        return cancelCell;
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    if (indexPath.row == 0) {
-        [self performSegueWithIdentifier:@"toMyInfo" sender:nil];
-    }
-    else if (indexPath.row == 1)
-    {
-        AddressVC * addressVC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil]instantiateViewControllerWithIdentifier:@"addressVC"];
-        addressVC.isSetDefault = NO;
-        [self.navigationController pushViewController:addressVC animated:YES];
+//    if (indexPath.row == 0) {
+//        [self performSegueWithIdentifier:@"toMyInfo" sender:nil];
+//    }
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0)
+        {
+            AddressVC * addressVC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil]instantiateViewControllerWithIdentifier:@"addressVC"];
+            addressVC.isSetDefault = NO;
+            [self.navigationController pushViewController:addressVC animated:YES];
+        }
+        else if(indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"toCompanyInfo" sender:nil];
+        }
+
     }
     else
     {
-        [self performSegueWithIdentifier:@"toCompanyInfo" sender:nil];
+        //注销
+        
+        NSLog(@"注销账号");
+        
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您是否确认退出当前账号?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [UserDefaultUtils saveValue:@"0" forKey:@"isLogin"];
+            [UserDefaultUtils removeValueWithKey:@"userId"];
+            [UserDefaultUtils removeValueWithKey:@"partnerId"];
+            
+            UIStoryboard *board         = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            UINavigationController * firstNav = [board instantiateViewControllerWithIdentifier:@"NavLogin"];
+            
+            AppDelegate *delete =  (AppDelegate *)[UIApplication sharedApplication].delegate;
+            delete.window.rootViewController = firstNav;
+            
+            
+            
+            
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+
+        
     }
+    
     
 }
 

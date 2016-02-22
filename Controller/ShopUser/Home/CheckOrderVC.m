@@ -78,7 +78,7 @@
     self.modelOrder.endClientId = [UserDefaultUtils valueWithKey:@"userId"];
     self.modelOrder.deliveryName = self.modelAddress.name;
     self.modelOrder.deliveryPhone = self.modelAddress.phone;
-    self.modelOrder.deliveryAddress = self.modelAddress.addressdetails;
+    self.modelOrder.deliveryAddress = self.modelAddress.addressDetails;
     self.modelOrder.note = self.remarkStr;
     self.modelOrder.totalCost = self.totalPrice;
     
@@ -228,7 +228,7 @@
             }
             cell.nameLab.text = self.modelAddress.name;
             cell.phoneLab.text = self.modelAddress.phone;
-            cell.addressLab.text = self.modelAddress.addressdetails;
+            cell.addressLab.text = self.modelAddress.addressDetails;
         }
     }
 //    else

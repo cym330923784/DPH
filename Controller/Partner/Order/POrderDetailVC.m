@@ -163,7 +163,7 @@
             cell.remarkLab.text = self.modelOrder.note;
         }
         
-        cell.timeLab.text = self.modelOrder.cTime;
+        cell.timeLab.text = self.modelOrder.createTime;
 
         
     }

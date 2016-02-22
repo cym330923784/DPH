@@ -66,7 +66,8 @@
 {
     AddressCell * cell = [tableView dequeueReusableCellWithIdentifier:@"addressCell"];
     cell.modelAddress = self.addressArr[indexPath.row];
-    if ([cell.modelAddress.defaultstate isEqualToString:@"1"]) {
+    NSLog(@"%@",cell.modelAddress.defaultState);
+    if ([cell.modelAddress.defaultState isEqualToString:@"1"]) {
         cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
     }
     else
@@ -81,7 +82,7 @@
 {
     AddressCell * thisCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if ([thisCell.modelAddress.defaultstate isEqualToString:@"1"]) {
+    if ([thisCell.modelAddress.defaultState isEqualToString:@"1"]) {
         return;
     }
     else
@@ -92,11 +93,11 @@
                                                success:^(id result) {
                                                    [self dismissHUD];
                                                    thisCell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"address_kuang"]];
-                                                   thisCell.modelAddress.defaultstate = @"1";
+                                                   thisCell.modelAddress.defaultState = @"1";
                                                    for (AddressCell * c in self.cellArr) {
                                                        if (![c isEqual:thisCell]) {
                                                            c.backgroundView = nil;
-                                                           c.modelAddress.defaultstate = @"0";
+                                                           c.modelAddress.defaultState = @"0";
                                                        }
                                                    }
                                                    [self showCommonHUD:@"设为当前收获信息成功!"];

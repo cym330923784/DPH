@@ -127,7 +127,7 @@
     
     self.modelAddress.name = self.nameTF.text;
     self.modelAddress.phone = self.phoneTF.text;
-    self.modelAddress.addressdetails = [NSString stringWithFormat:@"%@%@",self.areaBtn.titleLabel.text,self.detailAddressTF.text];
+    self.modelAddress.addressDetails = [NSString stringWithFormat:@"%@%@",self.areaBtn.titleLabel.text,self.detailAddressTF.text];
     
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认保存?" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -136,7 +136,7 @@
         [[NetworkHome sharedManager] addAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
                                                    name:self.modelAddress.name
                                                   phone:self.modelAddress.phone
-                                                address:self.modelAddress.addressdetails
+                                                address:self.modelAddress.addressDetails
                                                 success:^(id result) {
                                                     
                                                     NSLog(@"%d",self.isSetDefault);

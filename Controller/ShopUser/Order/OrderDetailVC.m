@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong)ModelOrder * modelOrder;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewToBottom;
 
 @end
 
@@ -52,8 +53,8 @@
                                                       [self.tableView reloadData];
                                                       [self.tableView.mj_header endRefreshing];
                                                       if ([self.modelOrder.orderStatus intValue] != 5) {
-                                                          self.confirmBtn.backgroundColor = [UIColor lightGrayColor];
-                                                          self.confirmBtn.enabled = NO;
+                                                          self.confirmBtn.hidden = YES;
+                                                          self.tableViewToBottom.constant = 0;
                                                       }
                                                       else
                                                       {
@@ -71,14 +72,16 @@
                                                   }];
 }
 - (IBAction)finishReceiveAction:(id)sender {
-    
+    [self showDownloadsHUD:@"提交中..."];
     [[NetworkOrder sharedManager] confirmReceiveByOrderId:self.modelOrder.orderId
                                               endClientId:[UserDefaultUtils valueWithKey:@"userId"]
                                                   success:^(id result) {
+                                                      [self dismissHUD];
                                                       [Cym_PHD showSuccess:@"确认收货成功!"];
-                                                      self.confirmBtn.backgroundColor = [UIColor lightGrayColor];
-                                                      self.confirmBtn.enabled = NO;
-                                                      
+                                                      [self showCommonHUD:@"cg"];
+//                                                      self.confirmBtn.backgroundColor = [UIColor lightGrayColor];
+//                                                      self.confirmBtn.enabled = NO;
+                                                      self.confirmBtn.hidden = YES;
                                                       [self getOrderDetail];
                                                       
                                                   }
@@ -156,7 +159,7 @@
             cell.remarkLab.text = self.modelOrder.note;
         }
         
-        cell.timeLab.text = self.modelOrder.cTime;
+        cell.timeLab.text = self.modelOrder.createTime;
         
     }
     else if (indexPath.row == 1)

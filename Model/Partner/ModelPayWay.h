@@ -20,10 +20,10 @@
 /**
  *  付款人姓名
  */
-@property (nonatomic,copy) NSString *fromacctName;
+@property (nonatomic,copy) NSString *fromAcctName;
 /**
  *  时间
  */
-@property (nonatomic,copy) NSString *paymentTimestam;
+@property (nonatomic,copy) NSString *paymentTimeStamp;
 
 @end

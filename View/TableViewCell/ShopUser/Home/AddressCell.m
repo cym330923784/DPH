@@ -16,10 +16,11 @@
 
 -(void)setModelAddress:(ModelAddress *)modelAddress
 {
+    NSLog(@"%@",modelAddress.addressDetails);
     _modelAddress = modelAddress;
     self.nameLab.text = modelAddress.name;
     self.phoneLab.text = modelAddress.phone;
-    self.addressLab.text = modelAddress.addressdetails;
+    self.addressLab.text = modelAddress.addressDetails;
     
     
 }

@@ -13,6 +13,8 @@
 #import "PMainTabbarCtrl.h"
 #import "CYM_GuideVC.h"
 #import "CALayer+Transition.h"
+#import "NetworkStatus.h"
+#import "InitSQL.h"
 
 @interface AppDelegate ()
 
@@ -77,6 +79,8 @@
 
     [NSThread sleepForTimeInterval:1.0];
     [self.window makeKeyAndVisible];
+    [NetworkStatus sharedInstance];
+    [InitSQL copyDB];
     
     return YES;
 }

@@ -43,7 +43,7 @@
 
     self.orderPriceLab.text = modelOrder.totalCost;
     self.numLab.text = modelOrder.num;
-    self.orderTimeLab.text = modelOrder.cTime;
+    self.orderTimeLab.text = modelOrder.createTime;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
