@@ -19,6 +19,9 @@
 #import "ServerPartner.h"
 #import "PNetworkLogin.h"
 #import "NSString+Check.h"
+#import "NetworkHome.h"
+#import "ModelAddress.h"
+#import <YYModel.h>
 
 @interface LoginVC ()
 {
@@ -106,22 +109,60 @@
 //    else
 //    {
         [self showDownloadsHUD:@"通信中..."];
-        [[ServerUser sharedInstance] userLogin:self.phoneTF.text code:self.codeTF.text success:^(id result) {
-            [self releaseTImer];
-            [self dismissHUD];
-            NSString * badgeValue = @"0";
-            [UserDefaultUtils saveValue:badgeValue forKey:@"badgeValue"];
-            MainTabbarCtrl *mainTab        = [[MainTabbarCtrl alloc] init];
-            AppDelegate * app = [UIApplication sharedApplication].delegate;
-            app.window.rootViewController = mainTab;//进入商户主界面
-
-        } failure:^(id result) {
-            [self dismissHUD];
-            [self showCommonHUD:result];
-
-        }];
+    [[ServerUser sharedInstance] userLogin:self.phoneTF.text
+                                      code:self.codeTF.text
+                                   success:^(id result) {
+                                       [self releaseTImer];
+                                       [self dismissHUD];
+                                       NSString * badgeValue = @"0";
+                                       [UserDefaultUtils saveValue:badgeValue forKey:@"badgeValue"];
+                                       
+                                       // 获取出账号的地址，把默认地址存在本地
+                                       
+                                       [self saveDefaultAddressByUserId:result[@"id"]];
+                                       
+                                       MainTabbarCtrl *mainTab        = [[MainTabbarCtrl alloc] init];
+                                       AppDelegate * app = [UIApplication sharedApplication].delegate;
+                                       app.window.rootViewController = mainTab;//进入商户主界面
+                                       
+                                   }
+                                   failure:^(id result) {
+                                       [self dismissHUD];
+                                       [self showCommonHUD:result];
+                                       
+                                   }];
 
 //    }
+}
+
+-(void)saveDefaultAddressByUserId:(NSString *)userId
+{
+    [[NetworkHome sharedManager]getAddressListByUserId:userId
+                                               success:^(id result) {
+                                                   NSMutableArray * addressArr  = [[NSMutableArray alloc]initWithCapacity:0];
+                                                   
+                                                   for (NSDictionary * addressDic in result) {
+                                                       ModelAddress * addressDemo = [ModelAddress yy_modelWithDictionary:addressDic];
+                                                       
+                                                       [addressArr addObject:addressDemo];
+                                                       
+                                                       for (ModelAddress * model in addressArr) {
+                                                           if ([model.defaultState isEqualToString:@"1"]) {
+                                                               
+                                                               NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
+                                                               
+                                                           }
+                                                       }
+                                                   }
+                                                   
+                                                   
+                                               }
+                                               failure:^(id result) {
+                                                   [self showCommonHUD:result];
+                                                   
+                                                   
+                                               }];
+
 }
 - (IBAction)selectPartnerAction:(id)sender {
     
