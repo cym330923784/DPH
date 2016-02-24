@@ -7,7 +7,6 @@
 //
 
 #import "BaseNavCtrl.h"
-#import "UIColor+TenSixColor.h"
 
 @interface BaseNavCtrl ()
 

@@ -7,14 +7,10 @@
 //
 
 #import "MsgVC.h"
-#import <MJRefresh.h>
 #import "DVSwitch.h"
-#import "UIColor+TenSixColor.h"
 #import "MsgListCell.h"
 #import "NetworkMsg.h"
-#import "UserDefaultUtils.h"
 #import "ModelMsg.h"
-#import <YYModel.h>
 #import "MsgDetailVC.h"
 
 @interface MsgVC ()

@@ -10,7 +10,6 @@
 #import "NetworkStatus.h"
 #import <AFNetworking.h>
 #import <QiniuSDK.h>
-#import "AppUtils.h"
 
 
 

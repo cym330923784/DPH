@@ -7,7 +7,6 @@
 //
 
 #import "ProductSizeCollectCell.h"
-#import "UIColor+TenSixColor.h"
 
 @implementation ProductSizeCollectCell
 

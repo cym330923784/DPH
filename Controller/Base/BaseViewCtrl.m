@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewCtrl.h"
-#import "AppUtils.h"
 #import <MBProgressHUD.h>
 #import <IQKeyboardManager.h>
 

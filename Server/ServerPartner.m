@@ -8,8 +8,7 @@
 
 #import "ServerPartner.h"
 #import "NSString+Check.h"
-#import <YYModel.h>
-#import "UserDefaultUtils.h"
+
 
 @implementation ServerPartner
 

@@ -8,13 +8,9 @@
 
 #import "POrderVC.h"
 #import "DVSwitch.h"
-#import "UIColor+TenSixColor.h"
-#import <MJRefresh/MJRefresh.h>
 #import "POrderListCell.h"
 #import "PNetworkOrder.h"
-#import "UserDefaultUtils.h"
 #import "ModelOrder.h"
-#import <YYModel.h>
 #import "POrderDetailVC.h"
 
 @interface POrderVC ()

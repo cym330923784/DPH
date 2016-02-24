@@ -9,7 +9,6 @@
 #import "POrderPdtListVC.h"
 #import "POrderPdtListCell.h"
 #import "PNetworkOrder.h"
-#import <YYModel.h>
 
 @interface POrderPdtListVC ()
 

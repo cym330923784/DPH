@@ -8,7 +8,6 @@
 
 #import "MyInfoVC.h"
 #import "AppDelegate.h"
-#import "UserDefaultUtils.h"
 #import "BaseTableViewCell.h"
 #import <UIImageView+WebCache.h>
 

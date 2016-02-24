@@ -7,7 +7,6 @@
 //
 
 #import "PProductInfoCell.h"
-#import "UIColor+TenSixColor.h"
 
 @implementation PProductInfoCell
 

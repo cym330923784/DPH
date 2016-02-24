@@ -8,13 +8,9 @@
 
 #import "OrderVC.h"
 #import "DVSwitch.h"
-#import "UIColor+TenSixColor.h"
 #import "OrderListCell.h"
-#import <MJRefresh/MJRefresh.h>
 #import "NetworkOrder.h"
-#import "UserDefaultUtils.h"
 #import "ModelOrder.h"
-#import <YYModel.h>
 #import "OrderDetailVC.h"
 
 @interface OrderVC ()

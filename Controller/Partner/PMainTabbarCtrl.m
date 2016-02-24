@@ -7,8 +7,6 @@
 //
 
 #import "PMainTabbarCtrl.h"
-#import "UIColor+TenSixColor.h"
-#import "AppUtils.h"
 
 
 @interface PMainTabbarCtrl ()

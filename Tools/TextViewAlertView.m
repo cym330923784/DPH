@@ -8,7 +8,6 @@
 
 #import "TextViewAlertView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "UIColor+TenSixColor.h"
 
 
 #define kAlertWidth 300.0f

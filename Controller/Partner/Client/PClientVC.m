@@ -10,9 +10,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "ShopUserCell.h"
 #import "PNetworkClient.h"
-#import "UserDefaultUtils.h"
 #import "ModelShopListDemo.h"
-#import <YYModel.h>
 #import "ShopInfoVC.h"
 
 @interface PClientVC ()

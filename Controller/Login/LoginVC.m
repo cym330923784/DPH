@@ -14,14 +14,11 @@
 #import <QiniuSDK.h>
 #import "NetworkLogin.h"
 #import "ServerUser.h"
-#import "UIColor+TenSixColor.h"
-#import "UserDefaultUtils.h"
 #import "ServerPartner.h"
 #import "PNetworkLogin.h"
 #import "NSString+Check.h"
 #import "NetworkHome.h"
 #import "ModelAddress.h"
-#import <YYModel.h>
 
 @interface LoginVC ()
 {
@@ -56,7 +53,7 @@
     }
     NSLog(@"发送验证码");
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
-    seconds = 100;
+    seconds = 60;
     [[ServerUser sharedInstance] userCodePhone:self.phoneTF.text
                                        success:^(id result) {
                                            NSLog(@"vc獲取驗證成功");
@@ -69,11 +66,11 @@
                                        }];
 }
 
-//倒计时方法验证码实现倒计时100秒，100秒后按钮变换开始的样子
+//倒计时方法验证码实现倒计时60秒，60秒后按钮变换开始的样子
 -(void)timerFireMethod:(NSTimer *)theTimer {
     if (seconds == 1) {
         [theTimer invalidate];
-        seconds = 100;
+        seconds = 60;
         [self.sendCodeBtn setTitle:@"获取验证码" forState: UIControlStateNormal];
         [self.sendCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.sendCodeBtn setBackgroundColor:[UIColor colorWithHexString:@"3CA0E6"]];
@@ -94,7 +91,7 @@
         if ([timer respondsToSelector:@selector(isValid)]) {
             if ([timer isValid]) {
                 [timer invalidate];
-                seconds = 100;
+                seconds = 60;
             }
         }
     }

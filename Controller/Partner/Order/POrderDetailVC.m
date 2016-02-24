@@ -10,12 +10,8 @@
 #import "POrderDetailCell.h"
 #import "PNetworkOrder.h"
 #import "ModelOrder.h"
-#import <YYModel.h>
 #import "POrderPdtListVC.h"
 #import "PAddPayWayVC.h"
-#import "UserDefaultUtils.h"
-#import <MJRefresh/MJRefresh.h>
-#import "UIColor+TenSixColor.h"
 
 
 @interface POrderDetailVC ()
@@ -124,7 +120,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 140;
+        return 115+[AppUtils labelAutoCalculateRectWith:self.modelOrder.note lineSpacing:6 FontSize:14 MaxSize:CGSizeMake([AppUtils putScreenWidth]-65, 0)].height;;
     }
     else if (indexPath.row == 1)
     {

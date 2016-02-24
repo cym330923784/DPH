@@ -13,11 +13,7 @@
 #import "ModelSpecification.h"
 #import "ModelProduct.h"
 #import "PNetworkHome.h"
-#import "UserDefaultUtils.h"
-#import <YYModel.h>
 #import <UIImageView+WebCache.h>
-#import "UIColor+TenSixColor.h"
-#import "AppUtils.h"
 #import "ProductSizeCollectCell.h"
 #import "ModelSpfctionValue.h"
 
@@ -93,6 +89,7 @@
                                                     shelfStatus:self.modelProduct.shelfStatus
                                                         success:^(id result) {
                                                             [self dismissHUD];
+//                                                            [self showCommonHUD:@"保存成功!"];
                                                             [Cym_PHD showSuccess:@"保存修改成功!"];
                                                         }
                                                         failure:^(id result) {
@@ -154,7 +151,7 @@
             NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"PProductInfoCell" owner:nil options:nil];
             infoCell = nibArray[1];
         }
-        infoCell.sellingPriceTF.text = self.modelProduct.sellingPrice;
+        infoCell.sellingPriceTF.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
         infoCell.qtyTF.text = self.modelProduct.storageQty;
         
         if ([self.modelProduct.shelfStatus isEqualToString:@"1"]) {

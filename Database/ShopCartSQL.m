@@ -10,7 +10,6 @@
 #import "InitSQL.h"
 #import <YTKKeyValueStore.h>
 #import "ModelProduct.h"
-#import <YYModel.h>
 
 NSString *const tableName = @"shopCartList";
 

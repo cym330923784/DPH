@@ -7,13 +7,10 @@
 //
 
 #import "HomeVC.h"
-#import <MJRefresh.h>
 #import "ProductCell.h"
 #import "UIBarButtonItem+Badge.h"
 #import "NetworkHome.h"
-#import "UserDefaultUtils.h"
 #import "ModelProduct.h"
-#import <YYModel.h>
 #import "PdtInfoVC.h"
 
 @interface HomeVC ()

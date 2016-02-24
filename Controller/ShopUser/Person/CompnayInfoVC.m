@@ -9,7 +9,6 @@
 #import "CompnayInfoVC.h"
 #import "BaseTableViewCell.h"
 #import "NetworkUser.h"
-#import "UserDefaultUtils.h"
 
 @interface CompnayInfoVC ()
 {

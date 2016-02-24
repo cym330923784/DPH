@@ -10,7 +10,6 @@
 #import "ProductListCell.h"
 #import "NetworkOrder.h"
 #import "ModelProduct.h"
-#import <YYModel.h>
 
 @interface OrderProductListVC ()
 

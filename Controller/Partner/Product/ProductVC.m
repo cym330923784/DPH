@@ -8,10 +8,7 @@
 
 #import "ProductVC.h"
 #import "ProductCell.h"
-#import <MJRefresh/MJRefresh.h>
 #import "PNetworkHome.h"
-#import "UserDefaultUtils.h"
-#import <YYModel.h>
 #import "PPdtInfoVC.h"
 
 @interface ProductVC ()

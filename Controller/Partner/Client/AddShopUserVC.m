@@ -10,7 +10,6 @@
 #import "SelectPhotoViewCtrl.h"
 #import "NetworkQNImg.h"
 #import <QiniuSDK.h>
-#import "UserDefaultUtils.h"
 #import "ModelShop.h"
 #import "PNetworkClient.h"
 

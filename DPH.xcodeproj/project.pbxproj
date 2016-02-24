@@ -420,6 +420,7 @@
 		6B9EED131C717558005D9651 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
 		6B9EED141C717558005D9651 /* CYM_GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYM_GuideVC.h; sourceTree = "<group>"; };
 		6B9EED151C717558005D9651 /* CYM_GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYM_GuideVC.m; sourceTree = "<group>"; };
+		6BD0282D1C7D524700A8CF48 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E8267A8FB57496C843723109 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -728,6 +729,7 @@
 				315DFF8C1C59E5A0006AB847 /* DVSwitch */,
 				315DFF871C59C001006AB847 /* area.plist */,
 				318F926D1C5604B600BE7742 /* Define.h */,
+				6BD0282D1C7D524700A8CF48 /* Constants.h */,
 			);
 			path = Resource;
 			sourceTree = "<group>";

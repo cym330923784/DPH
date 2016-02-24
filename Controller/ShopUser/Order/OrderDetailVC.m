@@ -10,12 +10,8 @@
 #import "OrderDetailCell.h"
 #import "NetworkOrder.h"
 #import "ModelOrder.h"
-#import <YYModel.h>
 #import "OrderProductListVC.h"
 #import "Cym_PHD.h"
-#import "UserDefaultUtils.h"
-#import "UIColor+TenSixColor.h"
-#import <MJRefresh/MJRefresh.h>
 
 @interface OrderDetailVC ()
 
@@ -78,7 +74,7 @@
                                                   success:^(id result) {
                                                       [self dismissHUD];
                                                       [Cym_PHD showSuccess:@"确认收货成功!"];
-                                                      [self showCommonHUD:@"cg"];
+//                                                      [self showCommonHUD:@"cg"];
 //                                                      self.confirmBtn.backgroundColor = [UIColor lightGrayColor];
 //                                                      self.confirmBtn.enabled = NO;
                                                       self.confirmBtn.hidden = YES;
@@ -86,6 +82,8 @@
                                                       
                                                   }
                                                   failure:^(id result) {
+                                                      [self dismissHUD];
+                                                      [self showCommonHUD:result];
                                                       
                                                   }];
     

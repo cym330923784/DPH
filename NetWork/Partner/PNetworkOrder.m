@@ -7,7 +7,6 @@
 //
 
 #import "PNetworkOrder.h"
-#import "AppUtils.h"
 
 @implementation PNetworkOrder
 

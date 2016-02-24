@@ -11,8 +11,6 @@
 #import "AddressVC.h"
 #import "ModelUser.h"
 #import "NetworkUser.h"
-#import "UserDefaultUtils.h"
-#import <YYModel.h>
 #import <UIImageView+WebCache.h>
 #import "MyInfoVC.h"
 #import "CompnayInfoVC.h"

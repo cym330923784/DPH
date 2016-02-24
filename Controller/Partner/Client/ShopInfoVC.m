@@ -10,7 +10,6 @@
 #import "ShopInfoCell.h"
 #import "PNetworkClient.h"
 #import "ModelShop.h"
-#import <YYModel.h>
 #import <UIImageView+WebCache.h>
 
 @interface ShopInfoVC ()
