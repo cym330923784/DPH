@@ -37,8 +37,8 @@
     if (!self.contactEmail) {
         self.contactEmail = @"";
     }
-    if (!self.contactPosition) {
-        self.contactPosition = @"";
+    if (!self.duties) {
+        self.duties = @"";
     }
     if (!self.name) {
         self.name = @"";
@@ -50,7 +50,7 @@
                            @"name": self.name,
                            @"image":self.image,
                            @"contactEmail":self.contactEmail,
-                           @"contactPosition":self.contactPosition,
+                           @"duties":self.duties,
                            @"partnerId":self.partnerId};
     [store putObject:user withId:key intoTable:tableName];
     
@@ -71,7 +71,7 @@
     self.image = [dic objectForKey:@"image"];
     self.contactMobile = [dic objectForKey:@"contactMobile"];
     self.contactEmail = [dic objectForKey:@"contactEmail"];
-    self.contactPosition = [dic objectForKey:@"contactPosition"];
+    self.duties = [dic objectForKey:@"duties"];
     
 }
 

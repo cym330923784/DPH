@@ -32,7 +32,7 @@
 /**
  *  用戶职位
  */
-@property (nonatomic,copy) NSString *contactPosition;
+@property (nonatomic,copy) NSString *duties;
 
 
 /**

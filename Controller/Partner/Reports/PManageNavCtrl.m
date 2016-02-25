@@ -6,13 +6,13 @@
 //  Copyright © 2016年 DPH. All rights reserved.
 //
 
-#import "PReportNavCtrl.h"
+#import "PManageNavCtrl.h"
 
-@interface PReportNavCtrl ()
+@interface PManageNavCtrl ()
 
 @end
 
-@implementation PReportNavCtrl
+@implementation PManageNavCtrl
 
 - (void)viewDidLoad {
     [super viewDidLoad];

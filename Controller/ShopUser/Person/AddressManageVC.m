@@ -208,8 +208,8 @@
                                                [self dismissHUD];
                                                
 //                                               [self showCommonHUD:@"设置成功!"];
-//                                               [Cym_PHD showSuccess:@"设为默认收货地址成功!"];
-                                                [Cym_PHD showError:@"设为默认收货地址失败!"];
+                                               [Cym_PHD showSuccess:@"设为默认收货地址成功!"];
+//                                                [Cym_PHD showError:@"设为默认收货地址失败!"];
                                                [self getAddressList];
                                                
                                                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisCell.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];

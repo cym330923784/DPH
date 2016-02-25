@@ -16,7 +16,7 @@
     UIButton *pProductBtn;
     UIButton *pOrderBtn;
     UIButton *pClientBtn;
-    UIButton *pReportBtn;
+    UIButton *pManageBtn;
 
 }
 
@@ -139,21 +139,21 @@
     [pBarView addSubview:pClientBtn];
     
     //********************报表*********************
-    pReportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    pReportBtn.frame = CGRectMake(btnW * 3, 0, btnW, 49);
-    [pReportBtn setImage:[UIImage imageNamed:@"homePage_ico_user"] forState:UIControlStateNormal];
-    [pReportBtn setImage:[UIImage imageNamed:@"homePage_ico_user_select"] forState:UIControlStateSelected];
-    pReportBtn.tag = 3;
-    [pReportBtn setTitle:@"报表" forState:UIControlStateNormal];
-    pReportBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    [pReportBtn setTitleColor:[UIColor colorWithHexString:@"5f646e"] forState:UIControlStateNormal];
-    [pReportBtn setTitleColor:[UIColor colorWithHexString:@"4484DF"] forState:UIControlStateSelected];
-    [pReportBtn setTitleEdgeInsets:UIEdgeInsetsMake(25, 0, 0, 20)];
-    [pReportBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 13, 0)];
-    pReportBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [pReportBtn addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
+    pManageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    pManageBtn.frame = CGRectMake(btnW * 3, 0, btnW, 49);
+    [pManageBtn setImage:[UIImage imageNamed:@"homePage_ico_user"] forState:UIControlStateNormal];
+    [pManageBtn setImage:[UIImage imageNamed:@"homePage_ico_user_select"] forState:UIControlStateSelected];
+    pManageBtn.tag = 3;
+    [pManageBtn setTitle:@"报表" forState:UIControlStateNormal];
+    pManageBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [pManageBtn setTitleColor:[UIColor colorWithHexString:@"5f646e"] forState:UIControlStateNormal];
+    [pManageBtn setTitleColor:[UIColor colorWithHexString:@"4484DF"] forState:UIControlStateSelected];
+    [pManageBtn setTitleEdgeInsets:UIEdgeInsetsMake(25, 0, 0, 20)];
+    [pManageBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 13, 0)];
+    pManageBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [pManageBtn addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
     
-    [pBarView addSubview:pReportBtn];
+    [pBarView addSubview:pManageBtn];
     
     
 }
@@ -169,10 +169,10 @@
     UIStoryboard * pClientBoard = [UIStoryboard storyboardWithName:@"pClient" bundle:nil];
     UINavigationController * navPClient = [pClientBoard instantiateViewControllerWithIdentifier:@"NavPClient"];
     
-    UIStoryboard * pReportBoard = [UIStoryboard storyboardWithName:@"pReport" bundle:nil];
-    UINavigationController * navPReport = [pReportBoard instantiateViewControllerWithIdentifier:@"NavPReport"];
+    UIStoryboard * pManageBoard = [UIStoryboard storyboardWithName:@"pManage" bundle:nil];
+    UINavigationController * navPManage = [pManageBoard instantiateViewControllerWithIdentifier:@"NavPManage"];
     
-    self.viewControllers               = @[navPPro, navPOrder, navPClient, navPReport];
+    self.viewControllers               = @[navPPro, navPOrder, navPClient, navPManage];
     
     self.tabBar.tintColor              = [UIColor whiteColor];
     
@@ -183,7 +183,7 @@
     pProductBtn.selected = NO;
     pOrderBtn.selected = NO;
     pClientBtn.selected = NO;
-    pReportBtn.selected = NO;
+    pManageBtn.selected = NO;
     
     button.selected = YES;
     

@@ -113,7 +113,7 @@
                                                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
                                                    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
                                                   
-                                                   [self showCommonHUD:@"设为默认收获信息成功!"];
+                                                   [self showCommonHUD:@"设置成功!"];
                                                    
                                                }
                                                failure:^(id result) {

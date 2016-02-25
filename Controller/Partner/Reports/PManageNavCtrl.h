@@ -8,6 +8,6 @@
 
 #import "BaseNavCtrl.h"
 
-@interface PReportNavCtrl : BaseNavCtrl
+@interface PManageNavCtrl : BaseNavCtrl
 
 @end
