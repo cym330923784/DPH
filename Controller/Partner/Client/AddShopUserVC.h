@@ -21,11 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *areaBtn;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet UITextField *contectNameTF;
-@property (weak, nonatomic) IBOutlet UITextField *positionTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
-@property (weak, nonatomic) IBOutlet UITextField *emailTF;
-@property (weak, nonatomic) IBOutlet UITextField *QQTF;
-@property (weak, nonatomic) IBOutlet UIButton *stateBtn;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIView *secondView;

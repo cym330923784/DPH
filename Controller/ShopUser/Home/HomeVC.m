@@ -12,13 +12,27 @@
 #import "NetworkHome.h"
 #import "ModelProduct.h"
 #import "PdtInfoVC.h"
+#import "DVSwitch.h"
 
-@interface HomeVC ()
+
+#import "CDRTranslucentSideBar.h"
+#import "LeftClassifySliderView.h"
+#import "ModelCategory.h"
+
+@interface HomeVC ()<CDRTranslucentSideBarDelegate,UITableViewDataSource,UITableViewDelegate>
+
 {
     NSInteger page;
     NSString * badgeValue;
 }
+
+@property (nonatomic,strong)CDRTranslucentSideBar * rightSideBar;
+
 @property (nonatomic, strong)NSMutableArray * productArr;
+
+@property (nonatomic, strong)NSMutableArray * categoryArr;
+
+
 @end
 
 @implementation HomeVC
@@ -39,7 +53,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     [self initTable];
+    [self initSwitch];
+    [self initSliderVew:nil];
+//    [self getCategories];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeBadgeValue) name:@"badgeValueNotification" object:nil];
     badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
@@ -50,6 +68,71 @@
     self.navigationItem.rightBarButtonItem = navRightButton;
     self.navigationItem.rightBarButtonItem.badgeValue = badgeValue;
     self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
+}
+
+-(void)initSwitch
+{
+    DVSwitch * mySwitch = [[DVSwitch alloc]initWithStringsArray:@[@"所有商品",@"最常购买",@"我的收藏"]] ;
+    mySwitch.backgroundColor = [UIColor whiteColor];
+    mySwitch.sliderColor = [UIColor colorWithHexString:@"3CA0E6"];
+    mySwitch.labelTextColorInsideSlider = [UIColor whiteColor];
+    mySwitch.labelTextColorOutsideSlider = [UIColor blackColor];
+    mySwitch.font = [UIFont systemFontOfSize:14];
+    mySwitch.cornerRadius = 0;
+    mySwitch.tag = 101;
+    [self.view addSubview:mySwitch];
+    
+    [mySwitch setPressedHandler:^(NSUInteger index) {
+        [self.tableView.mj_header beginRefreshing];
+        
+    }];
+    mySwitch.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //水平约束
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mySwitch]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mySwitch)]];
+    
+    //垂直约束
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[mySwitch(35)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(mySwitch)]];
+}
+
+
+- (IBAction)openLeftAction:(id)sender {
+    [self.rightSideBar show];
+}
+
+-(void)initSliderVew:(NSMutableArray *)categories
+{
+    self.rightSideBar = [[CDRTranslucentSideBar alloc]initWithDirection:NO];
+    self.rightSideBar.delegate = self;
+    self.rightSideBar.sideBarWidth = Screen.width-50;
+    self.rightSideBar.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    self.rightSideBar.tag = 1;
+    
+    UIView * demoView = [[UIView alloc]init];
+    demoView.backgroundColor = [UIColor colorWithHexString:@"3CA0E6"];
+    
+    NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"LeftClassifySliderView" owner:self options:nil];
+    //得到第一个UIView
+    LeftClassifySliderView * leftView = [nib objectAtIndex:0];
+//    leftView.myCategoryArr = categories;
+        
+    [leftView returnText:^(NSString *str) {
+        [self.rightSideBar dismissAnimated:YES];
+        if (str == nil) {
+            NSLog(@"取消");
+        }
+        else
+        {
+            NSLog(@"回调参数 : %@，刷新数据 ",str);
+        }
+        
+    }];
+    
+   
+    
+    
+    [self.rightSideBar setContentViewInSideBar:leftView];
+
 }
 -(void)changeBadgeValue
 {
@@ -82,6 +165,27 @@
     
     [self.tableView.mj_header beginRefreshing];
 
+}
+
+
+
+-(void)getCategories
+{
+    
+    [[NetworkHome sharedManager]getCategoriesByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                              success:^(id result) {
+                                                  self.categoryArr = [[NSMutableArray alloc]initWithCapacity:0];
+                                                  
+                                                  for (NSDictionary * categoryDic in result) {
+                                                      ModelCategory * categoryDomo = [ModelCategory yy_modelWithDictionary:categoryDic];
+                                                      [self.categoryArr addObject:categoryDomo];
+                                                  }
+                                                  [self initSliderVew:self.categoryArr];
+                                              }
+                                              failure:^(id result) {
+                                                  [self showCommonHUD:result];
+                                                  
+                                              }];
 }
 
 -(void)getProductList
@@ -117,6 +221,58 @@
                                                     [self.tableView.mj_header endRefreshing];
                                                 }];
 }
+
+
+
+#pragma mark - CDRTranslucentSideBarDelegate
+- (void)sideBar:(CDRTranslucentSideBar *)sideBar didAppear:(BOOL)animated
+{
+    if (sideBar.tag == 0) {
+        NSLog(@"Left SideBar did appear");
+    }
+    
+    if (sideBar.tag == 1) {
+        NSLog(@"Right SideBar did appear");
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+
+    }
+}
+
+- (void)sideBar:(CDRTranslucentSideBar *)sideBar willAppear:(BOOL)animated
+{
+    if (sideBar.tag == 0) {
+        NSLog(@"Left SideBar will appear");
+    }
+    
+    if (sideBar.tag == 1) {
+        NSLog(@"Right SideBar will appear");
+    }
+}
+
+- (void)sideBar:(CDRTranslucentSideBar *)sideBar didDisappear:(BOOL)animated
+{
+    if (sideBar.tag == 0) {
+        NSLog(@"Left SideBar did disappear");
+    }
+    
+    if (sideBar.tag == 1) {
+        NSLog(@"Right SideBar did disappear");
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
+}
+
+- (void)sideBar:(CDRTranslucentSideBar *)sideBar willDisappear:(BOOL)animated
+{
+    if (sideBar.tag == 0) {
+        NSLog(@"Left SideBar will disappear");
+    }
+    
+    if (sideBar.tag == 1) {
+        NSLog(@"Right SideBar will disappear");
+    }
+}
+
+
 
 #pragma mark - TableViewDelegate
 

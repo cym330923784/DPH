@@ -24,7 +24,7 @@
     //    self.shopStateLab.text = modelShop.levelName;
     self.nameLab.text = modelShopListDemo.contactName;
     self.phoneLab.text = modelShopListDemo.contactMobile;
-    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelShopListDemo.images]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelShopListDemo.image]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
     
 }
 

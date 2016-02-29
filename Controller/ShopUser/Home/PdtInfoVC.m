@@ -9,6 +9,7 @@
 #import "PdtInfoVC.h"
 #import "ProductInfoCell.h"
 #import "ProIntroduceCell.h"
+#import "UIBarButtonItem+Badge.h"
 #import "Cym_PHD.h"
 #import "ProductSizeCollectCell.h"
 #import "NetworkHome.h"
@@ -17,10 +18,12 @@
 #import "ModelSpecification.h"
 #import "ModelSpfctionValue.h"
 #import "ShopCartSQL.h"
+#import "ShopCartVC.h"
 
 @interface PdtInfoVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString * size;
+    NSString * badgeValue;
 }
 
 @property (nonatomic, strong)ModelProduct * modelProduct;
@@ -38,6 +41,17 @@
     [self initData];
     [self getproductInfo];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeBadgeValue) name:@"badgeValueNotification" object:nil];
+    badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
+    UIBarButtonItem *navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shopCart_ico"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(toShopCart:)];
+    self.navigationItem.rightBarButtonItem = navRightButton;
+    self.navigationItem.rightBarButtonItem.badgeValue = badgeValue;
+    self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
+
+    
 }
 
 -(void)initData
@@ -45,6 +59,27 @@
     self.specificationArr = [NSMutableArray array];
     size = [NSString string];
 }
+
+-(void)changeBadgeValue
+{
+    NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
+    int i = [str intValue];
+    i = i+1;
+    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
+    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",i];
+    
+}
+
+-(void)toShopCart:(id)sender
+{
+    [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
+    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    ShopCartVC * view = [[UIStoryboard storyboardWithName:@"Home" bundle:nil]instantiateViewControllerWithIdentifier:@"ShopCartVC" ];
+
+    [self.navigationController pushViewController:view animated:YES];
+
+}
+
 
 -(void)getproductInfo
 {

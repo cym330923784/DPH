@@ -124,14 +124,14 @@ NSString *const SERVE_URL = BASE_NET;
     
     NSLog(@"請求開始，Post方式");
     
-        BOOL n = [self configureRequest];
-    
-        if (!n) {
-            if (failure) {
-                failure(@"網絡請求失敗");
-            }
-            return;
-        }
+//        BOOL n = [self configureRequest];
+//    
+//        if (!n) {
+//            if (failure) {
+//                failure(@"網絡請求失敗");
+//            }
+//            return;
+//        }
     
     NSString *surl = [NSString stringWithFormat:@"%@%@",SERVE_URL,url];
     

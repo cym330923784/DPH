@@ -98,7 +98,7 @@
                             complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                                 [self dismissHUD];
                                 NSLog(@"key == %@",resp[@"key"]);
-                                self.modelShop.images = resp[@"key"];
+                                self.modelShop.image = resp[@"key"];
                                 self.shopImgView.image = img;
                             }
                               option:nil];
@@ -129,7 +129,7 @@
                         complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                             [self dismissHUD];
                             NSLog(@"key == %@",resp[@"key"]);
-                            self.modelShop.images = resp[@"key"];
+                            self.modelShop.image = resp[@"key"];
                             self.shopImgView.image = img;
                         }
                           option:nil];
@@ -153,22 +153,22 @@
 }
 
 
-- (IBAction)chooseStateAction:(id)sender {
-    
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: nil                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    //添加Button
-    [alertController addAction: [UIAlertAction actionWithTitle: @"已激活" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self.stateBtn setTitle:@"已激活" forState:UIControlStateNormal];
-    }]];
-    [alertController addAction: [UIAlertAction actionWithTitle: @"未激活" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [self.stateBtn setTitle:@"未激活" forState:UIControlStateNormal];
-        
-    }]];
-    [alertController addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
-    
-    [self presentViewController: alertController animated: YES completion: nil];
-
-}
+//- (IBAction)chooseStateAction:(id)sender {
+//    
+//    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: nil                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+//    //添加Button
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"已激活" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self.stateBtn setTitle:@"已激活" forState:UIControlStateNormal];
+//    }]];
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"未激活" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//        [self.stateBtn setTitle:@"未激活" forState:UIControlStateNormal];
+//        
+//    }]];
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
+//    
+//    [self presentViewController: alertController animated: YES completion: nil];
+//
+//}
 
 
 
@@ -180,24 +180,22 @@
         return;
     }
     
-    self.modelShop.partnerId = [UserDefaultUtils valueWithKey:@"partnerId"];
+//    self.modelShop.endClientId = [UserDefaultUtils valueWithKey:@"partnerId"];
     self.modelShop.name = self.shopNameTF.text;
     self.modelShop.addressDetail = [NSString stringWithFormat:@"%@%@",self.areaBtn.titleLabel.text,self.addressTF.text];
     self.modelShop.contactName = self.contectNameTF.text;
-    self.modelShop.contactPosition = self.positionTF.text;
     self.modelShop.contactMobile = self.phoneTF.text;
-    self.modelShop.contactEmail = self.emailTF.text;
-    self.modelShop.contactQQ = self.QQTF.text;
-    if ([self.stateBtn.titleLabel.text isEqualToString:@"未激活"]) {
-        self.modelShop.loginStatus = @"0";
-    }
-    else
-    {
-        self.modelShop.loginStatus = @"1";
-    }
+//    if ([self.stateBtn.titleLabel.text isEqualToString:@"未激活"]) {
+//        self.modelShop.loginStatus = @"0";
+//    }
+//    else
+//    {
+//        self.modelShop.loginStatus = @"1";
+//    }
     
     [self showDownloadsHUD:@"提交中..."];
-    [[PNetworkClient sharedManager]addClientByObject:self.modelShop
+    [[PNetworkClient sharedManager]addClientByPartnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
+                                                 Object:self.modelShop
                                              success:^(id result) {
                                                  [self dismissHUD];
                                                  [self showCommonHUD:@"提交成功!"];
@@ -272,10 +270,7 @@
     [self.shopNameTF resignFirstResponder];
     [self.addressTF resignFirstResponder];
     [self.contectNameTF resignFirstResponder];
-    [self.positionTF resignFirstResponder];
     [self.phoneTF resignFirstResponder];
-    [self.emailTF resignFirstResponder];
-    [self.QQTF resignFirstResponder];
 }
 
 - (IBAction)cancel:(id)sender {

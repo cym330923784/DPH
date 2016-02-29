@@ -8,6 +8,7 @@
 
 #import "PCompanyInfo.h"
 #import "PNetworkManage.h"
+#import "Cym_PHD.h"
 
 
 @interface PCompanyInfo ()<UITextFieldDelegate>
@@ -59,6 +60,7 @@
     // Do any additional setup after loading the view.
     self.editItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(change)];
     self.cancelItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelEdit)];
+
     self.navigationItem.rightBarButtonItem = self.editItem;
     self.comPanyTF.delegate = self;
     isEditing = NO;
@@ -158,9 +160,7 @@
      UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认保存?" preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        isEditing = NO;
-        self.navigationItem.rightBarButtonItem = self.editItem;
-        [self setControlState];
+        [self saveChangeToServer];
     }]];
     
     
@@ -173,7 +173,29 @@
     
 }
 
+-(void)saveChangeToServer
+{
+    [self showDownloadsHUD:@"提交中..."];
+    self.modelCompany.name = self.comPanyTF.text;
+    self.modelCompany.addressDetails = self.addressTF.text;
+    self.modelCompany.manageArea = self.areaBtn.titleLabel.text;
+    self.modelCompany.contactName = self.nameTF.text;
+    self.modelCompany.contactMobile = self.phoneTF.text;
 
+    [[PNetworkManage sharedManager]editCompanyInfoByObject:self.modelCompany
+                                                   success:^(id result) {
+                                                       [self dismissHUD];
+                                                       isEditing = NO;
+                                                       self.navigationItem.rightBarButtonItem = self.editItem;
+                                                       [self setControlState];
+                                                       [Cym_PHD showSuccess:@"修改成功!"];
+                                                   }
+                                                   failure:^(id result) {
+                                                       [self dismissHUD];
+                                                       [self showCommonHUD:result];
+
+                                                   }];
+}
 
 - (IBAction)finishAction:(id)sender {
     [self.view sendSubviewToBack:self.secondView];

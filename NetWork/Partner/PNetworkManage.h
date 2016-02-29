@@ -8,6 +8,7 @@
 
 #import "BaseNetwork.h"
 #import "ModelStaff.h"
+#import "ModelCompany.h"
 
 @interface PNetworkManage : BaseNetwork
 
@@ -37,6 +38,17 @@
 -(void)getCompanyInfoByPartnerId:(NSString *)partnerId
                          success:(networkSuccess)success
                          failure:(networkFailure)failure;
+
+/**
+ *  修改公司信息
+ *
+ *  @param modelCompany   jsonObject
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+-(void)editCompanyInfoByObject:(ModelCompany *)modelCompany
+               success:(networkSuccess)success
+               failure:(networkFailure)failure;
 
 
 /**
@@ -111,6 +123,18 @@
 -(void)editStaffObject:(ModelStaff *)modelStaff
                    success:(networkSuccess)success
                    failure:(networkFailure)failure;
+
+/**
+ *  新增员工信息
+ *
+ *  @param modelStaff   员工对象
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)addStaffObject:(ModelStaff *)modelStaff
+               success:(networkSuccess)success
+               failure:(networkFailure)failure;
 
 
 @end

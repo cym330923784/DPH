@@ -11,6 +11,10 @@
 @interface ModelCompany : NSObject
 
 /**
+ * 公司id
+ */
+@property (nonatomic,strong)NSString * companyId;
+/**
  * 公司名字
  */
 @property (nonatomic,strong)NSString * name;

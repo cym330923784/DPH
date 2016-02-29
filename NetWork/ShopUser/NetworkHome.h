@@ -15,6 +15,19 @@
 
 
 /**
+ *  獲取筛选分类列表
+ *
+ *  @param productId   商品id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)getCategoriesByUserId:(NSString *)userId
+                     success:(networkSuccess)success
+                     failure:(networkFailure)failure;
+
+
+/**
  *  獲取商品列表
  *
  *  @param userId   電話號碼

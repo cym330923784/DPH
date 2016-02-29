@@ -34,18 +34,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="akq-Mx-WXn">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="36" width="600" height="564"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WVY-sM-GYu" id="Ngg-eS-Qe4"/>
                                     <outlet property="delegate" destination="WVY-sM-GYu" id="xWv-ls-ZRI"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="akq-Mx-WXn" firstAttribute="top" secondItem="1sg-VP-M3s" secondAttribute="top" id="8uz-6p-Wj7"/>
+                            <constraint firstItem="akq-Mx-WXn" firstAttribute="top" secondItem="1sg-VP-M3s" secondAttribute="top" constant="36" id="9fX-04-7Ab"/>
                             <constraint firstItem="akq-Mx-WXn" firstAttribute="top" secondItem="erL-Qe-d79" secondAttribute="bottom" id="EBy-RQ-Knb"/>
+                            <constraint firstItem="akq-Mx-WXn" firstAttribute="top" secondItem="erL-Qe-d79" secondAttribute="bottom" id="H1A-9a-no2"/>
                             <constraint firstItem="akq-Mx-WXn" firstAttribute="leading" secondItem="1sg-VP-M3s" secondAttribute="leading" id="OSD-D3-lXw"/>
                             <constraint firstAttribute="trailing" secondItem="akq-Mx-WXn" secondAttribute="trailing" id="QKC-Nu-iYN"/>
                             <constraint firstItem="akq-Mx-WXn" firstAttribute="top" secondItem="erL-Qe-d79" secondAttribute="bottom" id="XOR-Ix-3VH"/>
@@ -53,12 +55,20 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="8uz-6p-Wj7"/>
                                 <exclude reference="EBy-RQ-Knb"/>
+                                <exclude reference="H1A-9a-no2"/>
                                 <exclude reference="XOR-Ix-3VH"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="冻品商城" id="Dnq-fz-fJM"/>
+                    <navigationItem key="navigationItem" title="冻品商城" id="Dnq-fz-fJM">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="boM-yh-l4V">
+                            <connections>
+                                <action selector="openLeftAction:" destination="WVY-sM-GYu" id="NUd-Bk-URH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="akq-Mx-WXn" id="NLb-Ha-O7Z"/>
                         <segue destination="o1u-mq-K5e" kind="show" identifier="toPdtInfo" id="VgT-ze-XDU"/>
@@ -131,7 +141,7 @@
         <!--购物车-->
         <scene sceneID="pS2-5K-ebh">
             <objects>
-                <viewController id="XdY-dH-lb4" customClass="ShopCartVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopCartVC" id="XdY-dH-lb4" customClass="ShopCartVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IKQ-Dc-GGF"/>
                         <viewControllerLayoutGuide type="bottom" id="4sK-6F-Udm"/>
@@ -484,7 +494,7 @@
                                         <rect key="frame" x="0.0" y="38" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZZF-WL-aCp" id="AdR-hU-gPn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13679005557" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDj-A2-awk">
@@ -961,6 +971,6 @@
         <image name="addShopCart_pic_success" width="561" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vr8-D7-RGd"/>
+        <segue reference="VgT-ze-XDU"/>
     </inferredMetricsTieBreakers>
 </document>

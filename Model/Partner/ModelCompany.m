@@ -10,4 +10,8 @@
 
 @implementation ModelCompany
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"companyId":@"id"};
+}
+
 @end

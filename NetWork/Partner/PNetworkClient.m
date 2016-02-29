@@ -38,7 +38,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               } failure:^(id result) {
@@ -64,7 +64,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -75,13 +75,15 @@
                               }];
 }
 
--(void)addClientByObject:(ModelShop *)modelShop
+-(void)addClientByPartnerId:(NSString *)partnerId
+                     Object:(ModelShop *)modelShop
                  success:(networkSuccess)success
                  failure:(networkFailure)failure
 {
     NSDictionary * dic = [AppUtils getObjectData:modelShop];
     NSString * str = [AppUtils dictionaryToJson:dic];
-    NSDictionary * adic = @{@"jsonObject":str};
+    NSDictionary * adic = @{@"partnerId":partnerId,
+                            @"jsonObject":str};
     
     [super sendRequestToServiceByPost:adic
                              serveUrl:@"api/partnerEndClient/add"
@@ -93,7 +95,40 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                              }];
+
+    
+}
+
+-(void)editClientByUserId:(NSString *)userId
+                  Object:(ModelShop *)modelShop
+                 success:(networkSuccess)success
+                 failure:(networkFailure)failure
+{
+    NSDictionary * dic = [AppUtils getObjectData:modelShop];
+    NSString * str = [AppUtils dictionaryToJson:dic];
+    NSDictionary * adic = @{@"uId":userId,
+                            @"jsonObject":str};
+    
+    [super sendRequestToServiceByPost:adic
+                             serveUrl:@"api/partnerEndClient/update"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }

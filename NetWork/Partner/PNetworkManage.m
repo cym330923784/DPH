@@ -74,6 +74,39 @@
 }
 
 
+-(void)editCompanyInfoByObject:(ModelCompany *)modelCompany
+                       success:(networkSuccess)success
+                       failure:(networkFailure)failure
+{
+    NSDictionary * dic = [modelCompany yy_modelToJSONObject];
+    NSString * str = [AppUtils dictionaryToJson:dic];
+    NSDictionary * adic = @{@"jsonObject":str};
+    
+    [super sendRequestToServiceByPost:adic
+                             serveUrl:@"api/partner/update"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+
+    
+}
+
+
 -(void)getCashTotalByPartnerId:(NSString *)partnerId
                  beginDate:(NSString *)beginDate
                    endDate:(NSString *)endDate
@@ -214,6 +247,37 @@
                                           failure(result[@"messageContent"]);
                                       }
                                   }                                  
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+
+}
+
+-(void)addStaffObject:(ModelStaff *)modelStaff
+              success:(networkSuccess)success
+              failure:(networkFailure)failure
+{
+    NSDictionary * dic = [AppUtils getObjectData:modelStaff];
+    NSString * str = [AppUtils dictionaryToJson:dic];
+    NSDictionary * adic = @{@"jsonObject":str};
+    
+    [super sendRequestToServiceByPost:adic
+                             serveUrl:@"api/pUser/addUserInfo"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
                               }
                               failure:^(id result) {
                                   if (failure) {

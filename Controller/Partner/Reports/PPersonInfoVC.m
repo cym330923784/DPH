@@ -59,6 +59,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [UserDefaultUtils saveValue:@"0" forKey:@"isLogin"];
         [UserDefaultUtils removeValueWithKey:@"partnerId"];
+        [UserDefaultUtils removeValueWithKey:@"branchUserId"];
         
         UIStoryboard *board         = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         UINavigationController * firstNav = [board instantiateViewControllerWithIdentifier:@"NavLogin"];

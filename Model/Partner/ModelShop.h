@@ -13,11 +13,11 @@
 /**
  *  合伙人ID
  */
-@property (nonatomic,copy) NSString *partnerId;
+@property (nonatomic,copy) NSString *endClientId;
 /**
  *  图片
  */
-@property (nonatomic,copy) NSString *images;
+@property (nonatomic,copy) NSString *image;
 /**
  *  商户名称
  */
@@ -34,21 +34,21 @@
  *  联系电话
  */
 @property (nonatomic,copy) NSString *contactMobile;
-/**
- *  职位
- */
-@property (nonatomic,copy) NSString *contactPosition;
-/**
- *  邮箱
- */
-@property (nonatomic,copy) NSString *contactEmail;
-/**
- *  qq
- */
-@property (nonatomic,copy) NSString *contactQQ;
-/**
- *  状态
- */
+///**
+// *  职位
+// */
+//@property (nonatomic,copy) NSString *contactPosition;
+///**
+// *  邮箱
+// */
+//@property (nonatomic,copy) NSString *contactEmail;
+///**
+// *  qq
+// */
+//@property (nonatomic,copy) NSString *contactQQ;
+///**
+// *  状态
+// */
 @property (nonatomic,copy) NSString *loginStatus;
 /**
  *  vip

@@ -10,5 +10,9 @@
 
 @implementation ModelShop
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"endClientId":@"id"};
+}
+
 
 @end

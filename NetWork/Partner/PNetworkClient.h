@@ -49,7 +49,20 @@
  *  @param failure 失敗回調
  */
 
--(void)addClientByObject:(ModelShop *)modelShop
+-(void)addClientByPartnerId:(NSString *)partnerId
+                     Object:(ModelShop *)modelShop
+                    success:(networkSuccess)success
+                    failure:(networkFailure)failure;
+/**
+ *  修改商户
+ *
+ *  @param modelShop   商户对象
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)editClientByUserId:(NSString *)userId
+                     Object:(ModelShop *)modelShop
                     success:(networkSuccess)success
                     failure:(networkFailure)failure;
 

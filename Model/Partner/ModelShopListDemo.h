@@ -13,7 +13,7 @@
 /**
  *  图片
  */
-@property (nonatomic,copy) NSString *images;
+@property (nonatomic,copy) NSString *image;
 /**
  *  联系人名称
  */

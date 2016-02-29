@@ -19,6 +19,34 @@
     return sharedNetworkHome;
 }
 
+
+
+-(void)getCategoriesByUserId:(NSString *)userId
+                     success:(networkSuccess)success
+                     failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"uId":userId};
+    
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partner/products/showCategories"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result[@"data"]);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              } failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                              }];
+}
+
 -(void)getProductListByUserId:(NSString *)userId
                     partnerId:(NSString *)partnerId
                        pageNo:(NSString *)pageNo
