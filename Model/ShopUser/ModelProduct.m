@@ -21,6 +21,27 @@
     return @{@"data" : [ModelSpecification class]};
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.code forKey:@"code"];
+    [aCoder encodeObject:self.primeImageUrl forKey:@"primeImageUrl"];
+    [aCoder encodeObject:self.productId forKey:@"productId"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.sellingPrice forKey:@"sellingPrice"];
+    [aCoder encodeObject:self.qty forKey:@"qty"];
+}
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        self.code = [aDecoder decodeObjectForKey:@"code"];
+        self.primeImageUrl = [aDecoder decodeObjectForKey:@"primeImageUrl"];
+        self.productId = [aDecoder decodeObjectForKey:@"productId"];
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.sellingPrice = [aDecoder decodeObjectForKey:@"sellingPrice"];
+        self.qty = [aDecoder decodeObjectForKey:@"qty"];
+    }
+    return self;
+}
 
 @end

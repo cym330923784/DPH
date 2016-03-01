@@ -38,6 +38,23 @@
 -(void)getProductListByUserId:(NSString *)userId
                     partnerId:(NSString *)partnerId
                        pageNo:(NSString *)pageNo
+                        level:(NSString *)level
+                          ids:(NSString *)ids
+                         type:(NSString *)type
+                      success:(networkSuccess)success
+                      failure:(networkFailure)failure;
+
+/**
+ *  收藏商品
+ *
+ *  @param userId   用户id
+ *  @param productId   商品id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)collectProductByUserId:(NSString *)userId
+                    productId:(NSString *)productId
                       success:(networkSuccess)success
                       failure:(networkFailure)failure;
 

@@ -11,10 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IAS-Yw-ou2">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_pic" translatesAutoresizingMaskIntoConstraints="NO" id="IAS-Yw-ou2">
                         <rect key="frame" x="8" y="8" width="83" height="83"/>
                         <color key="backgroundColor" red="0.33725490196078434" green="0.51764705882352935" blue="0.87450980392156863" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -23,19 +23,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="豪磊淘气包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsq-02-5eQ">
-                        <rect key="frame" x="101" y="15" width="90" height="22"/>
+                        <rect key="frame" x="101" y="15" width="90" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeq-PN-43F">
-                        <rect key="frame" x="114" y="57" width="50" height="21"/>
+                        <rect key="frame" x="114" y="56" width="50" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.16011929242517481" green="0.54714066571468534" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2v-O7-u3v">
-                        <rect key="frame" x="101" y="57" width="11" height="21"/>
+                        <rect key="frame" x="101" y="56" width="11" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.16011929242517481" green="0.54714066571468534" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
@@ -47,30 +47,47 @@
                             <constraint firstAttribute="height" constant="1" id="guf-DR-cL5"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addShopCart_ico" translatesAutoresizingMaskIntoConstraints="NO" id="xSX-qH-OHI">
-                        <rect key="frame" x="262" y="25" width="50" height="50"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpi-eR-ukz">
+                        <rect key="frame" x="277" y="33" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="SuC-nP-w6b"/>
-                            <constraint firstAttribute="width" constant="50" id="r4n-b6-OjS"/>
+                            <constraint firstAttribute="width" constant="35" id="Ge2-c6-MGU"/>
+                            <constraint firstAttribute="height" constant="35" id="nQg-ag-OmH"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" image="addShopCart_ico"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izV-SN-s5L">
+                        <rect key="frame" x="179" y="54" width="50" height="25"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="MQk-s2-EpE"/>
+                            <constraint firstAttribute="width" constant="50" id="NZs-8q-IjB"/>
+                        </constraints>
+                        <state key="normal" title="收藏">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" title="已收藏">
+                            <color key="titleColor" red="0.92636114359999999" green="0.16550164470000001" blue="0.2736273146" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xsq-02-5eQ" firstAttribute="top" secondItem="IAS-Yw-ou2" secondAttribute="top" id="Cbz-SN-j4d"/>
                     <constraint firstItem="Xsq-02-5eQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="GLT-Qv-p3M"/>
                     <constraint firstItem="qeq-PN-43F" firstAttribute="leading" secondItem="h2v-O7-u3v" secondAttribute="trailing" constant="2" id="GaG-Hh-9El"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="leading" secondItem="Xsq-02-5eQ" secondAttribute="leading" id="QDK-M6-4aj"/>
-                    <constraint firstAttribute="trailing" secondItem="xSX-qH-OHI" secondAttribute="trailing" constant="8" id="R7W-Aq-waw"/>
                     <constraint firstAttribute="trailing" secondItem="Kk4-Md-yoM" secondAttribute="trailing" id="T56-tH-nsy"/>
                     <constraint firstItem="qeq-PN-43F" firstAttribute="centerY" secondItem="h2v-O7-u3v" secondAttribute="centerY" id="U6w-PY-tdf"/>
                     <constraint firstItem="IAS-Yw-ou2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vxa-94-UXc"/>
                     <constraint firstItem="Xsq-02-5eQ" firstAttribute="leading" secondItem="IAS-Yw-ou2" secondAttribute="trailing" constant="10" id="WYy-Cv-x9M"/>
                     <constraint firstItem="IAS-Yw-ou2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="aue-4k-KrH"/>
+                    <constraint firstItem="izV-SN-s5L" firstAttribute="centerY" secondItem="qeq-PN-43F" secondAttribute="centerY" id="eIC-kL-CGR"/>
                     <constraint firstItem="Kk4-Md-yoM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eds-Yj-wIG"/>
                     <constraint firstAttribute="bottom" secondItem="Kk4-Md-yoM" secondAttribute="bottom" id="ehr-1e-I4f"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="bottom" secondItem="IAS-Yw-ou2" secondAttribute="bottom" id="iON-5Y-0FZ"/>
-                    <constraint firstItem="xSX-qH-OHI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vWz-vd-jcO"/>
+                    <constraint firstAttribute="trailing" secondItem="tpi-eR-ukz" secondAttribute="trailing" constant="8" id="r7k-yr-oJj"/>
+                    <constraint firstItem="izV-SN-s5L" firstAttribute="leading" secondItem="qeq-PN-43F" secondAttribute="trailing" constant="15" id="ubd-By-y2K"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="top" secondItem="Xsq-02-5eQ" secondAttribute="bottom" constant="20" id="yev-2r-fOi"/>
+                    <constraint firstItem="tpi-eR-ukz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ynE-zB-WZO"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -80,7 +97,8 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addShopCartImgView" destination="xSX-qH-OHI" id="NYj-SQ-tXs"/>
+                <outlet property="addShopcartBtn" destination="tpi-eR-ukz" id="bNl-FV-FtZ"/>
+                <outlet property="collectBtn" destination="izV-SN-s5L" id="Kdc-rW-I5r"/>
                 <outlet property="proImageView" destination="IAS-Yw-ou2" id="LwB-Cg-m7M"/>
                 <outlet property="proNameLab" destination="Xsq-02-5eQ" id="Ihb-2X-cHj"/>
                 <outlet property="proPriceLab" destination="qeq-PN-43F" id="zUa-KO-xv9"/>
@@ -90,5 +108,6 @@
     </objects>
     <resources>
         <image name="addShopCart_ico" width="64" height="64"/>
+        <image name="default_pic" width="240" height="240"/>
     </resources>
 </document>

@@ -13,6 +13,7 @@
 #import "ModelProduct.h"
 #import "PdtInfoVC.h"
 #import "DVSwitch.h"
+#import "QuicklyBuyView.h"
 
 
 #import "CDRTranslucentSideBar.h"
@@ -22,13 +23,15 @@
 @interface HomeVC ()<CDRTranslucentSideBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 {
-    NSInteger page;
+    NSInteger page,type;
     NSString * badgeValue;
 }
 
 @property (nonatomic,strong)CDRTranslucentSideBar * rightSideBar;
 
-@property (nonatomic, strong)NSMutableArray * productArr;
+@property (nonatomic, strong)NSMutableArray * allProductArr;
+@property (nonatomic ,strong)NSMutableArray * commomProductArr;//已完成
+@property (nonatomic ,strong)NSMutableArray * collectProductArr;//已作废
 
 @property (nonatomic, strong)NSMutableArray * categoryArr;
 
@@ -58,6 +61,7 @@
     [self initSwitch];
     [self initSliderVew:nil];
 //    [self getCategories];
+    type = 0;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeBadgeValue) name:@"badgeValueNotification" object:nil];
     badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
@@ -83,8 +87,37 @@
     [self.view addSubview:mySwitch];
     
     [mySwitch setPressedHandler:^(NSUInteger index) {
-        [self.tableView.mj_header beginRefreshing];
-        
+        type = index;
+        if (type == 0) {
+            if (self.allProductArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+        }
+        else if (type == 1)
+        {
+            if (self.commomProductArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+            
+        }
+        else
+        {
+            if (self.collectProductArr.count == 0) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            else
+            {
+                [self.tableView reloadData];
+            }
+        }
     }];
     mySwitch.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -107,24 +140,26 @@
     self.rightSideBar.sideBarWidth = Screen.width-50;
     self.rightSideBar.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
     self.rightSideBar.tag = 1;
-    
-    UIView * demoView = [[UIView alloc]init];
-    demoView.backgroundColor = [UIColor colorWithHexString:@"3CA0E6"];
+
     
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"LeftClassifySliderView" owner:self options:nil];
     //得到第一个UIView
     LeftClassifySliderView * leftView = [nib objectAtIndex:0];
-//    leftView.myCategoryArr = categories;
-        
-    [leftView returnText:^(NSString *str) {
+    leftView.myCategoryArr = categories;
+    
+//    LeftClassifySliderView * leftView = [[LeftClassifySliderView alloc]initWithFrame:CGRectMake(0, 0, Screen.width-50, Screen.height)];
+    
+    [leftView returnText:^(NSString *level, NSString *ids) {
         [self.rightSideBar dismissAnimated:YES];
-        if (str == nil) {
+        if (ids == nil) {
             NSLog(@"取消");
         }
         else
         {
-            NSLog(@"回调参数 : %@，刷新数据 ",str);
+            NSLog(@"回调level:%@  id:%@  刷新数据 ",level,ids);
+            [self getProductListByLevel:level ids:ids type:@"0"];
         }
+
         
     }];
     
@@ -137,10 +172,11 @@
 -(void)changeBadgeValue
 {
     NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
-    int i = [str intValue];
-    i = i+1;
-    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
-    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",i];
+    NSLog(@"%@",str);
+//    int i = [str intValue];
+//    i = i+1;
+//    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
+    self.navigationItem.rightBarButtonItem.badgeValue = str;
 
 }
 
@@ -156,11 +192,11 @@
 {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         page = 1;
-        [self getProductList];
+        [self getProductListByLevel:@"0" ids:@"0" type:[NSString stringWithFormat:@"%ld",(long)type]];
     }];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         page=page +1;
-        [self getProductList];
+        [self getProductListByLevel:@"0" ids:@"0" type:[NSString stringWithFormat:@"%ld",(long)type]];
     }];
     
     [self.tableView.mj_header beginRefreshing];
@@ -188,7 +224,7 @@
                                               }];
 }
 
--(void)getProductList
+-(void)getProductListByLevel:(NSString *)level ids:(NSString *)ids type:(NSString *)typeNum
 {
     NSString *pageNumber = [NSString stringWithFormat:@"%zd",page];
 
@@ -196,16 +232,61 @@
     [[NetworkHome sharedManager] getProductListByUserId:[UserDefaultUtils valueWithKey:@"userId"]
                                               partnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
                                                  pageNo:pageNumber
+                                                  level:level
+                                                    ids:ids
+                                                   type:typeNum
                                                 success:^(id result) {
                                                     if ([pageNumber isEqualToString:@"1"]) {
-                                                        self.productArr = [NSMutableArray array];
+                                                        switch ([typeNum integerValue]) {
+                                                            case 0:
+                                                            {
+                                                                self.allProductArr = [NSMutableArray array];
+                                                            }
+                                                                break;
+                                                            case 1:
+                                                            {
+                                                                self.commomProductArr = [NSMutableArray array];
+                                                            }
+                                                                break;
+                                                            case 2:
+                                                            {
+                                                                self.collectProductArr = [NSMutableArray array];
+                                                            }
+                                                                break;
+                                                                
+                                                            default:
+                                                                break;
+                                                        }
+
                                                     }
                                                     NSMutableArray *arr = [NSMutableArray array];
                                                     for (NSDictionary * proDic in result) {
                                                         ModelProduct * proDomo = [ModelProduct yy_modelWithDictionary:proDic];
                                                         [arr addObject:proDomo];
                                                     }
-                                                    [self.productArr addObjectsFromArray:arr];
+                                                    
+                                                    switch ([typeNum integerValue]) {
+                                                        case 0:
+                                                        {
+                                                            [self.allProductArr addObjectsFromArray:arr];
+                                                        }
+                                                            break;
+                                                        case 1:
+                                                        {
+                                                            [self.commomProductArr addObjectsFromArray:arr];
+                                                        }
+                                                            break;
+                                                        case 2:
+                                                        {
+                                                            [self.collectProductArr addObjectsFromArray:arr];
+                                                        }
+                                                            break;
+                                                            
+                                                        default:
+                                                            break;
+                                                    }
+
+                                                   
                                                     
                                                     [self.tableView.mj_header endRefreshing];
                                                     [self.tableView.mj_footer endRefreshing];
@@ -220,6 +301,33 @@
                                                     [self showCommonHUD:result];
                                                     [self.tableView.mj_header endRefreshing];
                                                 }];
+}
+
+-(void)collectAction:(id)sender
+{
+    UIButton *collectBtn = (UIButton *)sender;
+    ProductCell * cell = (ProductCell *)[[collectBtn superview] superview];
+    [[NetworkHome sharedManager]collectProductByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                             productId:cell.modelProduct.productId
+                                               success:^(id result) {
+                                                   collectBtn.selected = !collectBtn.selected;
+        
+    }
+                                               failure:^(id result) {
+                                                   [self showCommonHUD:result];
+        
+    }];
+}
+
+-(void)quicklyBuyAction:(id)sender
+{
+     UIButton *quickBuyBtn = (UIButton *)sender;
+    ProductCell * cell = (ProductCell *)[[quickBuyBtn superview] superview];
+    QuicklyBuyView * view = [[QuicklyBuyView alloc]initWithModelProduct:cell.modelProduct];
+//    view.modelProduct = cell.modelProduct;
+//    view.imageView.image = cell.proImageView.image;
+//    view.nameLab.text = cell.proNameLab.text;
+    [view show];
 }
 
 
@@ -277,7 +385,18 @@
 #pragma mark - TableViewDelegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.productArr.count;
+    if (type == 0) {
+        return self.allProductArr.count;
+    }
+    else if (type == 1)
+    {
+        return self.commomProductArr.count;
+    }
+    else
+    {
+        return self.collectProductArr.count;
+    }
+
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -288,7 +407,20 @@
         cell = nibArr[0];
         
     }
-    cell.modelProduct = self.productArr[indexPath.row];
+    if (type == 0) {
+        cell.modelProduct = self.allProductArr[indexPath.row];
+    }
+    else if (type == 1)
+    {
+        cell.modelProduct = self.commomProductArr[indexPath.row];
+    }
+    else
+    {
+        cell.modelProduct = self.collectProductArr[indexPath.row];
+    }
+    [cell.collectBtn addTarget:self action:@selector(collectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.addShopcartBtn addTarget:self action:@selector(quicklyBuyAction:) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
 }
 
@@ -311,7 +443,20 @@
         PdtInfoVC * view = [[PdtInfoVC alloc]init];
         view = segue.destinationViewController;
         NSIndexPath * index = (NSIndexPath *)sender;
-        ModelProduct * model = self.productArr[index.row];
+        ModelProduct * model = [[ModelProduct alloc]init];
+        if (type == 0) {
+            model = self.allProductArr[index.row];
+        }
+        else if (type == 1)
+        {
+            model = self.commomProductArr[index.row];
+        }
+        else
+        {
+            model = self.collectProductArr[index.row];
+        }
+
+        
         view.productId = model.productId;
         
     }

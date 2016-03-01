@@ -41,7 +41,7 @@
     [self initData];
     [self getproductInfo];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeBadgeValue) name:@"badgeValueNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(detailChangeBadgeValue) name:@"badgeValueNotification" object:nil];
     badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
     UIBarButtonItem *navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shopCart_ico"]
                                                                        style:UIBarButtonItemStylePlain
@@ -60,13 +60,13 @@
     size = [NSString string];
 }
 
--(void)changeBadgeValue
+-(void)detailChangeBadgeValue
 {
     NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
-    int i = [str intValue];
-    i = i+1;
-    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
-    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",i];
+//    int i = [str intValue];
+//    i = i+1;
+//    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
+    self.navigationItem.rightBarButtonItem.badgeValue = str;
     
 }
 
@@ -103,10 +103,10 @@
     
     NSIndexPath * index = [NSIndexPath indexPathForRow:1 inSection:0];
     ProductInfoCell * thisCell = [self.tableView cellForRowAtIndexPath:index];
-    if ([size isEqualToString:@""]) {
-        [self showCommonHUD:@"请选择一种规格!"];
-        return;
-    }
+//    if ([size isEqualToString:@""]) {
+//        [self showCommonHUD:@"请选择一种规格!"];
+//        return;
+//    }
     if ([thisCell.numTF.text isEqualToString:@""]||[thisCell.numTF.text isEqualToString:@"0"]) {
         [self showCommonHUD:@"请选择数量!"];
         return;
@@ -126,9 +126,14 @@
     {
         NSLog(@"不存在");
         self.modelProduct.qty = thisCell.numTF.text;
+        NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
+        int i = [str intValue];
+        i = i+1;
+        [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"badgeValueNotification" object:nil];
     }
     NSDictionary * modelDic = [AppUtils getObjectData:self.modelProduct];
+    NSLog(@"%@",modelDic);
     
     [ShopCartSQL saveToShopCart:modelDic withId:self.modelProduct.productId];
     
@@ -169,8 +174,8 @@
         [pdtInfoCell.proBigImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,self.modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
         pdtInfoCell.proNameLab.text = self.modelProduct.name;
         pdtInfoCell.proNumLab.text = self.modelProduct.code;
-        pdtInfoCell.marketPriceLab.text = self.modelProduct.partnerMarketPrice;
-        pdtInfoCell.dphPriceLab.text = self.modelProduct.sellingPrice;
+        pdtInfoCell.marketPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.partnerMarketPrice floatValue]];
+        pdtInfoCell.dphPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
         return pdtInfoCell;
 
     }

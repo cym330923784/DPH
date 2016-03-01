@@ -28,7 +28,7 @@
     NSDictionary * dic = @{@"uId":userId};
     
     [super sendRequestToServiceByPost:dic
-                             serveUrl:@"api/partner/products/showCategories"
+                             serveUrl:@"api/products/showCategories"
                               success:^(id result) {
                                   if ([result[@"state"] isEqualToString:@"success" ])
                                   {
@@ -50,13 +50,19 @@
 -(void)getProductListByUserId:(NSString *)userId
                     partnerId:(NSString *)partnerId
                        pageNo:(NSString *)pageNo
+                        level:(NSString *)level
+                          ids:(NSString *)ids
+                         type:(NSString *)type
                       success:(networkSuccess)success
                       failure:(networkFailure)failure
 {
     
     NSDictionary * dic = @{@"uId":userId,
                            @"partnerId":partnerId,
-                           @"pageNo":pageNo};
+                           @"pageNo":pageNo,
+                           @"level":level,
+                           @"ids":ids,
+                           @"type":type};
     [super sendRequestToServiceByPost:dic
                              serveUrl:@"api/products/show"
                               success:^(id result) {
@@ -78,6 +84,36 @@
                                   }
                               }];
 
+}
+
+
+-(void)collectProductByUserId:(NSString *)userId
+                    productId:(NSString *)productId
+                      success:(networkSuccess)success
+                      failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"uId":userId,
+                           @"productId":productId};
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/user/addFavorite"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                                  
+                              } failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
 }
 
 -(void)getproductInfoByProId:(NSString *)productId

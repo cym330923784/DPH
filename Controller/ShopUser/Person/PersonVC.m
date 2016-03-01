@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    titleArr = [[NSMutableArray alloc]initWithObjects:@"收货地址",@"公司信息", nil];
+    titleArr = [[NSMutableArray alloc]initWithObjects:@"收货地址",@"公司信息",@"个人收藏", nil];
     [self getUserInfo];
 }
 
@@ -149,6 +149,11 @@
         else if(indexPath.row == 1)
         {
             [self performSegueWithIdentifier:@"toCompanyInfo" sender:nil];
+        }
+        else
+        {
+            //个人收藏
+            [self performSegueWithIdentifier:@"toCollection" sender:nil];
         }
 
     }

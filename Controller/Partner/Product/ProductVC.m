@@ -103,7 +103,7 @@
         cell = nibArr[0];
         
     }
-    cell.addShopCartImgView.hidden = YES;
+    cell.addShopcartBtn.hidden = YES;
     cell.modelProduct = self.productArr[indexPath.row];
     return cell;
 }

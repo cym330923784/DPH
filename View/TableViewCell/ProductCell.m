@@ -24,6 +24,14 @@
     self.proPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[modelProduct.sellingPrice floatValue]];
     [self.proImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
     
+    if ([modelProduct.favorite isEqualToString:@"0"]) {
+        self.collectBtn.selected = NO;
+    }
+    else
+    {
+        self.collectBtn.selected = YES;
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

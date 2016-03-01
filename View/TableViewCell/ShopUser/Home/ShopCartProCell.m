@@ -23,7 +23,7 @@
     [self.proImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
     self.codeLab.text = modelProduct.code;
     self.proNameLab.text = modelProduct.name;
-    self.sizeLab.text = modelProduct.specifications;
+//    self.sizeLab.text = modelProduct.specifications;
     self.proPriceLab.text = modelProduct.sellingPrice;
     self.numTF.text = modelProduct.qty;
 }

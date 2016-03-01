@@ -68,6 +68,7 @@
 
 -(void)reloadTotalView
 {
+    NSLog(@"%lu",(unsigned long)self.productArr.count);
     int num = (int)self.productArr.count;
 
     self.proNumLab.text = [NSString stringWithFormat:@"%d",num];

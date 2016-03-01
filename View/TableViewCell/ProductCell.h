@@ -16,7 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *proNameLab;
 @property (weak, nonatomic) IBOutlet UILabel *proPriceLab;
-@property (weak, nonatomic) IBOutlet UIImageView *addShopCartImgView;
+@property (weak, nonatomic) IBOutlet UIButton *addShopcartBtn;
+@property (weak, nonatomic) IBOutlet UIButton *collectBtn;
 
 //@property (weak, nonatomic) IBOutlet UIButton *addShopCartBtn;
 

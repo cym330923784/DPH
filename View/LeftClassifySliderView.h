@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^classifyBlock)(NSString *str);
+typedef void (^classifyBlock)(NSString *level,NSString *ids);
 
 @interface LeftClassifySliderView : UIView
 

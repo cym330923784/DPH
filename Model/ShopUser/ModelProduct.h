@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ModelProduct : NSObject
+@interface ModelProduct : NSObject<NSCoding>
 /**
  *  商品id
  */
@@ -41,6 +41,10 @@
  *  规格
  */
 @property (nonatomic,copy) NSMutableArray *data;
+/**
+ *  是否收藏
+ */
+@property (nonatomic,copy) NSString *favorite;
 /**
  *  数量(购物车, 商品清单中使用)
  */

@@ -161,6 +161,7 @@
                         <segue destination="ENR-Vs-oet" kind="show" identifier="toMyInfo" id="Uox-u9-mAm"/>
                         <segue destination="IDT-Xi-94N" kind="show" identifier="toCompanyInfo" id="20m-gY-E4G"/>
                         <segue destination="ZPd-CT-Iff" kind="show" identifier="toAddressManager" id="yWr-c7-f7f"/>
+                        <segue destination="Isv-fs-Zg2" kind="show" identifier="toCollection" id="Zm3-A1-elA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yce-Fg-chs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,7 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xaq-fj-p2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="101"/>
+            <point key="canvasLocation" x="1114" y="83"/>
         </scene>
         <!--我的账号-->
         <scene sceneID="How-3a-YZP">
@@ -521,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ces-Cr-KbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="-606"/>
+            <point key="canvasLocation" x="1114" y="-616"/>
         </scene>
         <!--公司信息-->
         <scene sceneID="JsI-at-IQ9">
@@ -565,7 +566,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHK-58-SWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="848"/>
+            <point key="canvasLocation" x="1114" y="752"/>
+        </scene>
+        <!--个人收藏-->
+        <scene sceneID="33E-Il-xCP">
+            <objects>
+                <viewController id="Isv-fs-Zg2" customClass="CollectionVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="86l-3D-Yw3"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Wz-Mw-XmO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m44-Cw-x0A">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5i-dy-Sl1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Isv-fs-Zg2" id="v7p-Tr-gY9"/>
+                                    <outlet property="delegate" destination="Isv-fs-Zg2" id="hEc-FT-65K"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="d5i-dy-Sl1" secondAttribute="trailing" id="373-yU-uhZ"/>
+                            <constraint firstItem="d5i-dy-Sl1" firstAttribute="top" secondItem="86l-3D-Yw3" secondAttribute="bottom" id="eZT-Cd-v02"/>
+                            <constraint firstItem="d5i-dy-Sl1" firstAttribute="top" secondItem="m44-Cw-x0A" secondAttribute="top" id="hKr-qF-Qyf"/>
+                            <constraint firstItem="8Wz-Mw-XmO" firstAttribute="top" secondItem="d5i-dy-Sl1" secondAttribute="bottom" id="sOc-mP-lLV"/>
+                            <constraint firstItem="d5i-dy-Sl1" firstAttribute="leading" secondItem="m44-Cw-x0A" secondAttribute="leading" id="wHB-gE-3P2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eZT-Cd-v02"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="个人收藏" id="VT6-II-EfL"/>
+                    <connections>
+                        <outlet property="tableView" destination="d5i-dy-Sl1" id="IJH-ay-kfP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YaA-bH-lKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="1415"/>
         </scene>
     </scenes>
     <resources>
