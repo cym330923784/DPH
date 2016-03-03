@@ -64,6 +64,7 @@
     type = 0;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeBadgeValue) name:@"badgeValueNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cleanUpBadgeValue) name:@"cleanUpBadgeValue" object:nil];
     badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
     UIBarButtonItem *navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shopCart_ico"]
                                                                        style:UIBarButtonItemStylePlain
@@ -169,10 +170,14 @@
     [self.rightSideBar setContentViewInSideBar:leftView];
 
 }
+
+-(void)cleanUpBadgeValue
+{
+    self.navigationItem.rightBarButtonItem.badgeValue = [UserDefaultUtils valueWithKey:@"badgeValue"];
+}
 -(void)changeBadgeValue
 {
     NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
-    NSLog(@"%@",str);
 //    int i = [str intValue];
 //    i = i+1;
 //    [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
@@ -182,8 +187,8 @@
 
 -(void)toShopCart:(id)sender
 {
-    [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
-    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+//    [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
+//    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
     
     [self performSegueWithIdentifier:@"toShopCart" sender:nil];
 }
@@ -298,17 +303,28 @@
                                                     
                                                 }
                                                 failure:^(id result) {
-                                                    [self showCommonHUD:result];
                                                     [self.tableView.mj_header endRefreshing];
+                                                    [self.tableView.mj_footer endRefreshing];
+                                                    [self showCommonHUD:result];
+                                                    
                                                 }];
 }
 
 -(void)collectAction:(id)sender
 {
+    BOOL isDelete;
     UIButton *collectBtn = (UIButton *)sender;
+    if (collectBtn.isSelected) {
+        isDelete = YES;
+    }
+    else
+    {
+        isDelete = NO;
+    }
     ProductCell * cell = (ProductCell *)[[collectBtn superview] superview];
     [[NetworkHome sharedManager]collectProductByUserId:[UserDefaultUtils valueWithKey:@"userId"]
-                                             productId:cell.modelProduct.productId
+                                             productId:cell.modelProduct.productId isDelete:isDelete
+     
                                                success:^(id result) {
                                                    collectBtn.selected = !collectBtn.selected;
         
@@ -324,9 +340,7 @@
      UIButton *quickBuyBtn = (UIButton *)sender;
     ProductCell * cell = (ProductCell *)[[quickBuyBtn superview] superview];
     QuicklyBuyView * view = [[QuicklyBuyView alloc]initWithModelProduct:cell.modelProduct];
-//    view.modelProduct = cell.modelProduct;
-//    view.imageView.image = cell.proImageView.image;
-//    view.nameLab.text = cell.proNameLab.text;
+
     [view show];
 }
 

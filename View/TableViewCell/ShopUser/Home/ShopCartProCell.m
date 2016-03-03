@@ -24,7 +24,7 @@
     self.codeLab.text = modelProduct.code;
     self.proNameLab.text = modelProduct.name;
 //    self.sizeLab.text = modelProduct.specifications;
-    self.proPriceLab.text = modelProduct.sellingPrice;
+    self.proPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[modelProduct.sellingPrice floatValue]];
     self.numTF.text = modelProduct.qty;
 }
 

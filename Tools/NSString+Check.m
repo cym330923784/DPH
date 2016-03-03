@@ -30,6 +30,9 @@ static NSString *CHINESE_REGEX_NAME = @"^[\u4E00-\u9FA5]*$";
 static NSString *PASSWORD_REGEX_NAME = @"^[\\w+$]{6,20}$";
 
 
+static NSString *NOSYMBOL_REGEX_NAME = @"[^%&',;=?$x22]+";
+
+
 // 邮件
 + (BOOL)isValidateEmail:(NSString *)str
 {
@@ -125,4 +128,11 @@ static NSString *PASSWORD_REGEX_NAME = @"^[\\w+$]{6,20}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", PASSWORD_REGEX_NAME];
     return [predicate evaluateWithObject:str];
 }
+
++ (BOOL)isNoSymbol:(NSString *)str
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", NOSYMBOL_REGEX_NAME];
+    return [predicate evaluateWithObject:str];
+}
+
 @end

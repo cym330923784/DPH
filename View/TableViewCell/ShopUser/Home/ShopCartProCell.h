@@ -15,11 +15,15 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
 @property (weak, nonatomic) IBOutlet UILabel *proNameLab;
-@property (weak, nonatomic) IBOutlet UILabel *sizeLab;
+//@property (weak, nonatomic) IBOutlet UILabel *sizeLab;
 @property (weak, nonatomic) IBOutlet UILabel *proPriceLab;
 @property (weak, nonatomic) IBOutlet UITextField *numTF;
-@property (weak, nonatomic) IBOutlet UILabel *numLab;
+//@property (weak, nonatomic) IBOutlet UILabel *numLab;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *cutBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
+
 
 @property (nonatomic , strong)ModelProduct * modelProduct;
 

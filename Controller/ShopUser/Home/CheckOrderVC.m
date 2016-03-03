@@ -17,16 +17,20 @@
 #import "ShopCartSQL.h"
 #import "AddressVC.h"
 #import "NetworkHome.h"
+#import "OrderProductListVC.h"
+#import "ProductListVC.h"
 
 
 @interface CheckOrderVC ()
 {
     NSString * orderNo;
+    BOOL isTest;
 }
 
 @property(nonatomic ,strong)NSString * remarkStr;
 
 @property (nonatomic, strong)NSMutableArray * tempProductArr;
+@property (nonatomic, strong)NSArray * errorArr;
 @property (nonatomic, strong)ModelOrder * modelOrder;
 
 
@@ -34,19 +38,30 @@
 
 @implementation CheckOrderVC
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
+    self.errorArr = [NSArray array];
+    
+    NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
+    self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    isTest = NO;
+    [self initData];
+
     [self.tableView reloadData];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
-    self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    [self initData];
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view.
+//    self.errorArr = [NSArray array];
+//    
+//    NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
+//    self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//    isTest = NO;
+//    [self initData];
+//}
 
 -(void)initData
 {
@@ -75,6 +90,7 @@
 
 - (IBAction)submitOrderAction:(id)sender {
     [self showCommonHUD:@"提交中..."];
+    self.modelOrder.partnerId = [UserDefaultUtils valueWithKey:@"partnerId"];
     self.modelOrder.endClientId = [UserDefaultUtils valueWithKey:@"userId"];
     self.modelOrder.deliveryName = self.modelAddress.name;
     self.modelOrder.deliveryPhone = self.modelAddress.phone;
@@ -86,9 +102,14 @@
     [[NetworkHome sharedManager]submitOrderByObject:self.modelOrder
                                             success:^(id result) {
                                                 [self dismissHUD];
-                                                orderNo = result[@"orderNo"];
-                                                [ShopCartSQL removeAllProInShopCart];
-                                                [self performSegueWithIdentifier:@"toSubmitSuccess" sender:nil];
+                                                isTest = YES;
+                                                self.errorArr = result;
+                                                
+//                                                orderNo = result[@"orderNo"];
+//                                                [ShopCartSQL removeAllProInShopCart];
+//                                                [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
+//                                                [[NSNotificationCenter defaultCenter]postNotificationName:@"cleanUpBadgeValue" object:nil];
+//                                                [self performSegueWithIdentifier:@"toSubmitSuccess" sender:nil];
                                             }
                                             failure:^(id result) {
                                                 [self dismissHUD];
@@ -99,39 +120,30 @@
 
 -(void)isSetDefaultAction
 {
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否确认?" preferredStyle:UIAlertControllerStyleAlert];
     
-    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+    [AppUtils showAlert:@"提示" message:@"是否确认?" objectSelf:self defaultAction:^(id result) {
         [self showDownloadsHUD:nil];
         [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
                                              addressId:self.modelAddress.addressId
                                                success:^(id result) {
                                                    [self dismissHUD];
                                                    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
-                                                    self.modelAddress.defaultState = @"1";
+                                                   self.modelAddress.defaultState = @"1";
                                                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
                                                    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-                                                  
+                                                   
                                                    [self showCommonHUD:@"设置成功!"];
                                                    
                                                }
                                                failure:^(id result) {
                                                    [self dismissHUD];
-                                                   [self showCommonHUD:result];
+                                                   [self showCommonHUD:@"设置失败"];
                                                }];
 
+    } cancelAction:^(id result) {
         
-        
-        
-        
-        
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    [self presentViewController:alert animated:YES completion:nil];
-
+    }];
+    
 }
 
 #pragma mark - TableViewDelegate
@@ -187,7 +199,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -197,9 +209,13 @@
     {
         return 3;
     }
-    else
+    else if (section == 2)
     {
         return 2;
+    }
+    else
+    {
+        return 1;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -245,7 +261,7 @@
             cell.remarkLab.text = self.remarkStr;
         }
     }
-    else
+    else if(indexPath.section == 2)
     {
         if (indexPath.row == 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
@@ -279,15 +295,16 @@
             
         }
     }
-//    else
-//    {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
-//        if (!cell) {
-//            NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"OrderMenuCell" owner:nil options:nil];
-//            cell = nibArray[2];
-//        }
-//        cell.menuNameLab.text = @"商品清单";
-//    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+        if (!cell) {
+            NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"OrderMenuCell" owner:nil options:nil];
+            cell = nibArray[2];
+        }
+        cell.menuNameLab.text = @"商品清单";
+        cell.numLab.text = self.num;
+    }
     return cell;
 }
 
@@ -324,6 +341,13 @@
             [self performSegueWithIdentifier:@"toAddress" sender:nil];
         }
     }
+    else if (indexPath.section == 3)
+    {
+//        OrderProductListVC * productList = [[OrderProductListVC alloc]init];
+//        [self.navigationController pushViewController:productList animated:YES];
+        [self performSegueWithIdentifier:@"toProList" sender:nil];
+        
+    }
     
 }
 
@@ -355,6 +379,14 @@
         addressView = segue.destinationViewController;
         addressView.isSetDefault = YES;
         addressView.modelAddress = self.modelAddress;
+    }
+    
+    else if ([segue.identifier isEqualToString:@"toProList"])
+    {
+        ProductListVC * proListView = [[ProductListVC alloc]init];
+        proListView = segue.destinationViewController;
+        proListView.isTest = isTest;
+        proListView.errorArr = self.errorArr;
     }
 
 }

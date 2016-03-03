@@ -136,9 +136,17 @@
     }
     else
     {
+        
         NSLog(@"不存在");
         thisModel.qty = self.numTF.text;
+        NSString * str = [UserDefaultUtils valueWithKey:@"badgeValue"];
+        int i = [str intValue];
+        i = i+1;
+        [UserDefaultUtils saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"badgeValue"];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"badgeValueNotification" object:nil];
+//        NSLog(@"不存在");
+//        thisModel.qty = self.numTF.text;
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"badgeValueNotification" object:nil];
     }
     NSDictionary * modelDic = [AppUtils getObjectData:thisModel];
 

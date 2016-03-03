@@ -62,4 +62,13 @@
  */
 + (BOOL)isPassword:(NSString *)str;
 
+/**
+ *  不包含符号
+ *
+ *  @param str zifuchuan
+ *
+ *  @return YES / NO
+ */
++ (BOOL)isNoSymbol:(NSString *)str;
+
 @end

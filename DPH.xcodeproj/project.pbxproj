@@ -157,12 +157,15 @@
 		6B872C5C1C83E11E007B28DC /* LeftClassifySliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B872C5B1C83E11E007B28DC /* LeftClassifySliderView.xib */; };
 		6B872C5F1C841895007B28DC /* ModelCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B872C5E1C841895007B28DC /* ModelCategory.m */; };
 		6B96FDAF1C7FE3F8009DCA69 /* PAddStaffVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B96FDAE1C7FE3F8009DCA69 /* PAddStaffVC.m */; };
+		6B984A3B1C86B69B00B2068C /* EditProductListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B984A391C86B69B00B2068C /* EditProductListCell.m */; };
+		6B984A3C1C86B69B00B2068C /* EditProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B984A3A1C86B69B00B2068C /* EditProductListCell.xib */; };
 		6B9EED161C717558005D9651 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED131C717558005D9651 /* CALayer+Transition.m */; };
 		6B9EED171C717558005D9651 /* CYM_GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED151C717558005D9651 /* CYM_GuideVC.m */; };
 		6BB4C5061C8530290009BE71 /* categoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4C5041C8530290009BE71 /* categoryCell.m */; };
 		6BB4C5071C8530290009BE71 /* categoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB4C5051C8530290009BE71 /* categoryCell.xib */; };
 		6BB4C50A1C85727B0009BE71 /* QuicklyBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4C5091C85727B0009BE71 /* QuicklyBuyView.m */; };
 		6BB4C50C1C8572920009BE71 /* QuicklyBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB4C50B1C8572920009BE71 /* QuicklyBuyView.xib */; };
+		6BB709091C880AD5000BEE29 /* ModelFullStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB709081C880AD5000BEE29 /* ModelFullStorage.m */; };
 		6BD028301C7D82D200A8CF48 /* PManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0282F1C7D82D200A8CF48 /* PManageVC.m */; };
 		6BD028331C7D87AF00A8CF48 /* PManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD028321C7D87AF00A8CF48 /* PManageCell.m */; };
 		6BD028361C7D913900A8CF48 /* PPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD028351C7D913900A8CF48 /* PPersonInfoVC.m */; };
@@ -470,6 +473,9 @@
 		6B872C5E1C841895007B28DC /* ModelCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCategory.m; sourceTree = "<group>"; };
 		6B96FDAD1C7FE3F8009DCA69 /* PAddStaffVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAddStaffVC.h; sourceTree = "<group>"; };
 		6B96FDAE1C7FE3F8009DCA69 /* PAddStaffVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAddStaffVC.m; sourceTree = "<group>"; };
+		6B984A381C86B69B00B2068C /* EditProductListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductListCell.h; sourceTree = "<group>"; };
+		6B984A391C86B69B00B2068C /* EditProductListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductListCell.m; sourceTree = "<group>"; };
+		6B984A3A1C86B69B00B2068C /* EditProductListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProductListCell.xib; sourceTree = "<group>"; };
 		6B9EED121C717558005D9651 /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
 		6B9EED131C717558005D9651 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
 		6B9EED141C717558005D9651 /* CYM_GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYM_GuideVC.h; sourceTree = "<group>"; };
@@ -480,6 +486,8 @@
 		6BB4C5081C85727B0009BE71 /* QuicklyBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuicklyBuyView.h; sourceTree = "<group>"; };
 		6BB4C5091C85727B0009BE71 /* QuicklyBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuicklyBuyView.m; sourceTree = "<group>"; };
 		6BB4C50B1C8572920009BE71 /* QuicklyBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuicklyBuyView.xib; sourceTree = "<group>"; };
+		6BB709071C880AD5000BEE29 /* ModelFullStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelFullStorage.h; sourceTree = "<group>"; };
+		6BB709081C880AD5000BEE29 /* ModelFullStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelFullStorage.m; sourceTree = "<group>"; };
 		6BD0282D1C7D524700A8CF48 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6BD0282E1C7D82D200A8CF48 /* PManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PManageVC.h; sourceTree = "<group>"; };
 		6BD0282F1C7D82D200A8CF48 /* PManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PManageVC.m; sourceTree = "<group>"; };
@@ -632,6 +640,9 @@
 				6BB4C5031C8530290009BE71 /* categoryCell.h */,
 				6BB4C5041C8530290009BE71 /* categoryCell.m */,
 				6BB4C5051C8530290009BE71 /* categoryCell.xib */,
+				6B984A381C86B69B00B2068C /* EditProductListCell.h */,
+				6B984A391C86B69B00B2068C /* EditProductListCell.m */,
+				6B984A3A1C86B69B00B2068C /* EditProductListCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -956,6 +967,8 @@
 				3163106E1C5F50AA00A53D78 /* ModelTempProduct.m */,
 				3163106F1C5F50AA00A53D78 /* ModelUser.h */,
 				316310701C5F50AA00A53D78 /* ModelUser.m */,
+				6BB709071C880AD5000BEE29 /* ModelFullStorage.h */,
+				6BB709081C880AD5000BEE29 /* ModelFullStorage.m */,
 			);
 			path = ShopUser;
 			sourceTree = "<group>";
@@ -1346,6 +1359,7 @@
 				315ECD7A1C5B377C0045C900 /* ShopCartProCell.xib in Resources */,
 				315ECD931C5B49CC0045C900 /* ProductSizeCollectCell.xib in Resources */,
 				315DFF881C59C001006AB847 /* area.plist in Resources */,
+				6B984A3C1C86B69B00B2068C /* EditProductListCell.xib in Resources */,
 				319C94EC1C56FF9700859947 /* pClient.storyboard in Resources */,
 				6B872C5C1C83E11E007B28DC /* LeftClassifySliderView.xib in Resources */,
 				315DD2CF1C5F753E00596AF2 /* DatePickerView.xib in Resources */,
@@ -1465,6 +1479,7 @@
 				317FBF221C60707000D12BCE /* NetworkQNImg.m in Sources */,
 				315ECD7D1C5B377C0045C900 /* OrderDetailCell.m in Sources */,
 				316651AD1C58F8A4004ED36B /* AddAddressVC.m in Sources */,
+				6BB709091C880AD5000BEE29 /* ModelFullStorage.m in Sources */,
 				315ECD361C5B1BAF0045C900 /* BaseTableViewCell.m in Sources */,
 				6B872C571C83D8EC007B28DC /* CDRTranslucentSideBar.m in Sources */,
 				3173F0921C5C648E00718D2D /* InitSQL.m in Sources */,
@@ -1493,6 +1508,7 @@
 				317FBF1C1C6060DC00D12BCE /* SelectPhotoViewCtrl.m in Sources */,
 				315ECD8E1C5B38640045C900 /* PPdtInfoVC.m in Sources */,
 				315ECD441C5B30450045C900 /* ProductVC.m in Sources */,
+				6B984A3B1C86B69B00B2068C /* EditProductListCell.m in Sources */,
 				315DD2D21C5F801700596AF2 /* ShopUserCell.m in Sources */,
 				316310771C5F50AA00A53D78 /* ModelSpfctionValue.m in Sources */,
 				6B6E20401C7E928E00EC88CC /* PStaffManageVC.m in Sources */,

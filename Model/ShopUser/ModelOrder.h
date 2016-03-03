@@ -11,6 +11,10 @@
 
 @interface ModelOrder : NSObject
 /**
+ *   地方站id
+ */
+@property (nonatomic,copy) NSString * partnerId;
+/**
  *   订单id
  */
 @property (nonatomic,copy) NSString * orderId;

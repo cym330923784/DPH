@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -56,7 +57,7 @@
                         <state key="normal" image="addShopCart_ico"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izV-SN-s5L">
-                        <rect key="frame" x="179" y="54" width="50" height="25"/>
+                        <rect key="frame" x="191" y="54" width="50" height="25"/>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="MQk-s2-EpE"/>
@@ -71,9 +72,12 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="izV-SN-s5L" secondAttribute="trailing" constant="83" id="4kR-fS-6xF"/>
+                    <constraint firstItem="izV-SN-s5L" firstAttribute="leading" secondItem="IAS-Yw-ou2" secondAttribute="trailing" constant="88" id="5iE-yn-xYB"/>
                     <constraint firstItem="Xsq-02-5eQ" firstAttribute="top" secondItem="IAS-Yw-ou2" secondAttribute="top" id="Cbz-SN-j4d"/>
                     <constraint firstItem="Xsq-02-5eQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="GLT-Qv-p3M"/>
                     <constraint firstItem="qeq-PN-43F" firstAttribute="leading" secondItem="h2v-O7-u3v" secondAttribute="trailing" constant="2" id="GaG-Hh-9El"/>
+                    <constraint firstItem="tpi-eR-ukz" firstAttribute="leading" secondItem="izV-SN-s5L" secondAttribute="trailing" constant="35" id="LzV-Po-IRr"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="leading" secondItem="Xsq-02-5eQ" secondAttribute="leading" id="QDK-M6-4aj"/>
                     <constraint firstAttribute="trailing" secondItem="Kk4-Md-yoM" secondAttribute="trailing" id="T56-tH-nsy"/>
                     <constraint firstItem="qeq-PN-43F" firstAttribute="centerY" secondItem="h2v-O7-u3v" secondAttribute="centerY" id="U6w-PY-tdf"/>
@@ -84,6 +88,7 @@
                     <constraint firstItem="Kk4-Md-yoM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eds-Yj-wIG"/>
                     <constraint firstAttribute="bottom" secondItem="Kk4-Md-yoM" secondAttribute="bottom" id="ehr-1e-I4f"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="bottom" secondItem="IAS-Yw-ou2" secondAttribute="bottom" id="iON-5Y-0FZ"/>
+                    <constraint firstItem="izV-SN-s5L" firstAttribute="leading" secondItem="IAS-Yw-ou2" secondAttribute="trailing" constant="100" id="oNU-i0-1bd"/>
                     <constraint firstAttribute="trailing" secondItem="tpi-eR-ukz" secondAttribute="trailing" constant="8" id="r7k-yr-oJj"/>
                     <constraint firstItem="izV-SN-s5L" firstAttribute="leading" secondItem="qeq-PN-43F" secondAttribute="trailing" constant="15" id="ubd-By-y2K"/>
                     <constraint firstItem="h2v-O7-u3v" firstAttribute="top" secondItem="Xsq-02-5eQ" secondAttribute="bottom" constant="20" id="yev-2r-fOi"/>
@@ -93,6 +98,10 @@
                     <mask key="constraints">
                         <exclude reference="Cbz-SN-j4d"/>
                         <exclude reference="iON-5Y-0FZ"/>
+                        <exclude reference="4kR-fS-6xF"/>
+                        <exclude reference="5iE-yn-xYB"/>
+                        <exclude reference="ubd-By-y2K"/>
+                        <exclude reference="LzV-Po-IRr"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

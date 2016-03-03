@@ -14,27 +14,27 @@
     // Initialization code
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(change) name:UITextFieldTextDidChangeNotification object:nil];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    layout.minimumLineSpacing = 5;
-    layout.minimumInteritemSpacing = 5;
-    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-    layout.itemSize = CGSizeMake((Screen.width-100)/2, 25);
-    
-    self.collectView.collectionViewLayout = layout;
-    self.collectView.backgroundColor = [UIColor whiteColor];
-    
-    [self.collectView registerNib:[UINib nibWithNibName:@"ProductSizeCollectCell" bundle:nil] forCellWithReuseIdentifier:@"sizeLabelCell"];
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    
+//    layout.minimumLineSpacing = 5;
+//    layout.minimumInteritemSpacing = 5;
+//    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+//    layout.itemSize = CGSizeMake((Screen.width-100)/2, 25);
+//    
+//    self.collectView.collectionViewLayout = layout;
+//    self.collectView.backgroundColor = [UIColor whiteColor];
+//    
+//    [self.collectView registerNib:[UINib nibWithNibName:@"ProductSizeCollectCell" bundle:nil] forCellWithReuseIdentifier:@"sizeLabelCell"];
 
     
     
 }
 
-- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate {
-    self.collectView.dataSource = dataSourceDelegate;
-    self.collectView.delegate = dataSourceDelegate;
-    [self.collectView reloadData];
-}
+//- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate {
+//    self.collectView.dataSource = dataSourceDelegate;
+//    self.collectView.delegate = dataSourceDelegate;
+//    [self.collectView reloadData];
+//}
 
 -(void)change
 {

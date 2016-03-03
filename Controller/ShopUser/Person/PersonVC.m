@@ -163,9 +163,7 @@
         
         NSLog(@"注销账号");
         
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您是否确认退出当前账号?" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [AppUtils showAlert:@"提示" message:@"您是否确认退出当前账号?" objectSelf:self defaultAction:^(id result) {
             [UserDefaultUtils saveValue:@"0" forKey:@"isLogin"];
             [UserDefaultUtils removeValueWithKey:@"userId"];
             [UserDefaultUtils removeValueWithKey:@"partnerId"];
@@ -175,16 +173,11 @@
             
             AppDelegate *delete =  (AppDelegate *)[UIApplication sharedApplication].delegate;
             delete.window.rootViewController = firstNav;
-            
-            
-            
-            
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }]];
-        [self presentViewController:alert animated:YES completion:nil];
 
+        } cancelAction:^(id result) {
+            
+        }];
+        
         
     }
     

@@ -127,54 +127,53 @@
     self.modelAddress.phone = self.phoneTF.text;
     self.modelAddress.addressDetails = [NSString stringWithFormat:@"%@%@",self.areaBtn.titleLabel.text,self.detailAddressTF.text];
     
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认保存?" preferredStyle:UIAlertControllerStyleAlert];
+    [AppUtils showAlert:@"提示"
+                message:@"确认保存?"
+             objectSelf:self
+          defaultAction:^(id result) {
+              [self showDownloadsHUD:@"提交中..."];
+              [[NetworkHome sharedManager] addAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                                         name:self.modelAddress.name
+                                                        phone:self.modelAddress.phone
+                                                      address:self.modelAddress.addressDetails
+                                                      success:^(id result) {
+                                                          
+                                                          NSLog(@"%d",self.isSetDefault);
+                                                          if (self.isSetDefault) {
+                                                              self.modelAddress.addressId = result[@"id"];
+                                                              
+                                                              //发送设为默认请求
+                                                              
+                                                              [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                                                                                   addressId:result[@"id"]
+                                                                                                     success:^(id result) {
+                                                                                                         [self dismissHUD];
+                                                                                                         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
+                                                                                                         [self showCommonHUD:@"成功!"];
+                                                                                                         [self.navigationController popViewControllerAnimated:YES];
+                                                                                                     }
+                                                                                                     failure:^(id result) {
+                                                                                                         [self showCommonHUD:result];
+                                                                                                     }];
+                                                          }
+                                                          else
+                                                          {
+                                                              [self dismissHUD];
+                                                              [self showCommonHUD:@"提交成功!"];
+                                                              [self.navigationController popViewControllerAnimated:YES];
+                                                          }
+                                                          
+                                                      }
+                                                      failure:^(id result) {
+                                                          [self dismissHUD];
+                                                          [self showCommonHUD:result];
+                                                      }];
+              
+          }
+           cancelAction:^(id result) {
+               
+           }];
     
-    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showDownloadsHUD:@"提交中..."];
-        [[NetworkHome sharedManager] addAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
-                                                   name:self.modelAddress.name
-                                                  phone:self.modelAddress.phone
-                                                address:self.modelAddress.addressDetails
-                                                success:^(id result) {
-                                                    
-                                                    NSLog(@"%d",self.isSetDefault);
-                                                    if (self.isSetDefault) {
-                                                        self.modelAddress.addressId = result[@"id"];
-                                                        
-                                                        //发送设为默认请求
-                                                        
-                                                        [[NetworkHome sharedManager]setAddressByUserId:[UserDefaultUtils valueWithKey:@"userId"]
-                                                                                             addressId:result[@"id"]
-                                                                                               success:^(id result) {
-                                                                                                   [self dismissHUD];
-                                                                                                   NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.modelAddress];                                          [UserDefaultUtils saveValue:data forKey:@"defaultAddress"];
-                                                                                                   [self showCommonHUD:@"成功!"];
-                                                                                                   [self.navigationController popViewControllerAnimated:YES];
-                                                                                               }
-                                                                                               failure:^(id result) {
-                                                                                                   [self showCommonHUD:result];
-                                                                                               }];
-                                                    }
-                                                    else
-                                                    {
-                                                        [self dismissHUD];
-                                                        [self showCommonHUD:@"提交成功!"];
-                                                        [self.navigationController popViewControllerAnimated:YES];
-                                                    }
-                                                    
-                                                }
-                                                failure:^(id result) {
-                                                    [self dismissHUD];
-                                                    [self showCommonHUD:result];
-                                                }];
-        
-        
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UIPickerviewDelegate

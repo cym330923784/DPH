@@ -45,7 +45,7 @@
                       failure:(networkFailure)failure;
 
 /**
- *  收藏商品
+ *  收藏/取消收藏商品
  *
  *  @param userId   用户id
  *  @param productId   商品id
@@ -55,6 +55,7 @@
 
 -(void)collectProductByUserId:(NSString *)userId
                     productId:(NSString *)productId
+                     isDelete:(BOOL)isDelete
                       success:(networkSuccess)success
                       failure:(networkFailure)failure;
 
@@ -68,6 +69,7 @@
 
 -(void)getproductInfoByProId:(NSString *)productId
                       partnerId:(NSString *)partnerId
+                      userId:(NSString *)userId
                      success:(networkSuccess)success
                      failure:(networkFailure)failure;
 

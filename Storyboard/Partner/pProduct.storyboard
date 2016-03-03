@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lgY-6e-Mpi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="549"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="d4Y-VS-4id" id="ne6-3p-kTB"/>
@@ -80,10 +80,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r81-QZ-S30">
-                                <rect key="frame" x="10" y="557" width="580" height="35"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="egl-TP-mMU"/>
+                                    <constraint firstAttribute="height" constant="44" id="egl-TP-mMU"/>
                                 </constraints>
                                 <state key="normal" title="保存修改">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,14 +95,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="HWo-pu-wPu" firstAttribute="top" secondItem="r81-QZ-S30" secondAttribute="bottom" constant="8" id="4qR-q1-AAk"/>
+                            <constraint firstItem="HWo-pu-wPu" firstAttribute="top" secondItem="r81-QZ-S30" secondAttribute="bottom" id="4qR-q1-AAk"/>
                             <constraint firstItem="HWo-pu-wPu" firstAttribute="top" secondItem="lgY-6e-Mpi" secondAttribute="bottom" id="B2M-pU-nRt"/>
                             <constraint firstAttribute="trailing" secondItem="lgY-6e-Mpi" secondAttribute="trailing" id="CRO-7T-eJo"/>
-                            <constraint firstItem="r81-QZ-S30" firstAttribute="leading" secondItem="Z0X-5e-dEH" secondAttribute="leading" constant="10" id="TkW-2a-gSu"/>
+                            <constraint firstItem="r81-QZ-S30" firstAttribute="leading" secondItem="Z0X-5e-dEH" secondAttribute="leading" id="TkW-2a-gSu"/>
                             <constraint firstItem="lgY-6e-Mpi" firstAttribute="top" secondItem="Z0X-5e-dEH" secondAttribute="top" id="Yot-hw-d0t"/>
-                            <constraint firstAttribute="trailing" secondItem="r81-QZ-S30" secondAttribute="trailing" constant="10" id="bld-iV-gX8"/>
+                            <constraint firstAttribute="trailing" secondItem="r81-QZ-S30" secondAttribute="trailing" id="bld-iV-gX8"/>
                             <constraint firstItem="lgY-6e-Mpi" firstAttribute="leading" secondItem="Z0X-5e-dEH" secondAttribute="leading" id="buv-pu-5o5"/>
-                            <constraint firstItem="r81-QZ-S30" firstAttribute="top" secondItem="lgY-6e-Mpi" secondAttribute="bottom" constant="8" id="ij8-it-f52"/>
+                            <constraint firstItem="r81-QZ-S30" firstAttribute="top" secondItem="lgY-6e-Mpi" secondAttribute="bottom" id="ij8-it-f52"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

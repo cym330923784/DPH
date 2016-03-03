@@ -59,21 +59,11 @@
 
 - (IBAction)saveAction:(id)sender {
     
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认保存?" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [AppUtils showAlert:@"提示" message:@"确认保存?" objectSelf:self defaultAction:^(id result) {
         [self saveToserver];
-        
-    }]];
-    
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    } cancelAction:^(id result) {
         [self initData];
-        
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-    
+    }];
     
 }
 -(void)saveToserver

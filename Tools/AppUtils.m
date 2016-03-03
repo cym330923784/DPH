@@ -260,16 +260,23 @@
     return scoreStr;
 }
 
-+(void)showAlert:(NSString *)title message:(NSString *)message
++(void)showAlert:(NSString *)title
+         message:(NSString *)message
+      objectSelf:(UIViewController*)objectSelf
+   defaultAction:(defaultAction)defaultAction
+    cancelAction:(cancelAction)cancelAction
 {
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        defaultAction(action);
         
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        cancelAction(action);
         
     }]];
+    [objectSelf presentViewController:alert animated:YES completion:nil];
     
     
 }

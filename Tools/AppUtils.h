@@ -10,6 +10,21 @@
 
 @import UIKit;
 
+
+/**
+ *  对话框点击确认
+ *
+ *  @param result 結果，具體業務層會說明
+ */
+typedef void (^defaultAction)(id result);
+/**
+ *  对话框点击取消
+ *
+ *  @param result 原因
+ */
+typedef void (^cancelAction)(id result);
+
+
 @interface AppUtils : NSObject
 
 /**
@@ -125,7 +140,11 @@
  *  快捷对话框
  *
  */
-+(void)showAlert:(NSString *)title message:(NSString *)message;
++(void)showAlert:(NSString *)title
+         message:(NSString *)message
+      objectSelf:(UIViewController*)objectSelf
+         defaultAction:(defaultAction)defaultAction
+          cancelAction:(cancelAction)cancelAction;
 
 
 

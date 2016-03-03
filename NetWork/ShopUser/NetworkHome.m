@@ -7,6 +7,7 @@
 //
 
 #import "NetworkHome.h"
+#import "ModelFullStorage.h"
 
 @implementation NetworkHome
 
@@ -89,13 +90,22 @@
 
 -(void)collectProductByUserId:(NSString *)userId
                     productId:(NSString *)productId
+                     isDelete:(BOOL)isDelete
                       success:(networkSuccess)success
                       failure:(networkFailure)failure
 {
     NSDictionary * dic = @{@"uId":userId,
                            @"productId":productId};
+    NSString * urlStr = nil;
+    if (isDelete) {
+        urlStr = @"api/user/deleteFavorite";
+    }
+    else
+    {
+        urlStr = @"api/user/addFavorite";
+    }
     [super sendRequestToServiceByPost:dic
-                             serveUrl:@"api/user/addFavorite"
+                             serveUrl:urlStr
                               success:^(id result) {
                                   if ([result[@"state"] isEqualToString:@"success" ])
                                   {
@@ -117,12 +127,14 @@
 }
 
 -(void)getproductInfoByProId:(NSString *)productId
-                      partnerId:(NSString *)partnerId
+                   partnerId:(NSString *)partnerId
+                      userId:(NSString *)userId
                      success:(networkSuccess)success
                      failure:(networkFailure)failure
 {
     NSDictionary * dic = @{@"id":productId,
-                           @"partnerId":partnerId};
+                           @"partnerId":partnerId,
+                           @"uId":userId};
     
     [super sendRequestToServiceByPost:dic
                              serveUrl:@"api/products/showDetail"
@@ -245,8 +257,15 @@
                               success:^(id result) {
                                   if ([result[@"state"] isEqualToString:@"success" ])
                                   {
+                                      ModelFullStorage * model = [[ModelFullStorage alloc]init];
+                                      model.productId = @"5";
+                                      model.storage = @"40";
+                                      NSArray * errorArr = @[model];
+//                                      if (success) {
+//                                          success(result);
+//                                      }
                                       if (success) {
-                                          success(result);
+                                          success(errorArr);
                                       }
                                   }else{
                                       if (failure) {

@@ -20,7 +20,7 @@
 #import "ShopCartSQL.h"
 #import "ShopCartVC.h"
 
-@interface PdtInfoVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface PdtInfoVC ()
 {
     NSString * size;
     NSString * badgeValue;
@@ -85,7 +85,7 @@
 {
     [self showDownloadsHUD:@"加载中..."];
     [[NetworkHome sharedManager]getproductInfoByProId:self.productId
-                                               partnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
+                                            partnerId:[UserDefaultUtils valueWithKey:@"partnerId"] userId:[UserDefaultUtils valueWithKey:@"userId"]
                                               success:^(id result) {
                                                   self.modelProduct = [ModelProduct yy_modelWithDictionary:result];
                                                   if (self.modelProduct.data.count>0) {
@@ -97,6 +97,32 @@
                                               failure:^(id result) {
                                                   [self showCommonHUD:result];
                                               }];
+}
+
+-(void)collectAction:(id)sender
+{
+    BOOL isDelete;
+    UIButton *collectBtn = (UIButton *)sender;
+    if (collectBtn.isSelected) {
+        isDelete = YES;
+    }
+    else
+    {
+        isDelete = NO;
+    }
+
+    [[NetworkHome sharedManager]collectProductByUserId:[UserDefaultUtils valueWithKey:@"userId"]
+                                             productId:self.modelProduct.productId isDelete:isDelete
+     
+                                               success:^(id result) {
+                                                   collectBtn.selected = !collectBtn.selected;
+                                                   
+                                               }
+                                               failure:^(id result) {
+                                                   [self showCommonHUD:result];
+                                                   
+                                               }];
+
 }
 
 - (IBAction)addToShopCartAction:(id)sender {
@@ -150,7 +176,8 @@
     }
     else if(indexPath.row == 1)
     {
-        return 100+((self.modelSpecification.data.count+1)/2) * 35;
+//        return 100+((self.modelSpecification.data.count+1)/2) * 35;
+        return 60;
     }
     else
     {
@@ -176,6 +203,16 @@
         pdtInfoCell.proNumLab.text = self.modelProduct.code;
         pdtInfoCell.marketPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.partnerMarketPrice floatValue]];
         pdtInfoCell.dphPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
+        
+
+        if ([self.modelProduct.favorite isEqualToString:@"0"]) {
+            pdtInfoCell.collectBtn.selected = NO;
+        }
+        else
+        {
+            pdtInfoCell.collectBtn.selected = YES;
+        }
+        [pdtInfoCell.collectBtn addTarget:self action:@selector(collectAction:) forControlEvents:UIControlEventTouchUpInside];
         return pdtInfoCell;
 
     }
@@ -187,7 +224,7 @@
             pdtInfoCell = nibArray[1];
         }
         
-        [pdtInfoCell setCollectionViewDataSourceDelegate:self];
+//        [pdtInfoCell setCollectionViewDataSourceDelegate:self];
 
         return pdtInfoCell;
         
@@ -214,35 +251,35 @@
 
 #pragma mark - collectview
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.modelSpecification.data.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ProductSizeCollectCell * sizeCollectCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sizeLabelCell" forIndexPath:indexPath];
-
-    ModelSpfctionValue * modelValue = self.modelSpecification.data[indexPath.row];
-    sizeCollectCell.label.text = modelValue.value;
-    return sizeCollectCell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ProductSizeCollectCell * selectCell = (ProductSizeCollectCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    selectCell.label.layer.borderColor = [UIColor colorWithHexString:@"3CA0E6"].CGColor;
-    size = selectCell.label.text;
-    self.modelProduct.specifications = selectCell.label.text;
-//    [self updateCollectionViewCellStatus:selectCell selected:YES];
-    
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ProductSizeCollectCell * selectCell = (ProductSizeCollectCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    selectCell.label.layer.borderColor = [UIColor colorWithHexString:@"F0F0F0"].CGColor;
-}
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//{
+//    return self.modelSpecification.data.count;
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    ProductSizeCollectCell * sizeCollectCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sizeLabelCell" forIndexPath:indexPath];
+//
+//    ModelSpfctionValue * modelValue = self.modelSpecification.data[indexPath.row];
+//    sizeCollectCell.label.text = modelValue.value;
+//    return sizeCollectCell;
+//}
+//
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    ProductSizeCollectCell * selectCell = (ProductSizeCollectCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    selectCell.label.layer.borderColor = [UIColor colorWithHexString:@"3CA0E6"].CGColor;
+//    size = selectCell.label.text;
+//    self.modelProduct.specifications = selectCell.label.text;
+////    [self updateCollectionViewCellStatus:selectCell selected:YES];
+//    
+//}
+//
+//- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    ProductSizeCollectCell * selectCell = (ProductSizeCollectCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    selectCell.label.layer.borderColor = [UIColor colorWithHexString:@"F0F0F0"].CGColor;
+//}
 
 
 

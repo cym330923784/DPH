@@ -14,4 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLab;
 
 
+
+@property (nonatomic, assign)BOOL isTest;
+@property (nonatomic, strong)NSArray * errorArr;
+
+
 @end
