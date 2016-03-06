@@ -81,4 +81,69 @@
                           success:(networkSuccess)success
                           failure:(networkFailure)failure;
 
+/**
+ *  獲取配送员订单列表
+ *
+ *  @param userId   员工id
+ *  @param orderStatus   状态
+ *  @param pageNo   页码
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)getDilliveryOrderListByUserId:(NSString *)userId
+                   orderStatus:(NSString *)orderStatus
+                        pageNo:(NSString *)pageNo
+                       success:(networkSuccess)success
+                       failure:(networkFailure)failure;
+
+/**
+ *  批量修改订单状态
+ *
+ *  @param userId   员工id
+ *  @param orderStatus   状态
+ *  @param orderIds   订单id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)changeDiliveryOrderByOrderIds:(NSString *)orderIds
+                           userId:(NSString *)userId
+                         orderStatus:(NSString *)orderStatus
+                             success:(networkSuccess)success
+                             failure:(networkFailure)failure;
+
+
+/**
+ *  退回订单
+ *
+ *  @param userId   员工id
+ *  @param orderStatus   状态
+ *  @param orderIds   订单id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)backDeliveryOrderByOrder:(NSString *)orderId
+                         userId:(NSString *)userId
+                    reason:(NSString *)reason
+                        success:(networkSuccess)success
+                        failure:(networkFailure)failure;
+
+/**
+ *  移除订单
+ *
+ *  @param userId   员工id
+ *  @param orderStatus   状态
+ *  @param orderIds   订单id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)removeDeliveryOrderByOrder:(NSString *)orderId
+                         userId:(NSString *)userId
+                        success:(networkSuccess)success
+                        failure:(networkFailure)failure;
+
+
 @end

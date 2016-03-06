@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *orederPriceLab;
 @property (weak, nonatomic) IBOutlet UILabel *proPriceLab;
-@property (weak, nonatomic) IBOutlet UILabel *noPayPriceLab;
+//@property (weak, nonatomic) IBOutlet UILabel *noPayPriceLab;
 @property (weak, nonatomic) IBOutlet UILabel *payStateLab;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;

@@ -40,7 +40,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -67,7 +67,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -94,7 +94,7 @@
                                      }
                                  }else{
                                      if (failure) {
-                                         failure(@"出错!");
+                                         failure(result[@"messageContent"]);
                                      }
                                  }
                                  
@@ -123,7 +123,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -154,7 +154,7 @@
                                       }
                                   }else{
                                       if (failure) {
-                                          failure(@"出错!");
+                                          failure(result[@"messageContent"]);
                                       }
                                   }
                               }
@@ -165,5 +165,135 @@
                                   
                               }];
 }
+
+-(void)getDilliveryOrderListByUserId:(NSString *)userId
+                         orderStatus:(NSString *)orderStatus
+                              pageNo:(NSString *)pageNo
+                             success:(networkSuccess)success
+                             failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"uId":userId,
+                           @"orderStatus":orderStatus,
+                           @"pageNo":pageNo};
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partnerOrder/showDeliveryOrder"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result[@"data"]);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+}
+
+-(void)changeDiliveryOrderByOrderIds:(NSString *)orderIds
+                           userId:(NSString *)userId
+                         orderStatus:(NSString *)orderStatus
+                             success:(networkSuccess)success
+                             failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"ordersId":orderIds,
+                           @"uId":userId,
+                           @"orderStatus":orderStatus};
+    
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partnerOrder/batchProcessingOrderStatus"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+}
+
+
+-(void)backDeliveryOrderByOrder:(NSString *)orderId
+                         userId:(NSString *)userId
+                    reason:(NSString *)reason
+                        success:(networkSuccess)success
+                        failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"orderId":orderId,
+                           @"uId":userId,
+                           @"reason":reason};
+    
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partnerOrder/returnOrder"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+
+}
+
+
+-(void)removeDeliveryOrderByOrder:(NSString *)orderId
+                           userId:(NSString *)userId
+                          success:(networkSuccess)success
+                          failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"ordersId":orderId,
+                           @"uId":userId};
+    
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partnerOrder/removeOrderList"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+
+}
+
 
 @end

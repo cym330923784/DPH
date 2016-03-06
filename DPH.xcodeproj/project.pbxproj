@@ -161,6 +161,11 @@
 		6B984A3C1C86B69B00B2068C /* EditProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B984A3A1C86B69B00B2068C /* EditProductListCell.xib */; };
 		6B9EED161C717558005D9651 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED131C717558005D9651 /* CALayer+Transition.m */; };
 		6B9EED171C717558005D9651 /* CYM_GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9EED151C717558005D9651 /* CYM_GuideVC.m */; };
+		6BAC0B041C8C078F0001DA39 /* ReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0B021C8C078F0001DA39 /* ReasonCell.m */; };
+		6BAC0B051C8C078F0001DA39 /* ReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BAC0B031C8C078F0001DA39 /* ReasonCell.xib */; };
+		6BAC0B081C8C534E0001DA39 /* PReportManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0B071C8C534E0001DA39 /* PReportManageVC.m */; };
+		6BAC0B0B1C8C53F90001DA39 /* FinanceReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0B0A1C8C53F90001DA39 /* FinanceReportVC.m */; };
+		6BAC0B0E1C8C5DDD0001DA39 /* FinanceReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0B0D1C8C5DDD0001DA39 /* FinanceReportCell.m */; };
 		6BB4C5061C8530290009BE71 /* categoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4C5041C8530290009BE71 /* categoryCell.m */; };
 		6BB4C5071C8530290009BE71 /* categoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB4C5051C8530290009BE71 /* categoryCell.xib */; };
 		6BB4C50A1C85727B0009BE71 /* QuicklyBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4C5091C85727B0009BE71 /* QuicklyBuyView.m */; };
@@ -172,6 +177,14 @@
 		6BD028391C7D9D8900A8CF48 /* PCompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD028381C7D9D8900A8CF48 /* PCompanyInfo.m */; };
 		6BD0283C1C7DAFD900A8CF48 /* ModelCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0283B1C7DAFD900A8CF48 /* ModelCompany.m */; };
 		6BD0283F1C7DB70A00A8CF48 /* PCollectCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0283E1C7DB70A00A8CF48 /* PCollectCashVC.m */; };
+		6BEDFA3E1C8A84C1003B3594 /* pDiliveryOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BEDFA3D1C8A84C1003B3594 /* pDiliveryOrder.storyboard */; };
+		6BEDFA431C8A86BC003B3594 /* PDiliveryOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA411C8A86BC003B3594 /* PDiliveryOrderListCell.m */; };
+		6BEDFA441C8A86BC003B3594 /* PDiliveryOrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BEDFA421C8A86BC003B3594 /* PDiliveryOrderListCell.xib */; };
+		6BEDFA481C8A8855003B3594 /* PDiliveryOrderNavCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA471C8A8855003B3594 /* PDiliveryOrderNavCtrl.m */; };
+		6BEDFA4B1C8A8877003B3594 /* PdiliveryOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA4A1C8A8877003B3594 /* PdiliveryOrderVC.m */; };
+		6BEDFA4E1C8A90AF003B3594 /* PDiliveryPackageOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA4D1C8A90AF003B3594 /* PDiliveryPackageOrderCell.m */; };
+		6BEDFA511C8A9407003B3594 /* PDiliveryPackageOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA501C8A9407003B3594 /* PDiliveryPackageOrderVC.m */; };
+		6BEDFA541C8AB82F003B3594 /* ReasonSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFA531C8AB82F003B3594 /* ReasonSelectView.m */; };
 		73F9430CB0A947DCDE428B78 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8267A8FB57496C843723109 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -480,6 +493,15 @@
 		6B9EED131C717558005D9651 /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
 		6B9EED141C717558005D9651 /* CYM_GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYM_GuideVC.h; sourceTree = "<group>"; };
 		6B9EED151C717558005D9651 /* CYM_GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYM_GuideVC.m; sourceTree = "<group>"; };
+		6BAC0B011C8C078F0001DA39 /* ReasonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReasonCell.h; sourceTree = "<group>"; };
+		6BAC0B021C8C078F0001DA39 /* ReasonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReasonCell.m; sourceTree = "<group>"; };
+		6BAC0B031C8C078F0001DA39 /* ReasonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReasonCell.xib; sourceTree = "<group>"; };
+		6BAC0B061C8C534E0001DA39 /* PReportManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PReportManageVC.h; sourceTree = "<group>"; };
+		6BAC0B071C8C534E0001DA39 /* PReportManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PReportManageVC.m; sourceTree = "<group>"; };
+		6BAC0B091C8C53F90001DA39 /* FinanceReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceReportVC.h; sourceTree = "<group>"; };
+		6BAC0B0A1C8C53F90001DA39 /* FinanceReportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceReportVC.m; sourceTree = "<group>"; };
+		6BAC0B0C1C8C5DDD0001DA39 /* FinanceReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceReportCell.h; sourceTree = "<group>"; };
+		6BAC0B0D1C8C5DDD0001DA39 /* FinanceReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceReportCell.m; sourceTree = "<group>"; };
 		6BB4C5031C8530290009BE71 /* categoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryCell.h; sourceTree = "<group>"; };
 		6BB4C5041C8530290009BE71 /* categoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryCell.m; sourceTree = "<group>"; };
 		6BB4C5051C8530290009BE71 /* categoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = categoryCell.xib; sourceTree = "<group>"; };
@@ -501,6 +523,20 @@
 		6BD0283B1C7DAFD900A8CF48 /* ModelCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCompany.m; sourceTree = "<group>"; };
 		6BD0283D1C7DB70A00A8CF48 /* PCollectCashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCollectCashVC.h; sourceTree = "<group>"; };
 		6BD0283E1C7DB70A00A8CF48 /* PCollectCashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCollectCashVC.m; sourceTree = "<group>"; };
+		6BEDFA3D1C8A84C1003B3594 /* pDiliveryOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pDiliveryOrder.storyboard; sourceTree = "<group>"; };
+		6BEDFA401C8A86BC003B3594 /* PDiliveryOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDiliveryOrderListCell.h; sourceTree = "<group>"; };
+		6BEDFA411C8A86BC003B3594 /* PDiliveryOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDiliveryOrderListCell.m; sourceTree = "<group>"; };
+		6BEDFA421C8A86BC003B3594 /* PDiliveryOrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDiliveryOrderListCell.xib; sourceTree = "<group>"; };
+		6BEDFA461C8A8855003B3594 /* PDiliveryOrderNavCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDiliveryOrderNavCtrl.h; sourceTree = "<group>"; };
+		6BEDFA471C8A8855003B3594 /* PDiliveryOrderNavCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDiliveryOrderNavCtrl.m; sourceTree = "<group>"; };
+		6BEDFA491C8A8877003B3594 /* PdiliveryOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdiliveryOrderVC.h; sourceTree = "<group>"; };
+		6BEDFA4A1C8A8877003B3594 /* PdiliveryOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdiliveryOrderVC.m; sourceTree = "<group>"; };
+		6BEDFA4C1C8A90AF003B3594 /* PDiliveryPackageOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDiliveryPackageOrderCell.h; sourceTree = "<group>"; };
+		6BEDFA4D1C8A90AF003B3594 /* PDiliveryPackageOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDiliveryPackageOrderCell.m; sourceTree = "<group>"; };
+		6BEDFA4F1C8A9407003B3594 /* PDiliveryPackageOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDiliveryPackageOrderVC.h; sourceTree = "<group>"; };
+		6BEDFA501C8A9407003B3594 /* PDiliveryPackageOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDiliveryPackageOrderVC.m; sourceTree = "<group>"; };
+		6BEDFA521C8AB82F003B3594 /* ReasonSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReasonSelectView.h; sourceTree = "<group>"; };
+		6BEDFA531C8AB82F003B3594 /* ReasonSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReasonSelectView.m; sourceTree = "<group>"; };
 		E8267A8FB57496C843723109 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -580,8 +616,12 @@
 				6BD028351C7D913900A8CF48 /* PPersonInfoVC.m */,
 				6BD028371C7D9D8900A8CF48 /* PCompanyInfo.h */,
 				6BD028381C7D9D8900A8CF48 /* PCompanyInfo.m */,
+				6BAC0B061C8C534E0001DA39 /* PReportManageVC.h */,
+				6BAC0B071C8C534E0001DA39 /* PReportManageVC.m */,
 				315ECD511C5B32DF0045C900 /* PReportVC.h */,
 				315ECD521C5B32DF0045C900 /* PReportVC.m */,
+				6BAC0B091C8C53F90001DA39 /* FinanceReportVC.h */,
+				6BAC0B0A1C8C53F90001DA39 /* FinanceReportVC.m */,
 				6BD0283D1C7DB70A00A8CF48 /* PCollectCashVC.h */,
 				6BD0283E1C7DB70A00A8CF48 /* PCollectCashVC.m */,
 				6B6E204D1C7EF89A00EC88CC /* PCashRecordInfo.h */,
@@ -690,6 +730,7 @@
 			children = (
 				315ECD831C5B37C60045C900 /* Product */,
 				315ECD851C5B37F00045C900 /* pOrder */,
+				6BEDFA3F1C8A869D003B3594 /* pDiliveryOrder */,
 				315ECD841C5B37F00045C900 /* pClient */,
 				317FBF231C607C2500D12BCE /* pManage */,
 			);
@@ -1015,6 +1056,8 @@
 				6B6E20361C7E8C0A00EC88CC /* PCollectCashCell.m */,
 				6B6E203B1C7E921000EC88CC /* PStaffCell.h */,
 				6B6E203C1C7E921000EC88CC /* PStaffCell.m */,
+				6BAC0B0C1C8C5DDD0001DA39 /* FinanceReportCell.h */,
+				6BAC0B0D1C8C5DDD0001DA39 /* FinanceReportCell.m */,
 			);
 			name = pManage;
 			path = pReport;
@@ -1058,6 +1101,7 @@
 			children = (
 				319C94EF1C56FFFD00859947 /* pProduct.storyboard */,
 				319C94E91C56FF6200859947 /* pOrder.storyboard */,
+				6BEDFA3D1C8A84C1003B3594 /* pDiliveryOrder.storyboard */,
 				319C94EB1C56FF9700859947 /* pClient.storyboard */,
 				319C94ED1C56FFD600859947 /* pManage.storyboard */,
 			);
@@ -1071,6 +1115,7 @@
 				319C94F21C57012000859947 /* PMainTabbarCtrl.m */,
 				315ECD3C1C5B2FE20045C900 /* Product */,
 				315ECD3B1C5B2FE20045C900 /* Order */,
+				6BEDFA451C8A8819003B3594 /* DiliveryOrder */,
 				315ECD571C5B33460045C900 /* Client */,
 				315ECD3D1C5B2FE20045C900 /* Manage */,
 			);
@@ -1177,6 +1222,8 @@
 				315DD2CB1C5F753E00596AF2 /* DatePickerView.h */,
 				315DD2CC1C5F753E00596AF2 /* DatePickerView.m */,
 				315DD2CD1C5F753E00596AF2 /* DatePickerView.xib */,
+				6BEDFA521C8AB82F003B3594 /* ReasonSelectView.h */,
+				6BEDFA531C8AB82F003B3594 /* ReasonSelectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1198,6 +1245,9 @@
 				315ECD331C5B1BAF0045C900 /* BaseTableViewCell.h */,
 				315ECD341C5B1BAF0045C900 /* BaseTableViewCell.m */,
 				315ECD351C5B1BAF0045C900 /* BaseTableViewCell.xib */,
+				6BAC0B011C8C078F0001DA39 /* ReasonCell.h */,
+				6BAC0B021C8C078F0001DA39 /* ReasonCell.m */,
+				6BAC0B031C8C078F0001DA39 /* ReasonCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1228,6 +1278,31 @@
 				6B9EED131C717558005D9651 /* CALayer+Transition.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		6BEDFA3F1C8A869D003B3594 /* pDiliveryOrder */ = {
+			isa = PBXGroup;
+			children = (
+				6BEDFA401C8A86BC003B3594 /* PDiliveryOrderListCell.h */,
+				6BEDFA411C8A86BC003B3594 /* PDiliveryOrderListCell.m */,
+				6BEDFA421C8A86BC003B3594 /* PDiliveryOrderListCell.xib */,
+				6BEDFA4C1C8A90AF003B3594 /* PDiliveryPackageOrderCell.h */,
+				6BEDFA4D1C8A90AF003B3594 /* PDiliveryPackageOrderCell.m */,
+			);
+			path = pDiliveryOrder;
+			sourceTree = "<group>";
+		};
+		6BEDFA451C8A8819003B3594 /* DiliveryOrder */ = {
+			isa = PBXGroup;
+			children = (
+				6BEDFA461C8A8855003B3594 /* PDiliveryOrderNavCtrl.h */,
+				6BEDFA471C8A8855003B3594 /* PDiliveryOrderNavCtrl.m */,
+				6BEDFA491C8A8877003B3594 /* PdiliveryOrderVC.h */,
+				6BEDFA4A1C8A8877003B3594 /* PdiliveryOrderVC.m */,
+				6BEDFA4F1C8A9407003B3594 /* PDiliveryPackageOrderVC.h */,
+				6BEDFA501C8A9407003B3594 /* PDiliveryPackageOrderVC.m */,
+			);
+			path = DiliveryOrder;
 			sourceTree = "<group>";
 		};
 		E9C99C20D7BA230A024D87CB /* Frameworks */ = {
@@ -1362,6 +1437,7 @@
 				6B984A3C1C86B69B00B2068C /* EditProductListCell.xib in Resources */,
 				319C94EC1C56FF9700859947 /* pClient.storyboard in Resources */,
 				6B872C5C1C83E11E007B28DC /* LeftClassifySliderView.xib in Resources */,
+				6BEDFA3E1C8A84C1003B3594 /* pDiliveryOrder.storyboard in Resources */,
 				315DD2CF1C5F753E00596AF2 /* DatePickerView.xib in Resources */,
 				316C99881C5E59190062DE97 /* POrderDetailCell.xib in Resources */,
 				6BB4C50C1C8572920009BE71 /* QuicklyBuyView.xib in Resources */,
@@ -1380,10 +1456,12 @@
 				315ECD7E1C5B377C0045C900 /* OrderDetailCell.xib in Resources */,
 				3160EDFB1C55EFEF0066A7D6 /* Assets.xcassets in Resources */,
 				316C99831C5E573D0062DE97 /* POrderListCell.xib in Resources */,
+				6BEDFA441C8A86BC003B3594 /* PDiliveryOrderListCell.xib in Resources */,
 				319C95001C57090D00859947 /* ProductCell.xib in Resources */,
 				319C94F01C56FFFD00859947 /* pProduct.storyboard in Resources */,
 				319C94CE1C56FD3000859947 /* Order.storyboard in Resources */,
 				315ECD801C5B377C0045C900 /* OrderListCell.xib in Resources */,
+				6BAC0B051C8C078F0001DA39 /* ReasonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1539,7 @@
 				3173F09F1C5C9FA500718D2D /* ServerUser.m in Sources */,
 				316651941C585525004ED36B /* CheckOrderVC.m in Sources */,
 				315ECD791C5B377C0045C900 /* ShopCartProCell.m in Sources */,
+				6BEDFA541C8AB82F003B3594 /* ReasonSelectView.m in Sources */,
 				31A4C64A1C5D208300FC284D /* ShopCartSQL.m in Sources */,
 				319C94F31C57012000859947 /* PMainTabbarCtrl.m in Sources */,
 				6BD028391C7D9D8900A8CF48 /* PCompanyInfo.m in Sources */,
@@ -1497,10 +1576,12 @@
 				315ECD411C5B30320045C900 /* ProductNavCtrl.m in Sources */,
 				318F926C1C55FF1E00BE7742 /* AppUtils.m in Sources */,
 				316310711C5F50AA00A53D78 /* ModelAddress.m in Sources */,
+				6BEDFA511C8A9407003B3594 /* PDiliveryPackageOrderVC.m in Sources */,
 				3173F0A51C5CA39300718D2D /* NSString+Check.m in Sources */,
 				6B6E20461C7ECBD000EC88CC /* PNetworkManage.m in Sources */,
 				319C951A1C5734F300859947 /* PersonNavCtrl.m in Sources */,
 				6B2AD7281C7AE172001838B9 /* DefaultAddressCell.m in Sources */,
+				6BEDFA4E1C8A90AF003B3594 /* PDiliveryPackageOrderCell.m in Sources */,
 				318F92CD1C5624FA00BE7742 /* LoginVC.m in Sources */,
 				317FBF2C1C60A3FA00D12BCE /* PNetworkOrder.m in Sources */,
 				6B6E20491C7EDB8300EC88CC /* ModelCashRecordTotalDemo.m in Sources */,
@@ -1512,9 +1593,11 @@
 				315DD2D21C5F801700596AF2 /* ShopUserCell.m in Sources */,
 				316310771C5F50AA00A53D78 /* ModelSpfctionValue.m in Sources */,
 				6B6E20401C7E928E00EC88CC /* PStaffManageVC.m in Sources */,
+				6BAC0B041C8C078F0001DA39 /* ReasonCell.m in Sources */,
 				315DD2DB1C5F8C4800596AF2 /* ShopInfoVC.m in Sources */,
 				6B96FDAF1C7FE3F8009DCA69 /* PAddStaffVC.m in Sources */,
 				315ECD5A1C5B33570045C900 /* PClientNavCtrl.m in Sources */,
+				6BEDFA431C8A86BC003B3594 /* PDiliveryOrderListCell.m in Sources */,
 				319C950E1C57349900859947 /* OrderVC.m in Sources */,
 				3163105C1C5F504D00A53D78 /* ServerPartner.m in Sources */,
 				6B2AD72B1C7AE182001838B9 /* CommonAddressCell.m in Sources */,
@@ -1527,11 +1610,13 @@
 				316310591C5F45DA00A53D78 /* PAddPayWayVC.m in Sources */,
 				318F92861C5619E200BE7742 /* BaseViewCtrl.m in Sources */,
 				315ECD771C5B377C0045C900 /* ProductInfoCell.m in Sources */,
+				6BEDFA481C8A8855003B3594 /* PDiliveryOrderNavCtrl.m in Sources */,
 				6BD028331C7D87AF00A8CF48 /* PManageCell.m in Sources */,
 				319C94FF1C57090D00859947 /* ProductCell.m in Sources */,
 				318F927F1C56140000BE7742 /* UIColor+TenSixColor.m in Sources */,
 				3163104F1C5F396C00A53D78 /* NetworkLogin.m in Sources */,
 				317917C21C61995E00540353 /* ModelPayWay.m in Sources */,
+				6BAC0B0E1C8C5DDD0001DA39 /* FinanceReportCell.m in Sources */,
 				319C94E41C56FE8500859947 /* MainTabbarCtrl.m in Sources */,
 				6BB4C5061C8530290009BE71 /* categoryCell.m in Sources */,
 				316C997B1C5E45390062DE97 /* OrderProductListVC.m in Sources */,
@@ -1554,6 +1639,7 @@
 				315ECD761C5B377C0045C900 /* AddressCell.m in Sources */,
 				315ECD7B1C5B377C0045C900 /* MsgListCell.m in Sources */,
 				315ECD2F1C5B109E0045C900 /* MyInfoVC.m in Sources */,
+				6BAC0B081C8C534E0001DA39 /* PReportManageVC.m in Sources */,
 				318F92831C56185C00BE7742 /* BaseNavCtrl.m in Sources */,
 				6BD0283F1C7DB70A00A8CF48 /* PCollectCashVC.m in Sources */,
 				315DFF8B1C59DC59006AB847 /* ProductListVC.m in Sources */,
@@ -1584,6 +1670,8 @@
 				316C99721C5E40E10062DE97 /* ProductListCell.m in Sources */,
 				3173F0951C5C692E00718D2D /* TextViewAlertView.m in Sources */,
 				6B6E20371C7E8C0A00EC88CC /* PCollectCashCell.m in Sources */,
+				6BAC0B0B1C8C53F90001DA39 /* FinanceReportVC.m in Sources */,
+				6BEDFA4B1C8A8877003B3594 /* PdiliveryOrderVC.m in Sources */,
 				316C997E1C5E56E60062DE97 /* POrderDetailVC.m in Sources */,
 				315DD2D51C5F830200596AF2 /* ModelShop.m in Sources */,
 				319C95031C57138E00859947 /* LoginNavCtrl.m in Sources */,

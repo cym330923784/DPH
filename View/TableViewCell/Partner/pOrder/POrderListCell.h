@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
 @property (weak, nonatomic) IBOutlet UILabel *stateLab;
 @property (weak, nonatomic) IBOutlet UILabel *orderPriceLab;
-@property (weak, nonatomic) IBOutlet UILabel *numLab;
+//@property (weak, nonatomic) IBOutlet UILabel *numLab;
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLab;
 
 @property (nonatomic, strong)ModelOrder * modelOrder;

@@ -53,7 +53,7 @@
     
     
     self.orderPriceLab.text = modelOrder.totalCost;
-    self.numLab.text = modelOrder.num;
+//    self.numLab.text = modelOrder.num;
     self.orderTimeLab.text = modelOrder.createTime;
 }
 

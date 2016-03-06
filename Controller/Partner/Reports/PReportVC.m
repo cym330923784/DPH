@@ -31,17 +31,6 @@
 
 @implementation PReportVC
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showtabbar" object:nil];
-}
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetabbar" object:nil];
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

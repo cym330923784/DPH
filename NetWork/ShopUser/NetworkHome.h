@@ -130,6 +130,7 @@
  */
 
 -(void)submitOrderByObject:(ModelOrder *)modelOrder
+                 partnerId:(NSString *)partnerId
                    success:(networkSuccess)success
                    failure:(networkFailure)failure;
 

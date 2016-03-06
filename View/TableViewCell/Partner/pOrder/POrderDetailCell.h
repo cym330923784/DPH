@@ -21,10 +21,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
 @property (weak, nonatomic) IBOutlet UILabel *addressLab;
+@property (weak, nonatomic) IBOutlet UIButton *callPhoneBtn;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UILabel *numLab;
 @property (weak, nonatomic) IBOutlet UIImageView *jiantouImg;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *payTitleLab;
+@property (weak, nonatomic) IBOutlet UIImageView *payJTImg;
+@property (weak, nonatomic) IBOutlet UIView *payInfoView;
+@property (weak, nonatomic) IBOutlet UILabel *payNameLab;
+@property (weak, nonatomic) IBOutlet UILabel *payPhoneLab;
+@property (weak, nonatomic) IBOutlet UILabel *payMethodLab;
+
 
 
 

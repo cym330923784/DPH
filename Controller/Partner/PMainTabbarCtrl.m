@@ -166,13 +166,22 @@
     UIStoryboard * pOrderBoard = [UIStoryboard storyboardWithName:@"pOrder" bundle:nil];
     UINavigationController * navPOrder = [pOrderBoard instantiateViewControllerWithIdentifier:@"NavPOrder"];
     
+    UIStoryboard * pDiliveryOrderBoard = [UIStoryboard storyboardWithName:@"pDiliveryOrder" bundle:nil];
+    UINavigationController * navPDiliverOrder = [pDiliveryOrderBoard instantiateViewControllerWithIdentifier:@"NavPDiliveryOrder"];
+    
     UIStoryboard * pClientBoard = [UIStoryboard storyboardWithName:@"pClient" bundle:nil];
     UINavigationController * navPClient = [pClientBoard instantiateViewControllerWithIdentifier:@"NavPClient"];
     
     UIStoryboard * pManageBoard = [UIStoryboard storyboardWithName:@"pManage" bundle:nil];
     UINavigationController * navPManage = [pManageBoard instantiateViewControllerWithIdentifier:@"NavPManage"];
+
+    //此处需要根据登陆后返回的值来判断是否是配送员
     
-    self.viewControllers               = @[navPPro, navPOrder, navPClient, navPManage];
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+    
+    self.viewControllers               = @[navPPro, navPDiliverOrder, navPClient, navPManage];
     
     self.tabBar.tintColor              = [UIColor whiteColor];
     

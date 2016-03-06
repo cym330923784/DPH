@@ -37,20 +37,54 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hA4-MU-hMg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="135" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-RH-cTJ">
-                                        <rect key="frame" x="0.0" y="-25" width="600" height="561"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-RH-cTJ">
+                                        <rect key="frame" x="0.0" y="10" width="600" height="526"/>
                                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <outlet property="dataSource" destination="VW3-Ch-82g" id="hoH-5S-Ru7"/>
                                             <outlet property="delegate" destination="VW3-Ch-82g" id="Xxe-jl-K7o"/>
                                         </connections>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWN-lq-5vL">
+                                        <rect key="frame" x="0.0" y="35" width="600" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZ2-Zo-Xpg">
+                                                <rect key="frame" x="10" y="5" width="580" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="74I-al-bwU"/>
+                                                </constraints>
+                                                <state key="normal" title="所有订单 ">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="filterAction:" destination="VW3-Ch-82g" eventType="touchUpInside" id="Atv-de-plb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="VZ2-Zo-Xpg" firstAttribute="top" secondItem="IWN-lq-5vL" secondAttribute="top" constant="5" id="Nqr-NL-WE6"/>
+                                            <constraint firstAttribute="height" constant="40" id="ZAr-RM-s2Q"/>
+                                            <constraint firstAttribute="trailing" secondItem="VZ2-Zo-Xpg" secondAttribute="trailing" constant="10" id="wMO-By-tgu"/>
+                                            <constraint firstAttribute="bottom" secondItem="VZ2-Zo-Xpg" secondAttribute="bottom" constant="5" id="wZy-Xb-8SJ"/>
+                                            <constraint firstItem="VZ2-Zo-Xpg" firstAttribute="leading" secondItem="IWN-lq-5vL" secondAttribute="leading" constant="10" id="zv2-K3-cmc"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="pdn-RH-cTJ" secondAttribute="trailing" id="EYN-md-C8u"/>
-                                    <constraint firstItem="pdn-RH-cTJ" firstAttribute="top" secondItem="hA4-MU-hMg" secondAttribute="top" constant="-25" id="MQE-EL-TSU"/>
+                                    <constraint firstItem="pdn-RH-cTJ" firstAttribute="top" secondItem="hA4-MU-hMg" secondAttribute="top" constant="10" id="MQE-EL-TSU"/>
+                                    <constraint firstItem="IWN-lq-5vL" firstAttribute="leading" secondItem="hA4-MU-hMg" secondAttribute="leading" id="Sz8-KG-fJV"/>
                                     <constraint firstItem="pdn-RH-cTJ" firstAttribute="leading" secondItem="hA4-MU-hMg" secondAttribute="leading" id="ZzV-k1-4Oj"/>
+                                    <constraint firstItem="IWN-lq-5vL" firstAttribute="top" secondItem="hA4-MU-hMg" secondAttribute="top" constant="35" id="bql-Bg-Oej"/>
+                                    <constraint firstAttribute="trailing" secondItem="IWN-lq-5vL" secondAttribute="trailing" id="eVe-kr-F41"/>
                                     <constraint firstAttribute="bottom" secondItem="pdn-RH-cTJ" secondAttribute="bottom" id="pyn-Gc-eec"/>
                                 </constraints>
                             </view>
@@ -67,6 +101,8 @@
                         <barButtonItem key="rightBarButtonItem" title="筛选" id="2Pb-yq-QcE"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterBtn" destination="VZ2-Zo-Xpg" id="OMh-W1-7PX"/>
+                        <outlet property="filterView" destination="IWN-lq-5vL" id="gIn-UC-QXN"/>
                         <outlet property="mainView" destination="hA4-MU-hMg" id="U3S-zG-8KZ"/>
                         <outlet property="tableView" destination="pdn-RH-cTJ" id="bDx-qz-vEe"/>
                         <segue destination="FUI-nR-SU1" kind="show" identifier="toPOrderDetail" id="Bln-2j-hOb"/>

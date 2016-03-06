@@ -10,4 +10,8 @@
 
 @implementation ModelFullStorage
 
+//+ (NSDictionary *)modelCustomPropertyMapper {
+//    return @{@"productId":@"id"};
+//}
+
 @end

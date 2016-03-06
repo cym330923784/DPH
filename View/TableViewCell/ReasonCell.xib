@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reasonCell" id="KGk-i7-Jjw" customClass="ReasonCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CX5-oF-h55">
+                        <rect key="frame" x="25" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="JPe-Cu-vjV"/>
+                            <constraint firstAttribute="height" constant="22" id="LCH-I2-ola"/>
+                        </constraints>
+                        <state key="normal" image="order_gou_noSelect"/>
+                        <state key="selected" image="order_gou_select"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2N-ww-4Hm">
+                        <rect key="frame" x="57" y="13" width="255" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Y2N-ww-4Hm" firstAttribute="centerY" secondItem="CX5-oF-h55" secondAttribute="centerY" id="8gb-vr-VAN"/>
+                    <constraint firstAttribute="trailing" secondItem="Y2N-ww-4Hm" secondAttribute="trailing" constant="8" id="cJR-hk-hSw"/>
+                    <constraint firstItem="CX5-oF-h55" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="du2-iM-u6M"/>
+                    <constraint firstItem="CX5-oF-h55" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="hFb-Lq-tDA"/>
+                    <constraint firstItem="Y2N-ww-4Hm" firstAttribute="leading" secondItem="CX5-oF-h55" secondAttribute="trailing" constant="10" id="pnW-sF-deF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkBtn" destination="CX5-oF-h55" id="DrO-1l-JCe"/>
+                <outlet property="reasonLab" destination="Y2N-ww-4Hm" id="CE0-2r-k9v"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_gou_noSelect" width="22" height="22"/>
+        <image name="order_gou_select" width="22" height="22"/>
+    </resources>
+</document>

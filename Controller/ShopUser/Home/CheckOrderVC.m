@@ -19,6 +19,7 @@
 #import "NetworkHome.h"
 #import "OrderProductListVC.h"
 #import "ProductListVC.h"
+#import "ModelFullStorage.h"
 
 
 @interface CheckOrderVC ()
@@ -30,7 +31,7 @@
 @property(nonatomic ,strong)NSString * remarkStr;
 
 @property (nonatomic, strong)NSMutableArray * tempProductArr;
-@property (nonatomic, strong)NSArray * errorArr;
+@property (nonatomic, strong)NSMutableArray * errorArr;
 @property (nonatomic, strong)ModelOrder * modelOrder;
 
 
@@ -42,7 +43,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.errorArr = [NSArray array];
+    self.errorArr = [NSMutableArray array];
     
     NSData * data = [UserDefaultUtils valueWithKey:@"defaultAddress"];
     self.modelAddress = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -90,7 +91,7 @@
 
 - (IBAction)submitOrderAction:(id)sender {
     [self showCommonHUD:@"提交中..."];
-    self.modelOrder.partnerId = [UserDefaultUtils valueWithKey:@"partnerId"];
+//    self.modelOrder.partnerId = [UserDefaultUtils valueWithKey:@"partnerId"];
     self.modelOrder.endClientId = [UserDefaultUtils valueWithKey:@"userId"];
     self.modelOrder.deliveryName = self.modelAddress.name;
     self.modelOrder.deliveryPhone = self.modelAddress.phone;
@@ -100,16 +101,40 @@
     
     
     [[NetworkHome sharedManager]submitOrderByObject:self.modelOrder
+                                          partnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
                                             success:^(id result) {
                                                 [self dismissHUD];
-                                                isTest = YES;
-                                                self.errorArr = result;
                                                 
-//                                                orderNo = result[@"orderNo"];
-//                                                [ShopCartSQL removeAllProInShopCart];
-//                                                [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
-//                                                [[NSNotificationCenter defaultCenter]postNotificationName:@"cleanUpBadgeValue" object:nil];
-//                                                [self performSegueWithIdentifier:@"toSubmitSuccess" sender:nil];
+                                                orderNo = result[@"orderNo"];
+                                                
+                                                if ([result[@"state"] isEqualToString:@"success"])
+                                                {
+                                                    
+                                                    [ShopCartSQL removeAllProInShopCart];
+                                                    [UserDefaultUtils saveValue:@"0" forKey:@"badgeValue"];
+                                                    [[NSNotificationCenter defaultCenter]postNotificationName:@"cleanUpBadgeValue" object:nil];
+                                                    [self performSegueWithIdentifier:@"toSubmitSuccess" sender:nil];
+                                                }
+                                                //如果库存不足，后台返回状态码“lowStocks”
+                                                else
+                                                {
+                                                    isTest = YES;
+                                                    
+                                                    NSMutableArray *arr = [NSMutableArray array];
+                                                    for (NSDictionary * stoDic in result[@"data"]) {
+                                                        ModelFullStorage * stoDemo = [ModelFullStorage yy_modelWithDictionary:stoDic];
+                                                        [arr addObject:stoDemo];
+                                                    }
+                                                    [self.errorArr addObjectsFromArray:arr];
+//                                                    [self showCommonHUD:@"大噶山东省的根深蒂固"];
+                                                    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:3];
+                                                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                                                    [AppUtils showAlert:nil message:@"订单提交失败,请修改货品数量!" objectSelf:self defaultAction:nil cancelAction:nil];
+                                                    [AppUtils showAlert:nil message:@"订单提交失败,请修改货品数量!" objectSelf:self defaultAction:^(id result) {
+                                                        
+                                                    } cancelAction:nil];
+
+                                                }
                                             }
                                             failure:^(id result) {
                                                 [self dismissHUD];
@@ -304,6 +329,7 @@
         }
         cell.menuNameLab.text = @"商品清单";
         cell.numLab.text = self.num;
+        cell.attentionImage.hidden = !isTest;
     }
     return cell;
 }

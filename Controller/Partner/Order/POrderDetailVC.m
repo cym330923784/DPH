@@ -109,6 +109,16 @@
                                                      }];
 }
 
+//拨打电话
+
+-(void)callPhoneAction
+{
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.modelOrder.deliveryPhone];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
+}
+
 
 #pragma mark - TableViewDelegate
 
@@ -120,7 +130,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 115+[AppUtils labelAutoCalculateRectWith:self.modelOrder.note lineSpacing:6 FontSize:14 MaxSize:CGSizeMake([AppUtils putScreenWidth]-65, 0)].height;;
+        return 115+[AppUtils labelAutoCalculateRectWith:self.modelOrder.note lineSpacing:6 FontSize:14 MaxSize:CGSizeMake([AppUtils putScreenWidth]-65, 0)].height;
     }
     else if (indexPath.row == 1)
     {
@@ -128,7 +138,20 @@
     }
     else if (indexPath.row ==2)
     {
-        return 105;
+        return 115+[AppUtils labelAutoCalculateRectWith:self.modelOrder.note lineSpacing:6 FontSize:15 MaxSize:CGSizeMake([AppUtils putScreenWidth]-88, 0)].height;
+    }
+    else if (indexPath.row == 3)
+    {
+        
+        //如果未付款，不现实付款详情，相反则显示
+        if ([self.modelOrder.paymentStatus isEqualToString:@"0"]) {
+            return 40;
+        }
+        else
+        {
+            return 130;
+        }
+        
     }
     else
     {
@@ -183,8 +206,53 @@
         cell.nameLab.text = self.modelOrder.deliveryName;
         cell.phoneLab.text = self.modelOrder.deliveryPhone;
         cell.addressLab.text = self.modelOrder.deliveryAddress;
+        [cell.callPhoneBtn addTarget:self action:@selector(callPhoneAction) forControlEvents:UIControlEventTouchUpInside];
 
     }
+    else if (indexPath.row == 3)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell5"];
+        if (!cell) {
+            NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"POrderDetailCell" owner:nil options:nil];
+            cell = nibArray[4];
+        }
+
+        if ([self.modelOrder.paymentStatus isEqualToString:@"0"]) {
+            
+            cell.payTitleLab.text = @"添加付款记录";
+            cell.payJTImg.hidden = NO;
+            cell.payInfoView.hidden = YES;
+            
+            cell.userInteractionEnabled = YES;
+            //                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
+            //                    cell.jiantouImg.hidden = YES;
+            //                    cell.titleLab.text = @"付款记录";
+            //
+            //                    cell.userInteractionEnabled = NO;
+            //                }
+            
+        }
+        else
+        {
+            cell.payJTImg.hidden = YES;
+            cell.titleLab.text = @"付款记录";
+            cell.payInfoView.hidden = NO;
+            cell.payMethodLab.text = self.modelOrder.method;
+            
+            
+            cell.userInteractionEnabled = NO;
+            
+            //                cell.payMethodLab.text = self.modelOrder.method;
+            //                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
+            //
+            //                    cell.userInteractionEnabled = NO;
+            //                }
+            
+        }
+
+
+    }
+    
     else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"cell4"];
@@ -194,36 +262,9 @@
             
         }
         cell.numLab.text = self.modelOrder.num;
-        if (indexPath.row == 3) {
-            NSLog(@"%@",self.modelOrder.paymentStatus);
-           
-            if ([self.modelOrder.paymentStatus isEqualToString:@"0"]) {
-                
-                cell.numLab.hidden = YES;
-                cell.titleLab.text = @"添加付款记录";
-                cell.jiantouImg.hidden = NO;
-                
-                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
-                    cell.jiantouImg.hidden = YES;
-    
-                    cell.userInteractionEnabled = NO;
-                }
-                
-            }
-            else
-            {
-                cell.jiantouImg.hidden = YES;
-                cell.titleLab.text = @"已付款";
-                cell.numLab.text = self.modelOrder.method;
-                if ([self.modelOrder.orderStatus isEqualToString:@"8"]) {
-                    
-                    cell.userInteractionEnabled = NO;
-                }
-                
-            }
+        
+        
 
-            
-        }
     }
     return cell;
     

@@ -104,6 +104,7 @@
         
     }
     cell.addShopcartBtn.hidden = YES;
+    cell.collectBtn.hidden = YES;
     cell.modelProduct = self.productArr[indexPath.row];
     return cell;
 }

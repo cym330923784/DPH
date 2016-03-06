@@ -22,7 +22,7 @@
     self.codeLab.text = modelProduct.code;
     self.nameLab.text = modelProduct.name;
     self.sizeLab.text = modelProduct.specifications;
-    self.priceLab.text = modelProduct.price;
+    self.priceLab.text = [NSString stringWithFormat:@"%0.2lf",[modelProduct.price floatValue]];
     self.numLab.text = modelProduct.qty;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
 

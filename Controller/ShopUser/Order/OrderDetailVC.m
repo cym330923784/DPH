@@ -103,7 +103,7 @@
     }
     else if (indexPath.row == 1)
     {
-        return 130;
+        return 105;
     }
     else if (indexPath.row ==2)
     {
@@ -148,7 +148,7 @@
             cell.stateLab.text = @"已作废";
         }
         
-        cell.orderIdLab.text = self.modelOrder.orderId;
+        cell.orderIdLab.text = self.modelOrder.orderNo;
         if ([self.modelOrder.note isEqualToString:@""]) {
             cell.remarkLab.text = @"无备注";
         }
@@ -169,7 +169,7 @@
         }
         cell.orederPriceLab.text = self.modelOrder.totalCost;
         cell.proPriceLab.text = self.modelOrder.totalCost;
-        cell.noPayPriceLab.text = self.modelOrder.totalCost;
+//        cell.noPayPriceLab.text = self.modelOrder.totalCost;
         if ([self.modelOrder.paymentStatus isEqualToString:@"0"]) {
             cell.payStateLab.text = @"未付款";
         }

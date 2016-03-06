@@ -54,7 +54,8 @@
                           
                           NSDictionary *dic = (NSDictionary *)obj;
                           [UserDefaultUtils saveValue:dic[@"id"] forKey:@"branchUserId"];
-                          [UserDefaultUtils saveValue:dic[@"partnerId"] forKey:@"partnerId"];
+//                          [UserDefaultUtils saveValue:dic[@"partnerId"] forKey:@"partnerId"];
+                          [UserDefaultUtils saveValue:@"1" forKey:@"partnerId"];
                           [UserDefaultUtils saveValue:@"1" forKey:@"isLogin"];
                           self.model = [ModelPartner yy_modelWithDictionary:dic];
                           [self.model partnerSave];

@@ -10,10 +10,10 @@
 #import "ModelProduct.h"
 
 @interface ModelOrder : NSObject
-/**
- *   地方站id
- */
-@property (nonatomic,copy) NSString * partnerId;
+///**
+// *   地方站id
+// */
+//@property (nonatomic,copy) NSString * partnerId;
 /**
  *   订单id
  */
@@ -70,5 +70,14 @@
  *  商品数组
  */
 @property (nonatomic,copy) NSMutableArray *inventoryData;
+
+/**
+ *  是否收取了现金
+ */
+@property (nonatomic,copy) NSString *cashReceipts;
+/**
+ *  区域名称
+ */
+@property (nonatomic,copy) NSString *areaName;
 
 @end

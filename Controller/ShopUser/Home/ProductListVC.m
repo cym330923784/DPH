@@ -61,7 +61,7 @@
             cell.isError = NO;
             if ([model.productId isEqualToString:cell.modelProduct.productId]) {
                 
-                if ([cell.numTF.text intValue] > [model.storage intValue] ) {
+                if ([cell.numTF.text intValue] > [model.storageQty intValue] ) {
                     cell.isError = YES;
                     isPass = NO;
                 }
@@ -72,9 +72,10 @@
     }
     [self.tableView reloadData];
     self.tipsView.hidden = isPass;
-    self.tableViewTop.constant = 0;
+    
     
     if (isPass) {
+        self.tableViewTop.constant = 0;
         [AppUtils showAlert:@"提示" message:@"确认保存修改?" objectSelf:self defaultAction:^(id result) {
             for (ModelProduct * thisModel in self.productArr) {
                 NSDictionary * modelDic = [AppUtils getObjectData:thisModel];
@@ -98,7 +99,10 @@
     }
     else
     {
-        [self showCommonHUD:@"cccccccccc"];
+        [AppUtils showAlert:nil message:@"请修改货品数量!" objectSelf:self defaultAction:^(id result) {
+            
+        } cancelAction:nil];
+
     }
     
 }
@@ -250,8 +254,8 @@
     for (ModelFullStorage * model in self.errorArr) {
         if ([model.productId isEqualToString:cell.modelProduct.productId]) {
             
-            if ([cell.numTF.text intValue] > [model.storage intValue] ) {
-                cell.storageNumLab.text = model.storage;
+            if ([cell.numTF.text intValue] > [model.storageQty intValue] ) {
+                cell.storageNumLab.text = model.storageQty;
                 cell.isError = YES;
                 isPass = NO;
                 break;

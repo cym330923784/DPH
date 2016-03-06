@@ -12,11 +12,16 @@
 #import "PNetworkOrder.h"
 #import "ModelOrder.h"
 #import "POrderDetailVC.h"
+#import "UIColor+TenSixColor.h"
 
 @interface POrderVC ()
 {
     NSInteger page,type;
 }
+
+@property (weak, nonatomic) IBOutlet UIButton *filterBtn;//筛选btn
+@property (weak, nonatomic) IBOutlet UIView *filterView;
+
 @property (nonatomic ,strong)NSMutableArray * notFinishOrderArr;//未完成
 @property (nonatomic ,strong)NSMutableArray * finishOrderArr;//已完成
 @property (nonatomic ,strong)NSMutableArray * invalidOrderArr;//已作废
@@ -195,6 +200,38 @@
     
 }
 
+//筛选
+- (IBAction)filterAction:(id)sender {
+    
+     NSArray *titles = @[@"未审核", @"未装箱", @"为配送", @"未付款"];
+    
+    
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: nil                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self addActionTarget:alertController titles:titles];
+    [self addCancelActionTarget:alertController title:@"取消"];
+    
+//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"未付款" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        
+//    }];
+//    [action setValue:[UIColor colorWithHexString:@"#7d7d7d"] forKey:@"_titleTextColor"];
+//    [alertController addAction:action];
+//    
+//    //添加Button
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"未审核" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self.filterBtn setTitle:@"未审核" forState:UIControlStateNormal];
+//    }]];
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"未装箱" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//        [self.filterBtn setTitle:@"未装箱" forState:UIControlStateNormal];
+//        
+//    }]];
+//    [alertController addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController: alertController animated: YES completion: nil];
+}
+
+
 #pragma mark - TableViewDelegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -244,6 +281,31 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UIAlertController 方法
+
+// 添加其他按钮
+- (void)addActionTarget:(UIAlertController *)alertController titles:(NSArray *)titles
+{
+    for (NSString *title in titles) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.filterBtn setTitle:action.title forState:UIControlStateNormal];
+        }];
+        [action setValue:[UIColor blackColor] forKey:@"_titleTextColor"];
+        [alertController addAction:action];
+    }
+}
+
+// 取消按钮
+- (void)addCancelActionTarget:(UIAlertController *)alertController title:(NSString *)title
+{
+    UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    [action setValue:[UIColor lightGrayColor] forKey:@"_titleTextColor"];
+    [alertController addAction:action];
+}
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

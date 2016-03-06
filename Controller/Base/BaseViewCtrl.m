@@ -27,6 +27,7 @@
 
 }
 
+
 -(void)showCommonHUD:(NSString *)status{
     MBProgressHUD *hud            = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode                      = MBProgressHUDModeText;

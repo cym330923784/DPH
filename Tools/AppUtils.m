@@ -272,10 +272,13 @@
         defaultAction(action);
         
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        cancelAction(action);
-        
-    }]];
+    if (cancelAction != nil) {
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            cancelAction(action);
+            
+        }]];
+
+    }
     [objectSelf presentViewController:alert animated:YES completion:nil];
     
     

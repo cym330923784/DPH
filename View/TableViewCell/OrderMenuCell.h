@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *menuNameLab;
 @property (weak, nonatomic) IBOutlet UILabel *numLab;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowsImg;
+@property (weak, nonatomic) IBOutlet UIImageView *attentionImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
@@ -27,6 +28,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *remarkLab;
+
+
 
 
 @end

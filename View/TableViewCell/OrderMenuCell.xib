@@ -109,7 +109,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgj-oI-hyJ">
-                        <rect key="frame" x="272" y="11" width="10" height="18"/>
+                        <rect key="frame" x="272" y="11" width="9.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -121,14 +121,24 @@
                             <constraint firstAttribute="height" constant="1" id="IaQ-35-zvJ"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-z8-CfW">
+                        <rect key="frame" x="234.5" y="5" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.92636114359999999" green="0.16550164470000001" blue="0.2736273146" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Ex8-rr-9Up"/>
+                            <constraint firstAttribute="width" constant="30" id="Q0O-7n-SDS"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="M2L-nw-CfX" secondAttribute="bottom" id="0Qx-hN-tPf"/>
                     <constraint firstItem="2Yl-ZO-qma" firstAttribute="centerY" secondItem="rRA-zc-A44" secondAttribute="centerY" id="BRt-hd-IZL"/>
                     <constraint firstItem="M2L-nw-CfX" firstAttribute="leading" secondItem="rRA-zc-A44" secondAttribute="leading" id="FGi-U4-Nmx"/>
+                    <constraint firstItem="rgj-oI-hyJ" firstAttribute="leading" secondItem="iVc-z8-CfW" secondAttribute="trailing" constant="8" id="NfN-9R-LLC"/>
                     <constraint firstItem="Kdd-mw-LgF" firstAttribute="leading" secondItem="rgj-oI-hyJ" secondAttribute="trailing" constant="8" id="S7W-Qc-56u"/>
                     <constraint firstItem="rgj-oI-hyJ" firstAttribute="centerY" secondItem="Kdd-mw-LgF" secondAttribute="centerY" id="Z7F-xx-tac"/>
                     <constraint firstItem="2Yl-ZO-qma" firstAttribute="leading" secondItem="rRA-zc-A44" secondAttribute="leading" constant="20" id="dH1-Y1-2H3"/>
+                    <constraint firstItem="iVc-z8-CfW" firstAttribute="centerY" secondItem="rgj-oI-hyJ" secondAttribute="centerY" id="e3V-DT-Ri5"/>
                     <constraint firstAttribute="trailing" secondItem="M2L-nw-CfX" secondAttribute="trailing" id="l3k-Xi-gKJ"/>
                     <constraint firstItem="Kdd-mw-LgF" firstAttribute="centerY" secondItem="rRA-zc-A44" secondAttribute="centerY" id="rHB-FD-ITa"/>
                     <constraint firstAttribute="trailing" secondItem="Kdd-mw-LgF" secondAttribute="trailing" constant="10" id="t21-fs-Jb9"/>
@@ -136,6 +146,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="arrowsImg" destination="Kdd-mw-LgF" id="Nsh-vX-pm8"/>
+                <outlet property="attentionImage" destination="iVc-z8-CfW" id="BAX-yU-cS6"/>
                 <outlet property="menuNameLab" destination="2Yl-ZO-qma" id="yxY-4w-WF6"/>
                 <outlet property="numLab" destination="rgj-oI-hyJ" id="4QM-Fl-RWP"/>
             </connections>

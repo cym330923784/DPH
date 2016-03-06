@@ -18,6 +18,8 @@
     NSInteger page,type;
     
 }
+
+
 @property (nonatomic ,strong)NSMutableArray * notFinishOrderArr;//未完成
 @property (nonatomic ,strong)NSMutableArray * finishOrderArr;//已完成
 @property (nonatomic ,strong)NSMutableArray * invalidOrderArr;//已作废

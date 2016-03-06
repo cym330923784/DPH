@@ -245,29 +245,32 @@
                               }];
 }
 -(void)submitOrderByObject:(ModelOrder *)modelOrder
+                 partnerId:(NSString *)partnerId
                    success:(networkSuccess)success
                    failure:(networkFailure)failure
 {
     NSDictionary * dic = [AppUtils getObjectData:modelOrder];
     NSString * str = [AppUtils dictionaryToJson:dic];
-    NSDictionary * adic = @{@"jsonObject":str};
+    NSDictionary * adic = @{@"partnerId":partnerId,
+                            @"jsonObject":str};
     
     [super sendRequestToServiceByPost:adic
                              serveUrl:@"api/endClientOrder/add"
                               success:^(id result) {
-                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  if ([result[@"state"] isEqualToString:@"success"] || [result[@"state"] isEqualToString:@"lowStocks"])
                                   {
-                                      ModelFullStorage * model = [[ModelFullStorage alloc]init];
-                                      model.productId = @"5";
-                                      model.storage = @"40";
-                                      NSArray * errorArr = @[model];
-//                                      if (success) {
-//                                          success(result);
-//                                      }
+//                                      ModelFullStorage * model = [[ModelFullStorage alloc]init];
+//                                      model.productId = @"5";
+//                                      model.storage = @"40";
+//                                      NSArray * errorArr = @[model];
                                       if (success) {
-                                          success(errorArr);
+                                          success(result);
                                       }
-                                  }else{
+//                                      if (success) {
+//                                          success(errorArr);
+//                                      }
+                                  }
+                                  else{
                                       if (failure) {
                                           failure(result[@"messageContent"]);
                                       }

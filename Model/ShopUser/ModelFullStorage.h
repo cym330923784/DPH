@@ -17,6 +17,6 @@
 /**
  *  库存
  */
-@property (nonatomic,copy) NSString *storage;
+@property (nonatomic,copy) NSString *storageQty;
 
 @end

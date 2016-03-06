@@ -70,14 +70,13 @@
     
     UIViewController *topVC = [self appRootViewController];
     
-    QuicklyBuyView  * reportView = [[NSBundle mainBundle] loadNibNamed:@"QuicklyBuyView" owner:self options:nil][0];
-    NSLog(@"%@   %@  ",self.modelProduct.sellingPrice,self.modelProduct.name);
+    QuicklyBuyView  * quickView = [[NSBundle mainBundle] loadNibNamed:@"QuicklyBuyView" owner:self options:nil][0];
 
-    [reportView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,self.modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
-    reportView.priceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
-    reportView.nameLab.text = self.modelProduct.name;
-    reportView.frame = CGRectMake(0,Screen.height-200,Screen.width,200);
-    [topVC.view addSubview:reportView];
+    [quickView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,self.modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
+    quickView.priceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
+    quickView.nameLab.text = self.modelProduct.name;
+    quickView.frame = CGRectMake(0,Screen.height-200,Screen.width,200);
+    [topVC.view addSubview:quickView];
 }
 
 - (UIViewController *)appRootViewController
