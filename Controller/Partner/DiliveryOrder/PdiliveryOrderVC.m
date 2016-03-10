@@ -11,6 +11,7 @@
 #import "PDiliveryOrderListCell.h"
 #import "PNetworkOrder.h"
 #import "ModelOrder.h"
+#import "PDeliverOrderDetailVC.h"
 
 @interface PdiliveryOrderVC ()
 {
@@ -256,6 +257,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    [self performSegueWithIdentifier:@"toPDeliverOrderDetail" sender:indexPath];
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toPDeliverOrderDetail"]) {
+        PDeliverOrderDetailVC * view = [[PDeliverOrderDetailVC alloc]init];
+        view = segue.destinationViewController;
+        NSIndexPath * index = (NSIndexPath *)sender;
+        ModelOrder * model = [[ModelOrder alloc]init];
+        if (type == 3) {
+            model = self.orderArr[index.row];
+        }
+        else
+        {
+            model = self.arriveOrderArr[index.row];
+        }
+        
+        view.orderId = model.orderId;
+        
+    }
 }
 
 

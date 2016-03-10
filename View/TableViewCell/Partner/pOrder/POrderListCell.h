@@ -10,6 +10,7 @@
 #import "ModelOrder.h"
 
 @interface POrderListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
 @property (weak, nonatomic) IBOutlet UILabel *stateLab;

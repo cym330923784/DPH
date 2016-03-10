@@ -21,7 +21,9 @@
     _modelProduct = modelProduct;
     
     self.proNameLab.text = modelProduct.name;
-    self.proPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[modelProduct.sellingPrice floatValue]];
+//    NSString * priceStr = [NSString stringWithFormat:@"%0.2lf",[modelProduct.sellingPrice floatValue]];
+    
+    self.proPriceLab.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithFloat:[modelProduct.sellingPrice floatValue]]  numberStyle:NSNumberFormatterDecimalStyle];
     [self.proImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
     
 //    if ([modelProduct.favorite isEqualToString:@"0"]) {

@@ -20,13 +20,17 @@
 @property (weak, nonatomic) IBOutlet UITextField *shopNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *areaBtn;
 @property (weak, nonatomic) IBOutlet UITextField *addressTF;
+@property (weak, nonatomic) IBOutlet UIButton *deliveryAreaBtn;
+
 @property (weak, nonatomic) IBOutlet UITextField *contectNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
+@property (weak, nonatomic) IBOutlet UITextField *reservePhoneTF;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIView *secondView;
 @property (weak, nonatomic) IBOutlet UILabel *areaLab;
 
 
+@property (nonatomic, strong)NSMutableArray * deliveryAreaArr;
 
 @end

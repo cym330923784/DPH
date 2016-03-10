@@ -103,21 +103,82 @@
                             <constraint firstAttribute="trailing" secondItem="r81-QZ-S30" secondAttribute="trailing" id="bld-iV-gX8"/>
                             <constraint firstItem="lgY-6e-Mpi" firstAttribute="leading" secondItem="Z0X-5e-dEH" secondAttribute="leading" id="buv-pu-5o5"/>
                             <constraint firstItem="r81-QZ-S30" firstAttribute="top" secondItem="lgY-6e-Mpi" secondAttribute="bottom" id="ij8-it-f52"/>
+                            <constraint firstItem="HWo-pu-wPu" firstAttribute="top" secondItem="lgY-6e-Mpi" secondAttribute="bottom" constant="44" id="yjm-Tp-vNy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="ij8-it-f52"/>
                                 <exclude reference="B2M-pU-nRt"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="商品详情" id="INB-I0-DIS"/>
                     <connections>
+                        <outlet property="saveBtn" destination="r81-QZ-S30" id="BBO-Z6-n8u"/>
                         <outlet property="tableView" destination="lgY-6e-Mpi" id="S2G-uw-GeH"/>
+                        <outlet property="tableViewToBottom" destination="yjm-Tp-vNy" id="lMZ-98-W2S"/>
+                        <segue destination="tJY-5Q-hH5" kind="show" identifier="toEditPdtInfo" id="Lxr-Xm-rI8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6y-aV-2KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6kI-Gf-0a2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1263" y="357"/>
+        </scene>
+        <!--编辑-->
+        <scene sceneID="iIG-SJ-bo7">
+            <objects>
+                <viewController id="tJY-5Q-hH5" customClass="EditPdtInfoVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PuE-o9-918"/>
+                        <viewControllerLayoutGuide type="bottom" id="A7q-CA-A7D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="avJ-5v-AHR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSA-XX-RCm">
+                                <rect key="frame" x="0.0" y="72" width="600" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RMW-ez-qSW">
+                                        <rect key="frame" x="8" y="5" width="584" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="OUY-Jj-gnS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="RMW-ez-qSW" firstAttribute="centerY" secondItem="WSA-XX-RCm" secondAttribute="centerY" id="8bw-CC-dQD"/>
+                                    <constraint firstAttribute="trailing" secondItem="RMW-ez-qSW" secondAttribute="trailing" constant="8" id="E6I-8h-FcX"/>
+                                    <constraint firstAttribute="height" constant="50" id="PYl-Wy-08s"/>
+                                    <constraint firstItem="RMW-ez-qSW" firstAttribute="leading" secondItem="WSA-XX-RCm" secondAttribute="leading" constant="8" id="ZO9-fC-cbm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WSA-XX-RCm" secondAttribute="trailing" id="RkF-dS-uzK"/>
+                            <constraint firstItem="WSA-XX-RCm" firstAttribute="leading" secondItem="avJ-5v-AHR" secondAttribute="leading" id="l9y-Mn-fnd"/>
+                            <constraint firstItem="WSA-XX-RCm" firstAttribute="top" secondItem="PuE-o9-918" secondAttribute="bottom" constant="8" id="o82-yu-MH6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="编辑" id="bO7-1P-K7K">
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="8Ak-9U-NKX">
+                            <connections>
+                                <segue destination="6kI-Gf-0a2" kind="unwind" unwindAction="unwindSegue:" id="tmY-Mt-hFi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentTF" destination="RMW-ez-qSW" id="lsK-eR-BpH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PK9-ke-qXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="355"/>
         </scene>
     </scenes>
 </document>

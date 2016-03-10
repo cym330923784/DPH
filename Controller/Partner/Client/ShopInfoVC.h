@@ -12,5 +12,6 @@
 
 
 @property(nonatomic,strong)NSString * endClientId;
+@property (nonatomic, strong)NSMutableArray * deliveryAreaArr;
 
 @end

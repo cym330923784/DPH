@@ -15,9 +15,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *marketPriceLab;
 
+@property (weak, nonatomic) IBOutlet UIButton *sellingPriceBtn;
+@property (weak, nonatomic) IBOutlet UILabel *sellingPriceLab;
+@property (weak, nonatomic) IBOutlet UIButton *qtyBtn;
+@property (weak, nonatomic) IBOutlet UILabel *qtyLab;
 
-@property (weak, nonatomic) IBOutlet UITextField *sellingPriceTF;
-@property (weak, nonatomic) IBOutlet UITextField *qtyTF;
+
+//@property (weak, nonatomic) IBOutlet UITextField *sellingPriceTF;
+//@property (weak, nonatomic) IBOutlet UITextField *qtyTF;
 @property (weak, nonatomic) IBOutlet UIButton *onShelfBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outShelfBtn;
 

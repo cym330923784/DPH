@@ -12,13 +12,17 @@
 #import <QiniuSDK.h>
 #import "ModelShop.h"
 #import "PNetworkClient.h"
+#import "ModelDeliveryArea.h"
 
 @interface AddShopUserVC ()<UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
 {
     NSArray *provinces, *cities, *areas;
+    
+    NSString * deliveryAreaStr,*deliveryAreaId;
 }
 @property (strong, nonatomic) NSString * areaValue;
 @property (nonatomic,strong)ModelShop * modelShop;
+
 
 
 @end
@@ -47,6 +51,9 @@
 -(void)initData
 {
     
+//    self.deliveryAreaArr = [NSMutableArray arrayWithObjects:@"安岳", @"渝中区", @"渝北区", @"北碚区", nil];
+    
+    
     self.modelShop = [[ModelShop alloc]init];
     self.secondView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
     
@@ -64,6 +71,7 @@
     }
     
 }
+
 
 - (IBAction)tapShopImgView:(id)sender {
     
@@ -187,6 +195,8 @@
     self.modelShop.addressDetail = [NSString stringWithFormat:@"%@%@",self.areaBtn.titleLabel.text,self.addressTF.text];
     self.modelShop.contactName = self.contectNameTF.text;
     self.modelShop.contactMobile = self.phoneTF.text;
+    self.modelShop.areaId = deliveryAreaId;
+    self.modelShop.secondaryPhone = self.reservePhoneTF.text;
 //    if ([self.stateBtn.titleLabel.text isEqualToString:@"未激活"]) {
 //        self.modelShop.loginStatus = @"0";
 //    }
@@ -229,6 +239,10 @@
         [self showCommonHUD:@"请选择地区!"];
         return NO;
     }
+    if ([self.deliveryAreaBtn.titleLabel.text isEqualToString:@"请选择配送区域"]) {
+        [self showCommonHUD:@"请选择配送区域"];
+        return NO;
+    }
     if ([self.addressTF.text isEqualToString:@""]) {
         [self showCommonHUD:@"请输入相信收货地址!"];
         return NO;
@@ -259,6 +273,44 @@
     [self resign];
     [self.view bringSubviewToFront:self.secondView];
 }
+- (IBAction)chooseDeliveryArea:(id)sender {
+    
+    [self resign];
+    
+    UIPickerView * picker=  [[UIPickerView alloc]initWithFrame:CGRectMake(0, 0, Screen.width-100, 216)];
+    
+    //让pickview 默认选中原本的值
+    
+    NSInteger i = 0;
+    NSInteger j = 0;
+    for (ModelDeliveryArea * model in self.deliveryAreaArr) {
+        if ([model.name isEqualToString:self.deliveryAreaBtn.titleLabel.text]) {
+            j = i;
+            
+        }
+        i++;
+    }
+    
+    picker.tag = 200;
+    picker.delegate = self;
+    picker.dataSource = self;
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"\n\n\n\n\n\n\n\n"                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    [alertController.view addSubview:picker];
+    //让pickview 默认选中原本的值
+    [picker selectRow:j inComponent:0 animated:NO];
+    
+    [alertController addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self.deliveryAreaBtn setTitle:deliveryAreaStr forState:UIControlStateNormal];
+        NSLog(@"%@",deliveryAreaId);
+    }]];
+    
+    [self presentViewController: alertController animated: YES completion: nil];
+    
+    
+}
+
+
 - (IBAction)finishAction:(id)sender {
     [self.view sendSubviewToBack:self.secondView];
     [self.areaBtn setTitle:[NSString stringWithFormat:@"%@",self.areaLab.text] forState:UIControlStateNormal];
@@ -273,6 +325,7 @@
     [self.addressTF resignFirstResponder];
     [self.contectNameTF resignFirstResponder];
     [self.phoneTF resignFirstResponder];
+    [self.reservePhoneTF resignFirstResponder];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -290,98 +343,129 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 3;
+    if (pickerView.tag == 200) {
+        return 1;
+    }
+    else
+    {
+        return 3;
+    }
+    
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    switch (component) {
-        case 0:
-            return [provinces count];
-            break;
-        case 1:
-            return [cities count];
-            break;
-        case 2:
-            return [areas count];
-            break;
-        default:
-            return 0;
-            break;
+    
+    if (pickerView.tag == 200) {
+        return self.deliveryAreaArr.count;
+    }
+    else
+    {
+        switch (component) {
+            case 0:
+                return [provinces count];
+                break;
+            case 1:
+                return [cities count];
+                break;
+            case 2:
+                return [areas count];
+                break;
+            default:
+                return 0;
+                break;
+        }
+
     }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    switch (component) {
-        case 0:
-            return [[provinces objectAtIndex:row] objectForKey:@"state"];
-            break;
-        case 1:
-            return [[cities objectAtIndex:row] objectForKey:@"city"];
-            break;
-        case 2:
-            if ([areas count] > 0) {
-                return [areas objectAtIndex:row];
+    if (pickerView.tag == 200) {
+        ModelDeliveryArea * thisModel = self.deliveryAreaArr[row];
+        return thisModel.name;
+    }
+    else
+    {
+        switch (component) {
+            case 0:
+                return [[provinces objectAtIndex:row] objectForKey:@"state"];
                 break;
-            }
-        default:
-            return  @"";
-            break;
+            case 1:
+                return [[cities objectAtIndex:row] objectForKey:@"city"];
+                break;
+            case 2:
+                if ([areas count] > 0) {
+                    return [areas objectAtIndex:row];
+                    break;
+                }
+            default:
+                return  @"";
+                break;
+        }
+ 
     }
     
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
-    switch (component) {
-        case 0:
-            cities = [[provinces objectAtIndex:row] objectForKey:@"cities"];
-            [self.pickerView selectRow:0 inComponent:1 animated:YES];
-            [self.pickerView reloadComponent:1];
-            
-            areas = [[cities objectAtIndex:0] objectForKey:@"areas"];
-            [self.pickerView selectRow:0 inComponent:2 animated:YES];
-            [self.pickerView reloadComponent:2];
-            
-            self.locate.state = [[provinces objectAtIndex:row] objectForKey:@"state"];
-            self.locate.city = [[cities objectAtIndex:0] objectForKey:@"city"];
-            if ([areas count] > 0) {
-                self.locate.district = [areas objectAtIndex:0];
-            } else{
-                self.locate.district = @"";
-            }
-            self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
-            
-            break;
-        case 1:
-            areas = [[cities objectAtIndex:row] objectForKey:@"areas"];
-            [self.pickerView selectRow:0 inComponent:2 animated:YES];
-            [self.pickerView reloadComponent:2];
-            
-            self.locate.city = [[cities objectAtIndex:row] objectForKey:@"city"];
-            if ([areas count] > 0) {
-                self.locate.district = [areas objectAtIndex:0];
-            } else{
-                self.locate.district = @"";
-            }
-            self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
-            
-            break;
-        case 2:
-            if ([areas count] > 0) {
-                self.locate.district = [areas objectAtIndex:row];
-            } else{
-                self.locate.district = @"";
-            }
-            self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
-            
-            break;
-        default:
-            break;
+    if (pickerView.tag == 200) {
+        NSLog(@"选定配送区域");
+        ModelDeliveryArea * model =self.deliveryAreaArr[row];
+        deliveryAreaId = model.areaId;
+        deliveryAreaStr = model.name;
     }
-    
+    else
+    {
+        switch (component) {
+            case 0:
+                cities = [[provinces objectAtIndex:row] objectForKey:@"cities"];
+                [self.pickerView selectRow:0 inComponent:1 animated:YES];
+                [self.pickerView reloadComponent:1];
+                
+                areas = [[cities objectAtIndex:0] objectForKey:@"areas"];
+                [self.pickerView selectRow:0 inComponent:2 animated:YES];
+                [self.pickerView reloadComponent:2];
+                
+                self.locate.state = [[provinces objectAtIndex:row] objectForKey:@"state"];
+                self.locate.city = [[cities objectAtIndex:0] objectForKey:@"city"];
+                if ([areas count] > 0) {
+                    self.locate.district = [areas objectAtIndex:0];
+                } else{
+                    self.locate.district = @"";
+                }
+                self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
+                
+                break;
+            case 1:
+                areas = [[cities objectAtIndex:row] objectForKey:@"areas"];
+                [self.pickerView selectRow:0 inComponent:2 animated:YES];
+                [self.pickerView reloadComponent:2];
+                
+                self.locate.city = [[cities objectAtIndex:row] objectForKey:@"city"];
+                if ([areas count] > 0) {
+                    self.locate.district = [areas objectAtIndex:0];
+                } else{
+                    self.locate.district = @"";
+                }
+                self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
+                
+                break;
+            case 2:
+                if ([areas count] > 0) {
+                    self.locate.district = [areas objectAtIndex:row];
+                } else{
+                    self.locate.district = @"";
+                }
+                self.areaValue = [NSString stringWithFormat:@"%@%@%@", self.locate.state, self.locate.city, self.locate.district];
+                
+                break;
+            default:
+                break;
+        }
+
+    }
     
 }
 

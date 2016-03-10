@@ -285,6 +285,13 @@
 }
 
 
++(BOOL)userAuthJudgeBy:(NSString*)taskSign
+{
+    NSMutableArray * authArr = [UserDefaultUtils valueWithKey:@"authList"];
+    NSString * str = taskSign;
+    return [authArr containsObject:str];
+}
+
 
 @end
 

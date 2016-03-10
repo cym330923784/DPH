@@ -14,6 +14,7 @@
 
 @interface PAddPayWayVC ()
 
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @property (nonatomic,strong)ModelPayWay * modelPayWay;
 
 @end
@@ -23,8 +24,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self initView];
     self.modelPayWay = [[ModelPayWay alloc]init];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateDate:) name:@"dateFinish" object:nil];
+}
+
+-(void)initView
+{
+    if (![AppUtils userAuthJudgeBy:AUTH_add_paymentHistory]) {
+        self.saveBtn.hidden = YES;
+        self.nameTF.text = @"-";
+        [self.dateBtn setTitle:@"-" forState:UIControlStateNormal];
+        [self.payWayBtn setTitle:@"-" forState:UIControlStateNormal];
+        self.nameTF.userInteractionEnabled = NO;
+        self.dateBtn.userInteractionEnabled = NO;
+        self.payWayBtn.userInteractionEnabled = NO;
+    }
 }
 
 - (IBAction)saveAction:(id)sender {

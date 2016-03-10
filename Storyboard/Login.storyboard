@@ -121,7 +121,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ma6-gz-YJW">
                                         <rect key="frame" x="475" y="62" width="75" height="30"/>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.62745098040000002" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.20784313725490194" green="0.71372549019607845" blue="0.97647058823529409" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="9Pk-HP-36W"/>
                                             <constraint firstAttribute="height" constant="30" id="BMa-bH-kBC"/>

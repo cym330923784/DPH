@@ -29,9 +29,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self initTable];
+    [self initView];
 
     NSIndexPath * payIndex = [NSIndexPath indexPathForRow:3 inSection:0];
     POrderDetailCell * thisCell = [self.tableView cellForRowAtIndexPath:payIndex];
+    
+    
 
     if (self.payment != nil) {
         thisCell.numLab.hidden = NO;
@@ -39,6 +42,18 @@
         thisCell.jiantouImg.hidden = YES;
         thisCell.titleLab.text = @"已付款";
         thisCell.userInteractionEnabled = NO;
+    }
+}
+
+-(void)initView
+{
+    if ([AppUtils userAuthJudgeBy:AUTH_update_orderReview]) {
+        self.invalidBtn.hidden = NO;
+        self.rightBtn.hidden = NO;
+    }
+    
+    if ([AppUtils userAuthJudgeBy:AUTH_update_deliver]) {
+        NSLog(@"已送达按钮显示");
     }
 }
 

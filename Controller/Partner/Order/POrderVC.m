@@ -18,6 +18,7 @@
 {
     NSInteger page,type;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableviewToTop;
 
 @property (weak, nonatomic) IBOutlet UIButton *filterBtn;//筛选btn
 @property (weak, nonatomic) IBOutlet UIView *filterView;
@@ -69,19 +70,40 @@
 
 -(void)initSwitch
 {
+    
+    UIView * view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 35, Screen.width/3, 2)];
+    view1.backgroundColor = [UIColor colorWithHexString:@"35B6F9"];
+    UIView * view2 = [[UIView alloc]initWithFrame:CGRectMake(Screen.width/3, 35, Screen.width/3, 2)];
+    view2.backgroundColor = [UIColor whiteColor];
+    UIView * view3 = [[UIView alloc]initWithFrame:CGRectMake(2*Screen.width/3, 35, Screen.width/3, 2)];
+    view3.backgroundColor = [UIColor whiteColor];
+    
+    
+    [self.mainView addSubview:view1];
+    [self.mainView addSubview:view2];
+    [self.mainView addSubview:view3];
+    
+    
     DVSwitch * mySwitch = [[DVSwitch alloc]initWithStringsArray:@[@"未完成",@"已完成",@"已作废"]] ;
     mySwitch.backgroundColor = [UIColor whiteColor];
-    mySwitch.sliderColor = [UIColor colorWithHexString:@"3CA0E6"];
-    mySwitch.labelTextColorInsideSlider = [UIColor whiteColor];
-    mySwitch.labelTextColorOutsideSlider = [UIColor colorWithHexString:@"5f646e"];
+//    mySwitch.sliderColor = [UIColor colorWithHexString:@"35B6F9"];
+    mySwitch.labelTextColorInsideSlider = [UIColor colorWithHexString:@"35B6F9"];
+    mySwitch.labelTextColorOutsideSlider = [UIColor colorWithHexString:@"333333"];
     mySwitch.font = [UIFont systemFontOfSize:17];
     mySwitch.cornerRadius = 0;
     mySwitch.tag = 100;
     [self.mainView addSubview:mySwitch];
     
     [mySwitch setPressedHandler:^(NSUInteger index) {
+        view1.backgroundColor = [UIColor whiteColor];
+        view2.backgroundColor = [UIColor whiteColor];
+        view3.backgroundColor = [UIColor whiteColor];
+        
         type = index+6;
         if (type == 6) {
+            self.filterView.hidden = NO;
+            view1.backgroundColor = [UIColor colorWithHexString:@"35B6F9"];
+            self.tableviewToTop.constant = 10;
             if (self.notFinishOrderArr.count == 0) {
                 [self.tableView.mj_header beginRefreshing];
             }
@@ -92,6 +114,9 @@
         }
         else if (type == 7)
         {
+            self.filterView.hidden = YES;
+            view2.backgroundColor = [UIColor colorWithHexString:@"35B6F9"];
+            self.tableviewToTop.constant = -30;
             if (self.finishOrderArr.count == 0) {
                 [self.tableView.mj_header beginRefreshing];
             }
@@ -103,6 +128,9 @@
         }
         else
         {
+            self.filterView.hidden = YES;
+            view3.backgroundColor = [UIColor colorWithHexString:@"35B6F9"];
+            self.tableviewToTop.constant = -30;
             if (self.invalidOrderArr.count == 0) {
                 [self.tableView.mj_header beginRefreshing];
             }
@@ -205,31 +233,14 @@
     
      NSArray *titles = @[@"未审核", @"未装箱", @"为配送", @"未付款"];
     
-    
-    
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: nil                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: nil                                                                           message: nil                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
     [self addActionTarget:alertController titles:titles];
     [self addCancelActionTarget:alertController title:@"取消"];
     
-//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"未付款" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        
-//    }];
-//    [action setValue:[UIColor colorWithHexString:@"#7d7d7d"] forKey:@"_titleTextColor"];
-//    [alertController addAction:action];
-//    
-//    //添加Button
-//    [alertController addAction: [UIAlertAction actionWithTitle: @"未审核" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        [self.filterBtn setTitle:@"未审核" forState:UIControlStateNormal];
-//    }]];
-//    [alertController addAction: [UIAlertAction actionWithTitle: @"未装箱" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-//        [self.filterBtn setTitle:@"未装箱" forState:UIControlStateNormal];
-//        
-//    }]];
-//    [alertController addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
-    
     [self presentViewController: alertController animated: YES completion: nil];
 }
+
 
 
 #pragma mark - TableViewDelegate

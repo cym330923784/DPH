@@ -35,7 +35,7 @@
 //    self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     NSDate *now = [NSDate date];
 //    self.datePicker.date = self.userDate;
-    self.datePicker.maximumDate = now;
+    self.datePicker.minimumDate = now;
 
 }
 

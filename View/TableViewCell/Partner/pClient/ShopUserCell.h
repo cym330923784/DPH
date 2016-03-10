@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 @property (weak, nonatomic) IBOutlet UILabel *shopNameLab;
-@property (weak, nonatomic) IBOutlet UILabel *shopStateLab;
+//@property (weak, nonatomic) IBOutlet UILabel *shopStateLab;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLab;
 

@@ -91,8 +91,9 @@
 {
     UIButton * thisBtn = (UIButton *)sender;
     thisBtn.selected = !thisBtn.selected;
-    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[thisBtn superview]superview];
+    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[[thisBtn superview]superview]superview];
     
+    NSLog(@"%@",thisCell.modelOrder);
     if (thisBtn.selected) {
         [self.tempOrderArr addObject:thisCell.modelOrder];
     }
@@ -106,7 +107,7 @@
 -(void)backOrderACtion:(id)sender
 {
 //    UIButton * thisBtn = (UIButton *)sender;
-    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[sender superview] superview];
+    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[[sender superview] superview]superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:thisCell];
     NSLog(@"退回订单");
     NSArray * arr = @[@"货品库存量不同",@"货品受损"];
@@ -143,7 +144,7 @@
 -(void)removeOrderACtion:(id)sender
 {
     NSLog(@"移除订单");
-    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[sender superview] superview];
+    PDiliveryPackageOrderCell * thisCell = (PDiliveryPackageOrderCell *)[[[sender superview] superview] superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:thisCell];
 
     [self showCommonHUD:@"提交中..."];
@@ -172,6 +173,10 @@
 - (IBAction)removeAllOrderAction:(id)sender {
     NSLog(@"清空订单");
     
+    if (self.orderArr.count == 0) {
+        [self showCommonHUD:@"没有订单!"];
+        return;
+    }
     [AppUtils showAlert:nil
                 message:@"是否清空订单?"
              objectSelf:self
@@ -269,6 +274,12 @@
     
     cell.modelOrder = self.orderArr[indexPath.row];
     [cell.checkBtn addTarget:self action:@selector(selectCheckBtn:) forControlEvents:UIControlEventTouchUpInside];
+    //============
+//    NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"退回订单"]];
+//    NSRange contentRange = {0,[content length]};
+//    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+//    [cell.backOrderBtn setTitle:(NSString *)content forState:UIControlStateNormal];
+    //=================
     [cell.backOrderBtn addTarget:self action:@selector(backOrderACtion:) forControlEvents:UIControlEventTouchUpInside];
     [cell.removeOrderBtn addTarget:self action:@selector(removeOrderACtion:) forControlEvents:UIControlEventTouchUpInside];
     [self.cellArr addObject:cell];

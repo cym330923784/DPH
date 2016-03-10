@@ -66,5 +66,16 @@
                     success:(networkSuccess)success
                     failure:(networkFailure)failure;
 
+/**
+ *  获取配送区域
+ *
+ *  @param partnerId   地方站id
+ *  @param success 成功囘調
+ *  @param failure 失敗回調
+ */
+
+-(void)getDeliveryAreaByPartnerId:(NSString *)partnerId
+                          success:(networkSuccess)success
+                          failure:(networkFailure)failure;
 
 @end

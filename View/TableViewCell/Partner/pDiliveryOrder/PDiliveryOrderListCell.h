@@ -10,6 +10,7 @@
 #import "ModelOrder.h"
 
 @interface PDiliveryOrderListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 

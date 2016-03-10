@@ -88,13 +88,13 @@
                               success:(networkSuccess)success
                               failure:(networkFailure)failure
 {
-    NSDictionary * dic = @{@"partnerId":partnerId,
-                           @"productId":productId,
+    NSDictionary * dic = @{@"productId":productId,
                            @"sellingPrice":sellingPrice,
                            @"storageQty":storageQty,
                            @"shelfStatus":shelfStatus};
     NSString * str = [AppUtils dictionaryToJson:dic];
-    NSDictionary * adic = @{@"jsonObject":str};
+    NSDictionary * adic = @{@"jsonObject":str,
+                            @"partnerId":partnerId};
     [super sendRequestToServiceByPost:adic
                              serveUrl:@"api/partner/products/update"
                               success:^(id result) {

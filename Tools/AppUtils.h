@@ -147,6 +147,13 @@ typedef void (^cancelAction)(id result);
           cancelAction:(cancelAction)cancelAction;
 
 
+/**
+ *  判断是非有某种权限
+ *
+ *  @param msg 字符串
+ */
+
++(BOOL)userAuthJudgeBy:(NSString*)taskSign;
 
 @end
 

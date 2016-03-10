@@ -34,14 +34,18 @@
  *  联系电话
  */
 @property (nonatomic,copy) NSString *contactMobile;
-///**
-// *  职位
-// */
-//@property (nonatomic,copy) NSString *contactPosition;
-///**
-// *  邮箱
-// */
-//@property (nonatomic,copy) NSString *contactEmail;
+/**
+ *  配送区域id
+ */
+@property (nonatomic,copy) NSString *areaId;
+/**
+ *  配送区域名称
+ */
+@property (nonatomic,copy) NSString *businessAreas;
+/**
+ *  备用电话
+ */
+@property (nonatomic,copy) NSString *secondaryPhone;
 ///**
 // *  qq
 // */

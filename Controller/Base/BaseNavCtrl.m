@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationBar.barTintColor = [UIColor colorWithHexString:@"4484DF"];
+    self.navigationBar.barTintColor = [UIColor colorWithHexString:@"35B6F9"];
 //        self.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationBar setTitleTextAttributes:
      

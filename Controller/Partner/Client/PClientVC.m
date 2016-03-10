@@ -7,17 +7,19 @@
 //
 
 #import "PClientVC.h"
-#import <MJRefresh/MJRefresh.h>
 #import "ShopUserCell.h"
 #import "PNetworkClient.h"
 #import "ModelShopListDemo.h"
 #import "ShopInfoVC.h"
+#import "ModelDeliveryArea.h"
+#import "AddShopUserVC.h"
 
 @interface PClientVC ()
 {
     NSInteger page;
 }
 @property (nonatomic, strong)NSMutableArray * shopArr;
+@property (nonatomic, strong)NSMutableArray * deliveryAreaArr;
 
 @end
 
@@ -40,9 +42,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     page = 1;
+    self.deliveryAreaArr = [NSMutableArray array];
     [self initTable];
+    [self initView];
+    [self getDeliveryAreaList];
+    
+    
 }
 
+
+-(void)initView
+{
+    if (![AppUtils userAuthJudgeBy:AUTH_update_endClientManage]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
 -(void)initTable
 {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -58,6 +72,24 @@
     [self.tableView.mj_header beginRefreshing];
     
 }
+
+-(void)getDeliveryAreaList
+{
+    
+    [[PNetworkClient sharedManager]getDeliveryAreaByPartnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
+                                                      success:^(id result) {
+                                                          for (NSDictionary * areaDic in result) {
+                                                              ModelDeliveryArea * modelArea = [ModelDeliveryArea yy_modelWithDictionary:areaDic];
+                                                              [self.deliveryAreaArr addObject:modelArea];
+                                                          }
+                                                          
+                                                      }
+                                                      failure:^(id result) {
+                                                          [self showCommonHUD:@"获取区域列表失败!"];
+                                                          
+                                                      }];
+}
+
 
 -(void)getClientList
 {
@@ -123,7 +155,14 @@
         NSIndexPath * index = (NSIndexPath *)sender;
         ModelShopListDemo * model = self.shopArr[index.row];
         infoView.endClientId = model.shopId;
+        infoView.deliveryAreaArr = self.deliveryAreaArr;
 
+    }
+    else if ([segue.identifier isEqualToString:@"toAddShopUser"])
+    {
+        AddShopUserVC * addView = [[AddShopUserVC alloc]init];
+        addView = segue.destinationViewController;
+        addView.deliveryAreaArr = self.deliveryAreaArr;
     }
 }
 

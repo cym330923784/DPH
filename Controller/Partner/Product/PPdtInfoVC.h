@@ -14,4 +14,7 @@
 
 @property (nonatomic,strong)NSString * productId;
 
+@property (nonatomic, strong)NSString * sellingPriceStr;
+@property (nonatomic, strong)NSString * qtyStr;
+
 @end

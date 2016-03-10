@@ -12,6 +12,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.mainView.layer.masksToBounds = YES;
+    self.mainView.layer.cornerRadius = 8;
 }
 
 -(void)setModelOrder:(ModelOrder *)modelOrder

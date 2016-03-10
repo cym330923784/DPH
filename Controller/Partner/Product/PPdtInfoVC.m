@@ -16,11 +16,18 @@
 #import <UIImageView+WebCache.h>
 #import "ProductSizeCollectCell.h"
 #import "ModelSpfctionValue.h"
+#import "EditPdtInfoVC.h"
+
+#import "MJPhoto.h"
+#import "MJPhotoBrowser.h"
 
 @interface PPdtInfoVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString * size;
+    
 }
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewToBottom;
 
 @property (nonatomic, strong)ModelProduct * modelProduct;
 @property (nonatomic, strong)ModelSpecification * modelSpecification;
@@ -32,13 +39,23 @@
 
 @implementation PPdtInfoVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initView];
     [self initData];
     [self getPRoductDetail];
 }
 
+
+-(void)initView
+{
+    if (![AppUtils userAuthJudgeBy:AUTH_update_product]) {
+        self.saveBtn.hidden = YES;
+        self.tableViewToBottom.constant = 0;
+    }
+}
 -(void)initData
 {
     self.specificationArr = [NSMutableArray array];
@@ -54,6 +71,8 @@
                                                    partnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
                                                      success:^(id result) {
                                                          self.modelProduct = [ModelProduct yy_modelWithDictionary:result];
+                                                        self.sellingPriceStr = self.modelProduct.sellingPrice;
+                                                         self.qtyStr = self.modelProduct.storageQty;
                                                          if (self.modelProduct.data.count>0) {
                                                              self.modelSpecification = self.modelProduct.data[0];
                                                          }
@@ -84,8 +103,8 @@
     
     [[PNetworkHome sharedManager]submitProductChangeByPartnerId:[UserDefaultUtils valueWithKey:@"partnerId"]
                                                       productId:self.modelProduct.productId
-                                                   sellingPrice:thisCell.sellingPriceTF.text
-                                                     storageQty:thisCell.qtyTF.text
+                                                   sellingPrice:thisCell.sellingPriceLab.text
+                                                     storageQty:thisCell.qtyLab.text
                                                     shelfStatus:self.modelProduct.shelfStatus
                                                         success:^(id result) {
                                                             [self dismissHUD];
@@ -101,6 +120,48 @@
 //    [Cym_PHD showSuccess:@"保存修改成功!"];
 }
 
+-(void)tap:(UITapGestureRecognizer *)tap
+{
+    NSArray *arr = [AppUtils cutStringToArray:self.modelProduct.primeImageUrl symbol:@","];
+    
+    NSInteger count = arr.count;
+    //     1.封装图片数据
+    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i<count; i++) {
+        // 替换为中等尺寸图片
+        NSString *url = [[NSString stringWithFormat:@"%@%@",QN_ImageUrl,arr[i]] stringByReplacingOccurrencesOfString:@"mdpi.jpg" withString:@"hdpi.jpg"];
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.url = [NSURL URLWithString:url]; // 图片路径
+//        photo.srcImageView = self.; // 来源于哪个UIImageView
+        [photos addObject:photo];
+    }
+    
+    //    // 2.显示相册
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
+    browser.photos = photos; // 设置所有的图片
+    [browser show];
+
+}
+
+-(void)toChangeSellingPrice
+{
+    if (![AppUtils userAuthJudgeBy:AUTH_update_product]) {
+        [self showCommonHUD:@"你没有权限修改商品!"];
+        return;
+    }
+    [self performSegueWithIdentifier:@"toEditPdtInfo" sender:@"sellingPrice"];
+}
+
+-(void)toChangeQty
+{
+    if (![AppUtils userAuthJudgeBy:AUTH_update_product]) {
+        [self showCommonHUD:@"你没有权限修改商品!"];
+        return;
+    }
+    [self performSegueWithIdentifier:@"toEditPdtInfo" sender:@"qty"];
+}
+
 
 #pragma mark - TableViewDelegate
 
@@ -113,10 +174,10 @@
     {
         return 130;
     }
-    else if (indexPath.row == 2)
-    {
-        return 20+((self.modelSpecification.data.count+1)/2) * 35;
-    }
+//    else if (indexPath.row == 2)
+//    {
+//        return 20+((self.modelSpecification.data.count+1)/2) * 35;
+//    }
     else
     {
         return [AppUtils labelAutoCalculateRectWith:self.modelProduct.proDescription lineSpacing:6 FontSize:14 MaxSize:CGSizeMake([AppUtils putScreenWidth]-25, 0)].height+50;
@@ -124,7 +185,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -137,6 +198,8 @@
             infoCell = nibArray[0];
         }
         
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+        [infoCell.proBigImgView addGestureRecognizer:tap];
         [infoCell.proBigImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QN_ImageUrl,self.modelProduct.primeImageUrl]] placeholderImage:[UIImage imageNamed:@"default_pic"]];
         infoCell.nameLab.text = self.modelProduct.name;
         infoCell.codeLab.text = self.modelProduct.code;
@@ -151,8 +214,15 @@
             NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"PProductInfoCell" owner:nil options:nil];
             infoCell = nibArray[1];
         }
-        infoCell.sellingPriceTF.text = [NSString stringWithFormat:@"%0.2lf",[self.modelProduct.sellingPrice floatValue]];
-        infoCell.qtyTF.text = self.modelProduct.storageQty;
+        //根据权限判断
+
+//        infoCell.onShelfBtn.userInteractionEnabled = [AppUtils userAuthJudgeBy:AUTH_update_product];
+//        infoCell.outShelfBtn.userInteractionEnabled = [AppUtils userAuthJudgeBy:AUTH_update_product];
+        
+        infoCell.sellingPriceLab.text = [NSString stringWithFormat:@"%0.2lf",[self.sellingPriceStr floatValue]];
+        [infoCell.sellingPriceBtn addTarget:self action:@selector(toChangeSellingPrice) forControlEvents:UIControlEventTouchUpInside];
+        infoCell.qtyLab.text = [NSString stringWithFormat:@"%@",self.qtyStr];
+        [infoCell.qtyBtn addTarget:self action:@selector(toChangeQty) forControlEvents:UIControlEventTouchUpInside];
         
         if ([self.modelProduct.shelfStatus isEqualToString:@"1"]) {
             infoCell.onShelfBtn.backgroundColor = [UIColor colorWithHexString:@"3CA0E6"];
@@ -172,19 +242,19 @@
         return infoCell;
 
     }
-    else if(indexPath.row == 2)
-    {
-        infoCell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
-        if (!infoCell) {
-            NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"PProductInfoCell" owner:nil options:nil];
-            infoCell = nibArray[2];
-        }
-        
-        [infoCell setCollectionViewDataSourceDelegate:self];
-        
-        return infoCell;
-
-    }
+//    else if(indexPath.row == 2)
+//    {
+//        infoCell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+//        if (!infoCell) {
+//            NSArray * nibArray =[[NSBundle mainBundle]loadNibNamed:@"PProductInfoCell" owner:nil options:nil];
+//            infoCell = nibArray[2];
+//        }
+//        
+//        [infoCell setCollectionViewDataSourceDelegate:self];
+//        
+//        return infoCell;
+//
+//    }
     else
     {
         static NSString * cellI = @"introCell";
@@ -233,14 +303,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+- (IBAction)unwindSegue:(UIStoryboardSegue *)sender{
+    NSLog(@"unwindSegue %@", sender);
+    EditPdtInfoVC * vc = sender.sourceViewController;
+    if ([vc.type isEqualToString:@"price"]) {
+        self.sellingPriceStr = vc.contentTF.text;
+    }
+    else
+    {
+        self.qtyStr = vc.contentTF.text;
+    }
+    [self.tableView reloadData];
+    
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toEditPdtInfo"]) {
+        EditPdtInfoVC * view = [[EditPdtInfoVC alloc]init];
+        view = segue.destinationViewController;
+        NSString * str = (NSString *)sender;
+
+        if ([str isEqualToString:@"sellingPrice"]) {
+            view.content = [NSString stringWithFormat:@"%0.2lf",[self.sellingPriceStr floatValue]];
+            view.type = @"price";
+        }
+        else
+        {
+            view.content = self.qtyStr;
+            view.type = @"qty";
+        }
+       
+    }
+
+
+}
+
 
 @end

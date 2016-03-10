@@ -16,8 +16,9 @@
     UIButton *pProductBtn;
     UIButton *pOrderBtn;
     UIButton *pClientBtn;
+    UIButton *pReportBtn;
     UIButton *pManageBtn;
-
+    
 }
 
 @property (nonatomic, strong) UIWindow       *window;
@@ -73,7 +74,7 @@
 {
     CGFloat ScreenW = [AppUtils putScreenWidth];
     
-    CGFloat btnW = ScreenW/4;
+    CGFloat btnW = ScreenW/5;
     
     pBarView = [[UIView alloc] initWithFrame:CGRectMake(0, self.tabBar.frame.origin.y, ScreenW, 49)];
     pBarView.backgroundColor = [UIColor colorWithHexString:@"f9f9f9"];
@@ -139,11 +140,28 @@
     [pBarView addSubview:pClientBtn];
     
     //********************报表*********************
+    pReportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    pReportBtn.frame = CGRectMake(btnW * 3, 0, btnW, 49);
+    [pReportBtn setImage:[UIImage imageNamed:@"homePage_ico_find"] forState:UIControlStateNormal];
+    [pReportBtn setImage:[UIImage imageNamed:@"homePage_ico_find_select"] forState:UIControlStateSelected];
+    pReportBtn.tag = 3;
+    [pReportBtn setTitle:@"报表" forState:UIControlStateNormal];
+    pReportBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [pReportBtn setTitleColor:[UIColor colorWithHexString:@"5f646e"] forState:UIControlStateNormal];
+    [pReportBtn setTitleColor:[UIColor colorWithHexString:@"4484DF"] forState:UIControlStateSelected];
+    [pReportBtn setTitleEdgeInsets:UIEdgeInsetsMake(25, 0, 0, 20)];
+    [pReportBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 13, 0)];
+    pReportBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [pReportBtn addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [pBarView addSubview:pReportBtn];
+    
+    //********************管理*********************
     pManageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    pManageBtn.frame = CGRectMake(btnW * 3, 0, btnW, 49);
+    pManageBtn.frame = CGRectMake(btnW * 4, 0, btnW, 49);
     [pManageBtn setImage:[UIImage imageNamed:@"homePage_ico_user"] forState:UIControlStateNormal];
     [pManageBtn setImage:[UIImage imageNamed:@"homePage_ico_user_select"] forState:UIControlStateSelected];
-    pManageBtn.tag = 3;
+    pManageBtn.tag = 4;
     [pManageBtn setTitle:@"报表" forState:UIControlStateNormal];
     pManageBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [pManageBtn setTitleColor:[UIColor colorWithHexString:@"5f646e"] forState:UIControlStateNormal];
@@ -172,16 +190,26 @@
     UIStoryboard * pClientBoard = [UIStoryboard storyboardWithName:@"pClient" bundle:nil];
     UINavigationController * navPClient = [pClientBoard instantiateViewControllerWithIdentifier:@"NavPClient"];
     
+    UIStoryboard * pReportBoard = [UIStoryboard storyboardWithName:@"pReport" bundle:nil];
+    UINavigationController * navReport = [pReportBoard instantiateViewControllerWithIdentifier:@"NavReport"];
+    
     UIStoryboard * pManageBoard = [UIStoryboard storyboardWithName:@"pManage" bundle:nil];
     UINavigationController * navPManage = [pManageBoard instantiateViewControllerWithIdentifier:@"NavPManage"];
 
     //此处需要根据登陆后返回的值来判断是否是配送员
     
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
+    if ([AppUtils userAuthJudgeBy:AUTH_update_deliver])
+    {
+        //拥有配送员权限
+        self.viewControllers               = @[navPPro, navPDiliverOrder, navPClient,navReport,navPManage];
+    }
+    else
+    {
+        //没有配送员权限
+        self.viewControllers               = @[navPPro, navPOrder, navPClient,navReport,navPManage];
+    }
     
-    self.viewControllers               = @[navPPro, navPDiliverOrder, navPClient, navPManage];
+    
     
     self.tabBar.tintColor              = [UIColor whiteColor];
     
@@ -192,6 +220,7 @@
     pProductBtn.selected = NO;
     pOrderBtn.selected = NO;
     pClientBtn.selected = NO;
+    pReportBtn.selected = NO;
     pManageBtn.selected = NO;
     
     button.selected = YES;

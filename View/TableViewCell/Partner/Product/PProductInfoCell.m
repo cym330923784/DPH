@@ -30,10 +30,10 @@
 - (IBAction)changeShelfAction:(id)sender {
     UIButton * thisBtn = (UIButton *)sender;
     
-    self.onShelfBtn.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
+    self.onShelfBtn.backgroundColor = [UIColor colorWithHexString:@"F0F0F0"];
     [self.onShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.onShelfBtn.selected = NO;
-    self.outShelfBtn.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
+    self.outShelfBtn.backgroundColor = [UIColor colorWithHexString:@"F0F0F0"];
     [self.outShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.outShelfBtn.selected = NO;
     
@@ -41,22 +41,6 @@
     [thisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
 }
-
-//- (IBAction)changeShelfAction:(id)sender {
-//    
-//    UIButton * thisBtn = (UIButton *)sender;
-//    
-//    self.onShelfBtn.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
-//    [self.onShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//    self.onShelfBtn.selected = NO;
-//    self.outShelfBtn.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
-//    [self.outShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//    self.outShelfBtn.selected = NO;
-//    
-//    thisBtn.backgroundColor = [UIColor colorWithHexString:@"3CA0E6"];
-//    [thisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    
-//}
 
 
 - (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate {

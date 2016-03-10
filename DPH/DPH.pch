@@ -19,4 +19,111 @@
 #import "UIColor+TenSixColor.h"
 #import "Constants.h"
 
+
+static  NSString* const AUTH_add_paymentHistory= @"add_paymentHistory";//添加付款记录
+static  NSString* const AUTH_update_merchBill= @"update_merchBill";//修改商品清单
+static  NSString* const AUTH_update_confirmPayment= @"update_confirmPayment";//现金收款确认
+static  NSString* const AUTH_select_orderReview= @"select_orderReview";//订单审核列表
+static  NSString* const AUTH_select_packingConfirm= @"select_packingConfirm";//装箱确认列表
+static  NSString* const AUTH_select_delivery= @"select_delivery";//未送达列表
+static  NSString* const AUTH_select_sign= @"select_sign";//已签收列表
+static  NSString* const AUTH_select_complete= @"select_complete";//已完成列表
+static  NSString* const AUTH_select_noPayment= @"select_noPayment";//未付款列表
+static  NSString* const AUTH_select_payment= @"select_payment";//付款列表
+static  NSString* const AUTH_update_orderReview= @"update_orderReview";//订单审核
+static  NSString* const AUTH_update_packingConfirm= @"update_packingConfirm";//装箱确认
+static  NSString* const AUTH_update_departure= @"update_departure";//出发
+static  NSString* const AUTH_update_deliver= @"update_deliver";//送达
+static  NSString* const AUTH_update_sign= @"update_sign";//签收
+static  NSString* const AUTH_update_payment= @"update_payment";//付款
+static  NSString* const AUTH_update_revokeOrder= @"update_revokeOrder";//订单作废
+static  NSString* const AUTH_update_product= @"update_product";//修改产品
+static  NSString* const AUTH_update_userManage= @"update_userManage";//用户管理
+static  NSString* const AUTH_update_endClientManage= @"update_endClientManage";//商户管理
+static  NSString* const AUTH_update_company= @"update_company";//公司管理
+
 #endif /* DPH_pch */
+
+
+//[
+// {
+//     "name" : "添加付款记录",
+//     "task_sign" : "add_paymentHistory"
+// },
+// {
+//     "name" : "修改商品清单",
+//     "task_sign" : "update_merchBill"
+// },
+// {
+//     "name" : "现金收款确认",
+//     "task_sign" : "update_confirmPayment"
+// },
+// {
+//     "name" : "订单审核列表",
+//     "task_sign" : "select_orderReview"
+// },
+// {
+//     "name" : "装箱确认列表",
+//     "task_sign" : "select_packingConfirm"
+// },
+// {
+//     "name" : "未送达列表",
+//     "task_sign" : "select_delivery"
+// },
+// {
+//     "name" : "已签收列表",
+//     "task_sign" : "select_sign"
+// },
+// {
+//     "name" : "已完成列表",
+//     "task_sign" : "select_complete"
+// },
+// {
+//     "name" : "未付款列表",
+//     "task_sign" : "select_noPayment"
+// },
+// {
+//     "name" : "付款列表",
+//     "task_sign" : "select_payment"
+// },
+// {
+//     "name" : "订单审核",
+//     "task_sign" : "update_orderReview"
+// },
+// {
+//     "name" : "装箱确认",
+//     "task_sign" : "update_packingConfirm"
+// },
+// {
+//     "name" : "出发",
+//     "task_sign" : "update_departure"
+// },
+// {
+//     "name" : "送达",
+//     "task_sign" : "update_deliver"
+// },
+// {
+//     "name" : "签收",
+//     "task_sign" : "update_sign"
+// },
+// {
+//     "name" : "付款",
+//     "task_sign" : "update_payment"
+// },
+// {
+//     "name" : "订单作废",
+//     "task_sign" : "update_revokeOrder"
+// },
+// {
+//     "name" : "修改产品",
+//     "task_sign" : "update_product"
+// },
+// {
+//     "name" : "用户管理",
+//     "task_sign" : "update_userManage"
+// },
+// {
+//     "name" : "商户管理",
+//     "task_sign" : "update_endClientManage"
+// }
+// ],

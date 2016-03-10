@@ -58,7 +58,7 @@
     NSDictionary * dic = @{@"phone":phone,
                            @"code":code};
     [super sendRequestToServiceByPost:dic
-                             serveUrl:@"/api/user/login"
+                             serveUrl:@"api/user/login"
                               success:^(id result) {
                                   if ([result[@"state"] isEqualToString:@"success" ]) {
                                       if (success) {

@@ -29,7 +29,7 @@
     NSDictionary * dic = @{@"phone":phone,
                            @"code":code};
     [super sendRequestToServiceByPost:dic
-                             serveUrl:@"/api/partner/login"
+                             serveUrl:@"api/pUser/login"
                               success:^(id result) {
                                   if ([result[@"state"] isEqualToString:@"success" ]) {
                                       if (success) {

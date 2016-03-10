@@ -23,6 +23,18 @@
 
 @implementation PReportManageVC
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showtabbar" object:nil];
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetabbar" object:nil];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -62,9 +74,9 @@
 -(void)initScrollView
 {
     
-    FinanceReportVC * finaceReportVc = [[UIStoryboard storyboardWithName:@"pManage" bundle:nil]instantiateViewControllerWithIdentifier:@"financeReportVC"];
+    FinanceReportVC * finaceReportVc = [[UIStoryboard storyboardWithName:@"pReport" bundle:nil]instantiateViewControllerWithIdentifier:@"financeReportVC"];
     
-    PReportVC * orderReportVc = [[UIStoryboard storyboardWithName:@"pManage" bundle:nil]instantiateViewControllerWithIdentifier:@"pReportVC"];
+    PReportVC * orderReportVc = [[UIStoryboard storyboardWithName:@"pReport" bundle:nil]instantiateViewControllerWithIdentifier:@"pReportVC"];
     
      self.viewCtrls = [[NSMutableArray alloc]initWithObjects:finaceReportVc,orderReportVc,nil];
     

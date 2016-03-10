@@ -141,5 +141,35 @@
     
 }
 
+-(void)getDeliveryAreaByPartnerId:(NSString *)partnerId
+                          success:(networkSuccess)success
+                          failure:(networkFailure)failure
+{
+    NSDictionary * dic = @{@"partnerId":partnerId};
+    
+    [super sendRequestToServiceByPost:dic
+                             serveUrl:@"api/partnerEndClient/showDistributionArea"
+                              success:^(id result) {
+                                  if ([result[@"state"] isEqualToString:@"success" ])
+                                  {
+                                      if (success) {
+                                          success(result[@"data"]);
+                                      }
+                                  }else{
+                                      if (failure) {
+                                          failure(result[@"messageContent"]);
+                                      }
+                                  }
+                                  
+                                  
+                              }
+                              failure:^(id result) {
+                                  if (failure) {
+                                      failure(@"出错!");
+                                  }
+                                  
+                              }];
+}
+
 
 @end
